@@ -6,12 +6,7 @@
 ## SavedVariables: ASTSaved
 ## DependsOn: LibAddonMenu-2.0
 
-libs/LibStub/LibStub.lua
-libs/LibUnits/LibUnits.lua
-
-Core.lua
-Menu.lua
-Tracker.lua
-Healer.lua
-Tracking.lua
-Data.lua
+AiMs-Raid-Suite.lua
+modules/kynes-aegis-mechanics/core.lua
+modules/synergy-tracker/core.lua
+modules/synergy-tracker/controls.lua

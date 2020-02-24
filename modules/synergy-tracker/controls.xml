@@ -1,0 +1,8 @@
+<GuiXml>
+	<Controls>
+        <Control name="$(parent)MyBuffTemplate" virtual="true">
+            <Label name="$(parent)Name" text="test">
+		    </Label>
+        </Control>
+	</Controls>
+</GuiXml>
