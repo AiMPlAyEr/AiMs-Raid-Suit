@@ -1,6 +1,7 @@
 ARS = ARS or {}
 
 local pool
+local headercontrol
 
 local pframe = WINDOW_MANAGER:CreateTopLevelWindow("TrackerUITest")
 pframe:SetResizeToFitDescendents(true)
@@ -22,7 +23,7 @@ local function AddToFragment(element)
 end
 
 local function CreateFrameHeader()
-    local headercontrol = WINDOW_MANAGER:CreateControl("$(parent)TrackerHeader", pframe, CT_CONTROL)
+    headercontrol = WINDOW_MANAGER:CreateControl("$(parent)TrackerHeader", pframe, CT_CONTROL)
     headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
 
     local headerbackdrop = WINDOW_MANAGER:CreateControl("$(parent)backdrop", headercontrol, CT_BACKDROP)
@@ -34,12 +35,12 @@ local function CreateFrameHeader()
 
     local psynergy = WINDOW_MANAGER:CreateControl("$(parent)PrimarySynergy", headercontrol, CT_TEXTURE)
     psynergy:SetDimensions(24, 24)
-    psynergy:SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 165, 2)
+    psynergy:SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 165, 1)
     psynergy:SetTexture("/esoui/art/icons/ability_undaunted_004b.dds") --default icon
 
     local ssynergy = WINDOW_MANAGER:CreateControl("$(parent)SecondarySynergy", headercontrol, CT_TEXTURE)
     ssynergy:SetDimensions(24, 24)
-    ssynergy:SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 195, 2)
+    ssynergy:SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 195, 1)
     ssynergy:SetTexture("/esoui/art/icons/ability_sorcerer_liquid_lightning.dds") --default icon
 end
  
@@ -68,10 +69,10 @@ local function RemoveBuff(control)
 end
  
 local function UpdateGroup()
-    if GetGroupSize() < 2 then
-        pframe:SetHidden(true)
+    if GetGroupSize() < 1 then
+        headercontrol:SetHidden(true)
     else 
-        pframe:SetHidden(false)
+        headercontrol:SetHidden(false)
     end
     pool:ReleaseAllObjects()
      local groupunit
@@ -109,12 +110,12 @@ local function UpdateGroup()
             groupunit.name:SetDimensions(130, 24)
             groupunit.name:SetFont(string.format("$(%s)|$(KB_%s)|%s", "MEDIUM_FONT", 16, "soft-shadow-thin"))
 
-            groupunit.primarysynergy:SetAnchor(CENTER, groupunit, TOPLEFT, 178, 12)
+            groupunit.primarysynergy:SetAnchor(CENTER, groupunit, TOPLEFT, 176, 12)
             groupunit.primarysynergy:SetText("0")
             groupunit.primarysynergy:SetFont(string.format("$(%s)|$(KB_%s)|%s", "MEDIUM_FONT", 16, "soft-shadow-thin"))
             groupunit.primarysynergy:SetColor(255, 255, 255)
 
-            groupunit.secondarysynergy:SetAnchor(CENTER, groupunit, TOPLEFT, 208, 12)
+            groupunit.secondarysynergy:SetAnchor(CENTER, groupunit, TOPLEFT, 206, 12)
             groupunit.secondarysynergy:SetText("0")
             groupunit.secondarysynergy:SetFont(string.format("$(%s)|$(KB_%s)|%s", "MEDIUM_FONT", 16, "soft-shadow-thin"))
 
@@ -124,6 +125,12 @@ local function UpdateGroup()
      end
 end
 
+local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
+    if ARS.GetNameForUnitId(targetUnitId) ~= "" then
+        --d("Group: "..ARS.GetNameForUnitId(targetUnitId))
+    end
+end
+
 function ARS:InitializeSynergyTracker(enable)
     if not enable then return end
 
@@ -131,9 +138,15 @@ function ARS:InitializeSynergyTracker(enable)
     CreateFrameHeader()
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
+
+    ARS.RegisterUnitIndexing()
+
+    UpdateGroup()
+
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy", EVENT_COMBAT_EVENT, GetSynergy)
     --EVENT_MANAGER:RegisterForEvent("MyAddon", EVENT_COMBAT_EVENT, UpdateBuffs)
 end

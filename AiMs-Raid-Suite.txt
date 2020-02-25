@@ -2,12 +2,9 @@
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
 ## Version: 0.1
-## APIVersion: 100029
-## SavedVariables: ASTSaved
-## DependsOn: LibAddonMenu-2.0
+## APIVersion: 100030
+## SavedVariables: ARSSaved
 
 AiMs-Raid-Suite.lua
-modules/kynes-aegis-mechanics/core.lua
-modules/synergy-tracker/gunits.lua
 modules/synergy-tracker/core.lua
-modules/synergy-tracker/controls.xml
+modules/synergy-tracker/gunits.lua
