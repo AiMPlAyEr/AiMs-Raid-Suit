@@ -8,5 +8,6 @@
 
 AiMs-Raid-Suite.lua
 modules/kynes-aegis-mechanics/core.lua
+modules/synergy-tracker/gunits.lua
 modules/synergy-tracker/core.lua
-modules/synergy-tracker/controls.lua
+modules/synergy-tracker/controls.xml
