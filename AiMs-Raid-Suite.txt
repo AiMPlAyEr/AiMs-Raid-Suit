@@ -6,5 +6,6 @@
 ## SavedVariables: ARSSaved
 
 AiMs-Raid-Suite.lua
+modules/synergy-tracker/controls.xml
 modules/synergy-tracker/core.lua
 modules/synergy-tracker/gunits.lua

@@ -1,49 +1,54 @@
 <GuiXml>
-	<Controls>
-		<Control name="TrackerHeaderTemplate" resizeToFitDescendents="true" virtual="true">
-			<Controls>
-				<Backdrop name="$(parent)Backdrop" hidden="false" centerColor="00000" edgeColor="000000" alpha="0.8">
-					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="0" offsetX="0"/>
-					<Dimensions x="225" y="26" />
-				</Backdrop>
+    <Controls>
+        <Control name="TrackerHeaderTemplate" resizeToFitDescendents="true" virtual="true">
+            <Controls>
+                <Texture name="$(parent)Backdrop" hidden="false" color="000000" alpha="0.8">
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="0" offsetX="0" />
+                    <Dimensions x="225" y="26" />
+                </Texture>
 
-				<Texture name="$(parent)PrimarySynergy" textureFile="/esoui/art/icons/ability_undaunted_004b.dds"> <!-- default texture -->
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="1" offsetX="165"/>
-                                        <Dimensions y="24" x="24" />
-                                </Texture>
+                <Texture name="$(parent)PrimarySynergy" textureFile="/esoui/art/icons/ability_undaunted_004b.dds">
+                    <!-- default texture -->
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="1" offsetX="168" />
+                    <Dimensions y="24" x="24" />
+                </Texture>
 
-                                <Texture name="$(parent)SecondarySynergy" textureFile="/esoui/art/icons/ability_sorcerer_liquid_lightning.dds"> <!-- default texture -->
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="1" offsetX="195"/>
-                                        <Dimensions y="24" x="24" />
-                                </Texture>
-			</Controls>
-		</Control>
+                <Texture name="$(parent)SecondarySynergy" textureFile="/esoui/art/icons/ability_sorcerer_liquid_lightning.dds">
+                    <!-- default texture -->
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerHeaderTemplate" offsetY="1" offsetX="198" />
+                    <Dimensions y="24" x="24" />
+                </Texture>
+            </Controls>
+        </Control>
 
-                <Control name="UnitTemplate" resizeToFitDescendents="true" virtual="true">
-			<Controls>
-				<Backdrop name="$(parent)Backdrop" hidden="false" centerColor="00000" edgeColor="000000" alpha="0.5" layer="0">
-					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTracker" offsetY="0" offsetX="0"/>
-					<Dimensions x="225" y="24" />
-				</Backdrop>
+        <Control name="UnitTemplate" resizeToFitDescendents="true" virtual="true">
+            <Controls>
+                <Texture name="$(parent)Backdrop" hidden="false" color="000000" alpha="0.5" layer="0">
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTracker" offsetY="0" offsetX="0" />
+                    <Dimensions x="225" y="24" />
+                </Texture>
 
-                                <Texture name="$(parent)Role" textureFile="/esoui/art/icons/ability_undaunted_004b.dds" layer="1"> <!-- default texture -->
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="2"/>
-                                        <Dimensions y="24" x="24" />
-                                </Texture>
+                <Texture name="$(parent)Role" textureFile="/esoui/art/icons/ability_undaunted_004b.dds" layer="1">
+                    <!-- default texture -->
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="2" />
+                    <Dimensions y="24" x="24" />
+                </Texture>
 
-                                <Label name="$(parent)UnitName" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="LEFT" verticalAlignment="CENTER" text="-">
-					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="30"/>
-					<Dimensions x="130" y="24" />
-				</Label>
+                <Label name="$(parent)UnitName" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="LEFT" verticalAlignment="CENTER" text="-">
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="30" />
+                    <Dimensions x="130" y="24" />
+                </Label>
 
-				<Label name="$(parent)PrimarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0"> <!-- default texture -->
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="12" offsetX="176"/>
-                                </Label>
+                <Label name="$(parent)PrimarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
+                    <!-- default texture -->
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="176" />
+                </Label>
 
-                                <Label name="$(parent)SecondarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0"> <!-- default texture -->
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="12" offsetX="206"/>
-                                </Label>
-			</Controls>
-		</Control>
-        </Controls>
+                <Label name="$(parent)SecondarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
+                    <!-- default texture -->
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="206" />
+                </Label>
+            </Controls>
+        </Control>
+    </Controls>
 </GuiXml>

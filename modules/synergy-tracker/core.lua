@@ -19,11 +19,13 @@ end
 local function CreateFrameHeader()
     --probably merging headercontrol and pframe in controls.xml
     headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", pframe, "TrackerHeaderTemplate")
+    headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
+
 end
  
 local function CreateBuff(pool)
     local name      = "ARSUnit" .. pool:GetNextControlId()
-    local container = pframe:CreateControlFromVirtual(name, pframe, "UnitTemplate")
+    local container = WINDOW_MANAGER:CreateControlFromVirtual(name, pframe, "UnitTemplate")
 
     local name              = container:GetNamedChild("UnitName")
     local role              = container:GetNamedChild("Role")
