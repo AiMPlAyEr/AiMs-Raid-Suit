@@ -4,12 +4,8 @@ ARS.gunit = {}
 
 local function OnEffectChanged(_, _, _, _, _, _, _, _, _, _, _, _, _, unitName, unitId)
 	unitName = zo_strformat("<<1>>", unitName)
-	--d(unitName.." "..unitId)
 	if unitName ~= "Offline" then
 		if ARS.gunit[unitId] ~= unitName then
-			ARS.gunit[unitId] = unitName
-			--d("Registering " .. unitName .. " as " .. unitId)
-		else
 			ARS.gunit[unitId] = unitName
 		end
 	end
