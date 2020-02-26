@@ -91,8 +91,12 @@ local function UpdateGroup()
 end
 
 local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
-    if ARS.GetNameForUnitId(targetUnitId) ~= "" then
-        --d("Group: "..ARS.GetNameForUnitId(targetUnitId))
+    if result == ACTION_RESULT_EFFECT_GAINED then
+        if ARS.GetNameForUnitId(targetUnitId) ~= "" then
+            if ARS.Synergies[abilityId] then
+                --d("|c00ff00"..ARS.GetNameForUnitId(targetUnitId).."|r used ability "..abilityId)
+            end
+        end
     end
 end
 
