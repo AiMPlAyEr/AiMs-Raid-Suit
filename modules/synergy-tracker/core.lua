@@ -2,7 +2,7 @@ ARS = ARS or {}
 
 local pool
 local headercontrol
-local synergypool
+local synergypool = {}
 
 local pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSTrackerFrame")
 pframe:SetResizeToFitDescendents(true)
@@ -51,6 +51,7 @@ local function RemoveBuff(control)
 end
  
 local function UpdateGroup()
+    d(GetGroupSize())
     --calling UpdateTimer function
     UpdateTimer()
     --checking if user is in a group or not
@@ -100,7 +101,6 @@ end
 local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
 
     local getunit = ARS.GetNameForUnitId(targetUnitId)
-    d(getunit)
 
     --adding unit to synergypool
     for k, v in ipairs(synergypool) do
@@ -118,7 +118,7 @@ end
 --note: I may have to remove EVENT_GROUP_MEMBER_CONNECTED_STATUS because otherwise it will reset each time someone goes offline/has a disconnect or is logging in again
 function UpdateTimer()
     -- resetting synergypool
-    synergypool = {}
+    --synergypool = {}
 
     local gsize = GetGroupSize()
 
