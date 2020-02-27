@@ -2,6 +2,7 @@ ARS = ARS or {}
 
 local pool
 local headercontrol
+local synergypool
 
 local pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSTrackerFrame")
 pframe:SetResizeToFitDescendents(true)
@@ -48,6 +49,8 @@ local function RemoveBuff(control)
 end
  
 local function UpdateGroup()
+    --calling UpdateTimer function
+    UpdateTimer()
     --checking if user is in a group or not
     if GetGroupSize() < 1 then
         headercontrol:SetHidden(true)
@@ -91,11 +94,82 @@ local function UpdateGroup()
 end
 
 local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
-    if result == ACTION_RESULT_EFFECT_GAINED then
-        if ARS.GetNameForUnitId(targetUnitId) ~= "" then
-            if ARS.Synergies[abilityId] then
-                --d("|c00ff00"..ARS.GetNameForUnitId(targetUnitId).."|r used ability "..abilityId)
+    if result ~= ACTION_RESULT_EFFECT_GAINED then return end
+
+    local getunit = ARS.GetNameForUnitId(targetUnitId)
+
+    --adding unit to synergypool
+    for k, v in ipairs(synergypool) do
+        --checking if user exists in table
+        if v.name == getunit then
+            if getunit ~= "" and ARS.Synergies[abilityId] == 1 then
+                synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == 2 then
+                synergypool[k].secondarysynergy = GetGameTimeSeconds() + 20
             end
+        end
+    end
+end
+
+--UpdateTimer is being called as soon as there is a change in the group
+--note: I may have to remove EVENT_GROUP_MEMBER_CONNECTED_STATUS because otherwise it will reset each time someone goes offline/has a disconnect or is logging in again
+function UpdateTimer()
+    -- resetting synergypool
+    synergypool = {}
+
+    local gsize = GetGroupSize()
+
+    if gsize == 0 then return end
+
+    for i = 1, gsize + 1 then
+        local accName   = GetUnitDisplayName("group" .. i)
+        local role      = GetGroupMemberAssignedRole("group" .. i)
+
+        if accName ~= nil and role ~= 0 then
+            synergypool[i]                  = {}
+            synergypool[i].name             = accName
+            synergypool[i].primarysynergy   = "0"
+            synergypool[i].secondarysynergy = "0"
+        end
+    end
+
+end
+
+function UpdateCooldown()
+    for k, v in ipairs(synergypool) do
+        local pRemainingTime = v.primarysynergy - GetGameTimeSeconds()
+        local sRemainingTime = v.secondarysynergy - GetGameTimeSeconds()
+
+        groupunit = pool:AcquireObject(k)
+
+        if pRemainingTime > "5" then
+            groupunit.primarysynergy:SetColor(220, 20, 60)
+            groupunit.primarysynergy:SetText(pRemainingTime)
+        end
+
+        if pRemainingTime < "6" and pRemainingTime > "0" then
+            groupunit.primarysynergy:SetColor(255, 255, 0)
+            groupunit.primarysynergy:SetText(pRemainingTime)
+        end
+
+        if pRemainingTime == "0" then
+            groupunit.primarysynergy:SetColor(255, 255, 255)
+            groupunit.primarysynergy:SetText("0")
+        end
+
+        if sRemainingTime > "5" then
+            groupunit.secondarysynergy:SetColor(220, 20, 60)
+            groupunit.secondarysynergy:SetText(sRemainingTime)
+        end
+
+        if sRemainingTime < "6" and sRemainingTime > "0" then
+            groupunit.secondarysynergy:SetColor(255, 255, 0)
+            groupunit.secondarysynergy:SetText(sRemainingTime)
+        end
+
+        if sRemainingTime == "0" then
+            groupunit.secondarysynergy:SetColor(255, 255, 255)
+            groupunit.secondarysynergy:SetText("0")
         end
     end
 end
@@ -111,11 +185,13 @@ function ARS:InitializeSynergyTracker(enable)
     ARS.RegisterUnitIndexing()
 
     UpdateGroup()
+    UpdateTimer()
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy", EVENT_COMBAT_EVENT, GetSynergy)
+    EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateCooldown", 100, UpdateCooldown)
     --EVENT_MANAGER:RegisterForEvent("MyAddon", EVENT_COMBAT_EVENT, UpdateBuffs)
 end
