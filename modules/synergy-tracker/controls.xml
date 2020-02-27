@@ -41,12 +41,14 @@
 
                 <Label name="$(parent)PrimarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
                     <!-- default texture -->
-                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="176" />
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="168" />
+                    <Dimensions x="24" y="24" />
                 </Label>
 
                 <Label name="$(parent)SecondarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
                     <!-- default texture -->
-                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="206" />
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="198" />
+                    <Dimensions x="24" y="24" />
                 </Label>
             </Controls>
         </Control>
