@@ -146,39 +146,41 @@ function roundNum(num, numDecimalPlaces)
 
 function UpdateCooldown()
     for k, v in ipairs(synergypool) do
-        local pRemainingTime = roundNum(v.primarysynergy - GetGameTimeSeconds())
-        local sRemainingTime = roundNum(v.secondarysynergy - GetGameTimeSeconds())
+        if v.online ~= 0 then
+            local pRemainingTime = roundNum(v.primarysynergy - GetGameTimeSeconds())
+            local sRemainingTime = roundNum(v.secondarysynergy - GetGameTimeSeconds())
 
-        groupunit = pool:AcquireObject(k)
+            groupunit = pool:AcquireObject(k)
 
-        if pRemainingTime > 5 then
-            groupunit.primarysynergy:SetColor(255, 0, 0)
-            groupunit.primarysynergy:SetText(pRemainingTime)
-        end
+            if pRemainingTime > 5 then
+                groupunit.primarysynergy:SetColor(255, 0, 0)
+                groupunit.primarysynergy:SetText(pRemainingTime)
+            end
 
-        if pRemainingTime < 6 and pRemainingTime > 0 then
-            groupunit.primarysynergy:SetColor(255, 255, 0)
-            groupunit.primarysynergy:SetText(pRemainingTime)
-        end
+            if pRemainingTime < 6 and pRemainingTime > 0 then
+                groupunit.primarysynergy:SetColor(255, 255, 0)
+                groupunit.primarysynergy:SetText(pRemainingTime)
+            end
 
-        if pRemainingTime == 0 then
-            groupunit.primarysynergy:SetColor(255, 255, 255)
-            groupunit.primarysynergy:SetText("0")
-        end
+            if pRemainingTime == 0 then
+                groupunit.primarysynergy:SetColor(255, 255, 255)
+                groupunit.primarysynergy:SetText("0")
+            end
 
-        if sRemainingTime > 5 then
-            groupunit.secondarysynergy:SetColor(220, 20, 60)
-            groupunit.secondarysynergy:SetText(sRemainingTime)
-        end
+            if sRemainingTime > 5 then
+                groupunit.secondarysynergy:SetColor(220, 20, 60)
+                groupunit.secondarysynergy:SetText(sRemainingTime)
+            end
 
-        if sRemainingTime < 6 and sRemainingTime > 0 then
-            groupunit.secondarysynergy:SetColor(255, 255, 0)
-            groupunit.secondarysynergy:SetText(sRemainingTime)
-        end
+            if sRemainingTime < 6 and sRemainingTime > 0 then
+                groupunit.secondarysynergy:SetColor(255, 255, 0)
+                groupunit.secondarysynergy:SetText(sRemainingTime)
+            end
 
-        if sRemainingTime == 0 then
-            groupunit.secondarysynergy:SetColor(255, 255, 255)
-            groupunit.secondarysynergy:SetText("0")
+            if sRemainingTime == 0 then
+                groupunit.secondarysynergy:SetColor(255, 255, 255)
+                groupunit.secondarysynergy:SetText("0")
+            end
         end
     end
 end
