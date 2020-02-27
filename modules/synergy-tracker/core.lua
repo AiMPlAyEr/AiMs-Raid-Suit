@@ -60,9 +60,11 @@ local function UpdateGroup()
         headercontrol:SetHidden(false)
     end
 
+    --hiding all objects before asigning them again
     pool:ReleaseAllObjects()
 
     local UnitType = {
+        [0] = "/esoui/art/contacts/social_status_offline.dds",
         [1] = "/esoui/art/lfg/lfg_icon_dps.dds",
         [2] = "/esoui/art/lfg/lfg_icon_tank.dds",
         [4] = "/esoui/art/lfg/lfg_icon_healer.dds",
