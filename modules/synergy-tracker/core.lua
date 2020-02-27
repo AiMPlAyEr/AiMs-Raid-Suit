@@ -21,6 +21,8 @@ local function CreateFrameHeader()
     --probably merging headercontrol and pframe in controls.xml
     headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", pframe, "TrackerHeaderTemplate")
     headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
+    headercontrol:GetNamedChild("PrimarySynergy"):SetTexture(ARS.SynergyTexture[1])
+    headercontrol:GetNamedChild("SecondarySynergy"):SetTexture(ARS.SynergyTexture[2])
 
 end
  
