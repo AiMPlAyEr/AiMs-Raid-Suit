@@ -133,16 +133,11 @@ function UpdateTimer()
     end
 end
 
-function roundNum(num, numDecimalPlaces)
-    local mult = 10^(numDecimalPlaces or 0)
-    return math.floor(num * mult) / mult
-  end
-
 function UpdateCooldown()
     for k, v in ipairs(synergypool) do
         if v.online ~= 0 then
-            local pRemainingTime = roundNum(v.primarysynergy - GetGameTimeSeconds())
-            local sRemainingTime = roundNum(v.secondarysynergy - GetGameTimeSeconds())
+            local pRemainingTime = math.floor(v.primarysynergy - GetGameTimeSeconds())
+            local sRemainingTime = math.floor(v.secondarysynergy - GetGameTimeSeconds())
 
             groupunit = pool:AcquireObject(k)
 
