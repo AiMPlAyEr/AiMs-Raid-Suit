@@ -30,17 +30,11 @@ local function CreateBuff(pool)
     local name      = "ARSUnit" .. pool:GetNextControlId()
     local container = WINDOW_MANAGER:CreateControlFromVirtual(name, pframe, "UnitTemplate")
 
-    local name              = container:GetNamedChild("UnitName")
-    local role              = container:GetNamedChild("Role")
-    local backdrop          = container:GetNamedChild("Backdrop")
-    local primarysynergy    = container:GetNamedChild("PrimarySynergy")
-    local secondarysynergy  = container:GetNamedChild("SecondarySynergy")
-
-    container.name              = name
-    container.role              = role
-    container.backdrop          = backdrop
-    container.primarysynergy    = primarysynergy
-    container.secondarysynergy  = secondarysynergy
+    container.name              = container:GetNamedChild("UnitName")
+    container.role              = container:GetNamedChild("Role")
+    container.backdrop          = container:GetNamedChild("Backdrop")
+    container.primarysynergy    = container:GetNamedChild("PrimarySynergy")
+    container.secondarysynergy  = container:GetNamedChild("SecondarySynergy")
 
     return container
 end
@@ -115,7 +109,6 @@ local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType
 end
 
 --UpdateTimer is being called as soon as there is a change in the group
---note: I may have to remove EVENT_GROUP_MEMBER_CONNECTED_STATUS because otherwise it will reset each time someone goes offline/has a disconnect or is logging in again
 function UpdateTimer()
     -- resetting synergypool
     --synergypool = {}
@@ -185,15 +178,15 @@ function UpdateCooldown()
     end
 end
 
-function ARS:InitializeSynergyTracker(enable)
-    if not enable then return end
+function ARS:InitializeSynergyTracker(enabled)
+    if not enabled then return end
 
     AddToFragment(pframe)
     CreateFrameHeader()
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
 
-    ARS.RegisterUnitIndexing()
+    ARS.RegisterUnitCollectingEvent()
 
     UpdateTimer()
     UpdateGroup()
@@ -206,6 +199,5 @@ function ARS:InitializeSynergyTracker(enable)
         EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, GetSynergy)
         EVENT_MANAGER:AddFilterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, k)
     end
-    EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateCooldown", 100, UpdateCooldown)
-    --EVENT_MANAGER:RegisterForEvent("MyAddon", EVENT_COMBAT_EVENT, UpdateBuffs)
+    EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateCooldown", 250, UpdateCooldown)
 end
