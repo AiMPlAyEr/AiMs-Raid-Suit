@@ -18,7 +18,6 @@ local function AddToFragment(element)
 end
 
 local function CreateFrameHeader()
-    --probably merging headercontrol and pframe in controls.xml
     headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", pframe, "TrackerHeaderTemplate")
     headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
     headercontrol:GetNamedChild("PrimarySynergy"):SetTexture(ARS.SynergyTexture[1])
@@ -45,17 +44,14 @@ local function RemoveBuff(control)
 end
  
 local function UpdateGroup()
-    d(GetGroupSize())
-    --calling UpdateTimer function
     UpdateTimer()
-    --checking if user is in a group or not
+
     if GetGroupSize() < 1 then
         headercontrol:SetHidden(true)
     else 
         headercontrol:SetHidden(false)
     end
 
-    --hiding all objects before asigning them again
     pool:ReleaseAllObjects()
 
     local UnitType = {
@@ -65,12 +61,12 @@ local function UpdateGroup()
         [4] = "/esoui/art/lfg/lfg_icon_healer.dds",
     }
     local groupunit
+
     local position = 1
     for i = 1, GetGroupSize() + 1 do
         local accName = GetUnitDisplayName("group" .. i)
         local role = GetGroupMemberAssignedRole("group" .. i)
 
-        --role 0 equals offline
         if accName ~= nil and role ~= 0 then
             groupunit = pool:AcquireObject(i)
 
@@ -83,7 +79,6 @@ local function UpdateGroup()
                 groupunit.role:SetTexture(UnitType[role])
             end
 
-            --set name of unit
             groupunit.name:SetText(accName)
 
             position = position + 1
@@ -97,7 +92,6 @@ local function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _,
 
     local getunit = ARS.GetNameForUnitId(targetUnitId)
 
-    --adding unit to synergypool
     for k, v in ipairs(synergypool) do
         if v.name == getunit then
             if getunit ~= "" and ARS.Synergies[abilityId] == 1 then
@@ -109,11 +103,7 @@ local function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _,
     end
 end
 
---UpdateTimer is being called as soon as there is a change in the group
 function UpdateTimer()
-    -- resetting synergypool
-    --synergypool = {}
-
     local gsize = GetGroupSize()
 
     if gsize == 0 then return end
