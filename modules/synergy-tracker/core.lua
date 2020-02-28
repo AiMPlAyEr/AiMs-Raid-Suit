@@ -92,7 +92,8 @@ local function UpdateGroup()
     end
 end
 
-local function GetSynergy(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
+local function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, targetUnitId, abilityId)
+    if result ~= ACTION_RESULT_EFFECT_GAINED then return end
 
     local getunit = ARS.GetNameForUnitId(targetUnitId)
 
