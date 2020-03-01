@@ -81,6 +81,10 @@ local function UpdateGroup()
 
             groupunit.name:SetText(accName)
 
+            --reseting timer if someone joins, leaves or disconnects
+            groupunit.primarysynergy:SetText("0")
+            groupunit.secondarysynergy:SetText("0")
+
             position = position + 1
         end
 
