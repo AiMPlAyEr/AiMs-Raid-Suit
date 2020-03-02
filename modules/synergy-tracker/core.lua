@@ -22,7 +22,6 @@ local function CreateFrameHeader()
     headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
     headercontrol:GetNamedChild("PrimarySynergy"):SetTexture(ARS.SynergyTexture[1])
     headercontrol:GetNamedChild("SecondarySynergy"):SetTexture(ARS.SynergyTexture[2])
-
 end
  
 local function CreateBuff(pool)
@@ -115,9 +114,7 @@ local function UpdateTimer()
     if gsize == 0 then return end
 
     for i = 1, gsize + 1 do
-        local accName   = GetRawUnitName("group" .. i)
-        accName = zo_strformat("<<1>>", accName)
-        local role      = GetGroupMemberAssignedRole("group" .. i)
+        local accName = GetUnitName("group" .. i)
 
         if accName ~= nil then
             --checking if unit already exists
@@ -126,7 +123,7 @@ local function UpdateTimer()
             if synergypool[accName] == nil then
                 synergypool[accName]                  = {}
                 synergypool[accName].index            = i
-                synergypool[accName].online           = role
+                synergypool[accName].online           = GetGroupMemberAssignedRole("group" .. i)
                 synergypool[accName].primarysynergy   = "0"
                 synergypool[accName].secondarysynergy = "0"
             else
