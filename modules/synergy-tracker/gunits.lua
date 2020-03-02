@@ -3,6 +3,8 @@ local ARS = ARS
 ARS.gunit = {}
 
 local function OnEffectChanged(_, _, _, _, _, _, _, _, _, _, _, _, _, unitName, unitId)
+	if unitName == "" then return end
+	
 	unitName = zo_strformat("<<1>>", unitName)
 	if unitName ~= "offline" then
 		if ARS.gunit[unitId] ~= unitName then
