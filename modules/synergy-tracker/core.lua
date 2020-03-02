@@ -142,12 +142,12 @@ local function UpdateCooldown()
 
             groupunit = pool:AcquireObject(v.index)
 
-            if pRemainingTime > 5 then
+            if pRemainingTime > 3 then
                 groupunit.primarysynergy:SetColor(255, 0, 0)
                 groupunit.primarysynergy:SetText(pRemainingTime)
             end
 
-            if pRemainingTime < 6 and pRemainingTime > 0 then
+            if pRemainingTime < 4 and pRemainingTime > 0 then
                 groupunit.primarysynergy:SetColor(255, 255, 0)
                 groupunit.primarysynergy:SetText(pRemainingTime)
             end
@@ -157,12 +157,12 @@ local function UpdateCooldown()
                 groupunit.primarysynergy:SetText("0")
             end
 
-            if sRemainingTime > 5 then
-                groupunit.secondarysynergy:SetColor(220, 20, 60)
+            if sRemainingTime > 3 then
+                groupunit.secondarysynergy:SetColor(255, 0, 0)
                 groupunit.secondarysynergy:SetText(sRemainingTime)
             end
 
-            if sRemainingTime < 6 and sRemainingTime > 0 then
+            if sRemainingTime < 4 and sRemainingTime > 0 then
                 groupunit.secondarysynergy:SetColor(255, 255, 0)
                 groupunit.secondarysynergy:SetText(sRemainingTime)
             end
