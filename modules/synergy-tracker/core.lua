@@ -78,6 +78,7 @@ local function UpdateGroup()
                 groupunit.role:SetTexture(UnitType[role])
             end
 
+            accName = accName:gsub('%@', '')
             groupunit.name:SetText(accName)
 
             --reseting timer if someone joins, leaves or disconnects
@@ -85,30 +86,29 @@ local function UpdateGroup()
             groupunit.primarysynergy:SetColor(255, 255, 255)
             groupunit.secondarysynergy:SetText("0")
             groupunit.secondarysynergy:SetColor(255, 255, 255)
-
             position = position + 1
         end
 
     end
 end
 
-local function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, targetUnitId, abilityId)
+function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, targetUnitId, abilityId)
     if result ~= ACTION_RESULT_EFFECT_GAINED then return end
 
     local getunit = ARS.GetNameForUnitId(targetUnitId)
 
     for k, v in ipairs(synergypool) do
-        if synergypool[getunit] then
+        if synergypool[k].name == getunit then
             if getunit ~= "" and ARS.Synergies[abilityId] == 1 then
-                synergypool[getunit].primarysynergy = GetGameTimeSeconds() + 20
+                synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
             elseif getunit ~= "" and ARS.Synergies[abilityId] == 2 then
-                synergypool[getunit].secondarysynergy = GetGameTimeSeconds() + 20
+                synergypool[k].secondarysynergy = GetGameTimeSeconds() + 20
             end
         end
     end
 end
 
-local function UpdateTimer()
+function UpdateTimer()
     local gsize = GetGroupSize()
 
     if gsize == 0 then return end
@@ -117,30 +117,22 @@ local function UpdateTimer()
         local accName = GetUnitName("group" .. i)
 
         if accName ~= nil then
-            --checking if unit already exists
-
-            --if not then create a new record
-            if synergypool[accName] == nil then
-                synergypool[accName]                  = {}
-                synergypool[accName].index            = i
-                synergypool[accName].online           = GetGroupMemberAssignedRole("group" .. i)
-                synergypool[accName].primarysynergy   = "0"
-                synergypool[accName].secondarysynergy = "0"
-            else
-                --if it exists just update its index value
-                synergypool[accName].index            = i
-            end
+            synergypool[i]                  = {}
+            synergypool[i].name             = accName
+            synergypool[i].online           = GetGroupMemberAssignedRole("group" .. i)
+            synergypool[i].primarysynergy   = "0"
+            synergypool[i].secondarysynergy = "0"
         end
     end
 end
 
-local function UpdateCooldown()
+function UpdateCooldown()
     for k, v in ipairs(synergypool) do
         if v.online ~= 0 then
             local pRemainingTime = math.floor(v.primarysynergy - GetGameTimeSeconds())
             local sRemainingTime = math.floor(v.secondarysynergy - GetGameTimeSeconds())
 
-            groupunit = pool:AcquireObject(v.index)
+            groupunit = pool:AcquireObject(k)
 
             if pRemainingTime > 3 then
                 groupunit.primarysynergy:SetColor(255, 0, 0)
