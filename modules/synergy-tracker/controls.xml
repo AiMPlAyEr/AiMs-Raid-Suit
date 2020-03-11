@@ -24,7 +24,7 @@
         <Control name="UnitTemplate" resizeToFitDescendents="true" virtual="true">
             <Controls>
                 <Texture name="$(parent)Backdrop" hidden="false" color="000000" alpha="0.5" layer="0">
-                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTracker" offsetY="0" offsetX="0" />
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="0" />
                     <Dimensions x="225" y="24" />
                 </Texture>
 
@@ -48,6 +48,26 @@
                 <Label name="$(parent)SecondarySynergy" color="ffffff" font="$(MEDIUM_FONT)|$(KB_16)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
                     <!-- default texture -->
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="UnitTemplate" offsetY="0" offsetX="198" />
+                    <Dimensions x="24" y="24" />
+                </Label>
+            </Controls>
+        </Control>
+
+        <Control name="OwnTrackerTemplate" resizeToFitDescendents="true" virtual="true">
+            <Controls>
+                <Texture name="$(parent)Backdrop" hidden="false" color="000000" alpha="0.5" layer="0">
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="OwnTrackerTemplate" offsetY="0" offsetX="0" />
+                    <Dimensions x="34" y="34" />
+                </Texture>
+
+                <Texture name="$(parent)Synergy">
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="OwnTrackerTemplate" offsetY="0" offsetX="0" />
+                    <Dimensions y="32" x="32" />
+                </Texture>
+
+                <Label name="$(parent)Timer" color="ffffff" font="$(MEDIUM_FONT)|$(KB_18)|soft-shadow-thin" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0.0">
+                    <!-- default texture -->
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="OwnTrackerTemplate" offsetY="10" offsetX="0" />
                     <Dimensions x="24" y="24" />
                 </Label>
             </Controls>

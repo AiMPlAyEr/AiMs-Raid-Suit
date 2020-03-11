@@ -110,6 +110,7 @@ end
 
 function UpdateTimer()
     local gsize = GetGroupSize()
+    synergypool = {}
 
     if gsize == 0 then return end
 
