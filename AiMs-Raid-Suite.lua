@@ -5,9 +5,13 @@ ARS.name = "AiMs-Raid-Suite"
 ARS.suitversion = "0.1"
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)
-    if result == ACTION_RESULT_BEGIN then
-        
+    
+    
+    if sourceType == COMBAT_UNIT_TYPE_PLAYER then
+        return
     end
+
+    --d("Found new ability [%d], %s (%s)", abilityId, targetName, GetAbilityName(abilityId))
 end
 
 function ARS:Initialize()
@@ -15,6 +19,7 @@ function ARS:Initialize()
     EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability" , EVENT_COMBAT_EVENT, ARS.Mechanics)
 
     ARS:InitializeSynergyTracker(true)
+    ARS:InitializeTracker(true)
 end
 
 function ARS.OnAddOnLoaded(event, addonName)

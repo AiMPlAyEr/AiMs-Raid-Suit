@@ -33,6 +33,8 @@ local function CreateBuff(pool)
     container.backdrop          = container:GetNamedChild("Backdrop")
     container.primarysynergy    = container:GetNamedChild("PrimarySynergy")
     container.secondarysynergy  = container:GetNamedChild("SecondarySynergy")
+    container.tertiarysynergy    = container:GetNamedChild("TertiarySynergy")
+    container.quaternarysynergy  = container:GetNamedChild("QuaternarySynergy")
 
     return container
 end
@@ -86,6 +88,10 @@ local function UpdateGroup()
             groupunit.primarysynergy:SetColor(255, 255, 255)
             groupunit.secondarysynergy:SetText("0")
             groupunit.secondarysynergy:SetColor(255, 255, 255)
+            groupunit.tertiarysynergy:SetText("0")
+            groupunit.tertiarysynergy:SetColor(255, 255, 255)
+            groupunit.quaternarysynergy:SetText("0")
+            groupunit.quaternarysynergy:SetColor(255, 255, 255)
             position = position + 1
         end
 
@@ -110,7 +116,6 @@ end
 
 function UpdateTimer()
     local gsize = GetGroupSize()
-    synergypool = {}
 
     if gsize == 0 then return end
 
@@ -123,6 +128,8 @@ function UpdateTimer()
             synergypool[i].online           = GetGroupMemberAssignedRole("group" .. i)
             synergypool[i].primarysynergy   = "0"
             synergypool[i].secondarysynergy = "0"
+            synergypool[i].tertiarysynergy  = "0"
+            synergypool[i].quaternarysynergy = "0"
         end
     end
 end
