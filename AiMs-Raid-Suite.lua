@@ -31,7 +31,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if not log[result] then
 		return
 	end
-	
+
 	if sType == COMBAT_UNIT_TYPE_PLAYER then
 		return
 	end
@@ -61,18 +61,18 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	--Trash
 	if abilityId == 134196 and result == 2200 then
 		d("Crashing Wave. Block!")
-		UpdateMessage("|c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId))
+		UpdateMessage("|c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 133936 and result == 2200 then
 		d("Exploding Spear Block!")
-		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId))
+		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	--First Boss
 	if abilityId == 133285 and result == 2240 then
 		d("Dragon Totem. Begins!")
-		UpdateMessage("|cff9800 Dragon Totem|r spawns!", GetAbilityIcon(abilityId))
+		UpdateMessage("|cff9800 Dragon Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 133285 and result == 2250 then
@@ -81,56 +81,56 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 136873 and result == 2240 then
 		d("Gargoyle Totem. Begins!")
-		UpdateMessage("|c795548 Gargoyle Totem|r spawns!", GetAbilityIcon(abilityId))
+		UpdateMessage("|c795548 Gargoyle Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 
 	if abilityId == 134023 and result == ACTION_RESULT_EFFECT_GAINED then
 		d("Meteor on you. block!")
-		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId))
+		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	--Second Boss
 	if abilityId == 140606 and result == ACTION_RESULT_EFFECT_GAINED then
 		d("meteor on you. block!")
-		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId))
+		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	--Endboss
 	
 	if abilityId == 140941 and result == 2240 then
 		d("Instability. Move out! PLAYERS: "..targetName)
-		UpdateMessage("|cffeb3bInstability|r on you. Move out!", GetAbilityIcon(abilityId))
+		UpdateMessage("|cffeb3bInstability|r on you. Move out!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 134856 and result == 2240 then
 		d("Sanguine Grasp. Kite around!")
-		UpdateMessage("|ce91e63Sanguine Grasp|r. Kite around!", GetAbilityIcon(abilityId))
+		UpdateMessage("|ce91e63Sanguine Grasp|r. Kite around!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 132470 and result == 2240 then
 		d("Sanguine Prison. Kill it!")
-		UpdateMessage("|cff9800Sanguine Prison|r on |cffeb3b"..targetName.."|r!", GetAbilityIcon(abilityId))
+		UpdateMessage("|cff9800Sanguine Prison|r on |cffeb3b"..targetName.."|r!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 136315 and result == 2200 then
 		d("Blood Spear")
-		UpdateMessage("|ce51c23Blood Spear|r. Don't Stack!", GetAbilityIcon(abilityId))
+		UpdateMessage("|ce51c23Blood Spear|r. Don't Stack!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	if abilityId == 2240 and result == 2240 then
 		d("Hemorrhage")
-		UpdateMessage("|c9c27b0Hemorrhage|r begins!", GetAbilityIcon(abilityId))
+		UpdateMessage("|c9c27b0Hemorrhage|r begins!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 end
 
-function UpdateMessage(message, texture)
+function UpdateMessage(message, texture, duration, countdown)
 	test:GetNamedChild("AlertTexture"):SetTexture(texture)
     test:GetNamedChild("AlertMessage"):SetText(message)
 	test:SetHidden(false)
 	PlaySound(SOUNDS.DUEL_START)
 	zo_callLater(function()
 		test:SetHidden(true)
-	end, 3000)
+	end, duration)
 end
 
 function ARS:Initialize()
