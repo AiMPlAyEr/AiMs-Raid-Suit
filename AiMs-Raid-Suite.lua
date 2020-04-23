@@ -46,12 +46,12 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 			source = sourceName,
 			target = targetName,
 			source_type = sourceType,
-			count = 0
+			count = 1
 		}
 
 		log[result][abilityId] = new_ability
 		
-		log[result][abilityId].count = log[result][abilityId].count + 1
+		--log[result][abilityId].count = log[result][abilityId].count + 1
 
 		ARS.debug.data[result][abilityId] = new_ability --writing updated log into saved variables
 
