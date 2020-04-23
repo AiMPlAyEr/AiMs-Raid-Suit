@@ -119,7 +119,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 2240 and result == 2240 then
 		d("Hemorrhage")
-		UpdateMessage("|c9c27b0Hemorrhage|r begins!", GetAbilityIcon(abilityId), 3000, 0)
+		UpdateMessage("|c9c27b0Hemorrhage|r. Don't Stack!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 end
 
