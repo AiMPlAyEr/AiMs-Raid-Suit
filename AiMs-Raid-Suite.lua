@@ -60,7 +60,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 134196 and result == 2200 then
 		d("Crashing Wave. Block!")
-		UpdateMessage("Incoming |c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId))
+		UpdateMessage("|c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId))
 	end
 	
 	if abilityId == 133936 and result == 2200 then
@@ -100,12 +100,12 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 140941 and result == 2240 then
 		d("Instability. Move out! PLAYERS: "..targetName)
-		UpdateMessage("Incoming |cffeb3bInstability|r on you. Move out!", GetAbilityIcon(abilityId))
+		UpdateMessage("|cffeb3bInstability|r on you. Move out!", GetAbilityIcon(abilityId))
 	end
 	
 	if abilityId == 134856 and result == 2240 then
 		d("Sanguine Grasp. Kite around!")
-		UpdateMessage("Incoming |ce91e63Sanguine Grasp|r. Kite around!", GetAbilityIcon(abilityId))
+		UpdateMessage("|ce91e63Sanguine Grasp|r. Kite around!", GetAbilityIcon(abilityId))
 	end
 	
 	if abilityId == 132470 and result == 2240 then
