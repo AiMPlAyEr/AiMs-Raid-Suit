@@ -31,12 +31,14 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if not log[result] then
 		return
 	end
+	
 	if sType == COMBAT_UNIT_TYPE_PLAYER then
 		return
 	end
-	--if abilityId < 130000 then
-		--return
-	--end
+
+	if abilityId < 130000 then
+		return
+	end
 
 	if (not log[result][abilityId] and targetType == COMBAT_UNIT_TYPE_PLAYER and (sourceType == COMBAT_UNIT_TYPE_OTHER or sourceType == COMBAT_UNIT_TYPE_NONE)) then
 		new_ability = {
@@ -57,7 +59,6 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--Trash
-	
 	if abilityId == 134196 and result == 2200 then
 		d("Crashing Wave. Block!")
 		UpdateMessage("|c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId))
@@ -69,7 +70,6 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--First Boss
-	
 	if abilityId == 133285 and result == 2240 then
 		d("Dragon Totem. Begins!")
 		UpdateMessage("|cff9800 Dragon Totem|r spawns!", GetAbilityIcon(abilityId))
@@ -90,7 +90,6 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--Second Boss
-	
 	if abilityId == 140606 and result == ACTION_RESULT_EFFECT_GAINED then
 		d("meteor on you. block!")
 		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId))
