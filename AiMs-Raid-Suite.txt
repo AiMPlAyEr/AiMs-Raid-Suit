@@ -3,7 +3,9 @@
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
 ## Version: 0.1
 ## APIVersion: 100030
-## SavedVariables: ARSSaved
+## SavedVariables: ARSSaved ARSAbilityLog
+
+modules/kynes-aegis-mechanics/controls.xml
 
 AiMs-Raid-Suite.lua
 modules/synergy-tracker/controls.xml

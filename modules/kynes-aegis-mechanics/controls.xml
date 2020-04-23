@@ -1,0 +1,16 @@
+<GuiXml>
+    <Controls>
+        <Control name="ARSTest" resizeToFitDescendents="true" virtual="true">
+            <Controls>
+                <Texture name="$(parent)AlertTexture" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
+                    <Anchor point="LEFT" relativePoint="LEFT" />
+                    <Dimensions x="48" y="48"/>
+                </Texture>
+
+                <Label name="$(parent)AlertMessage" color="ffffff" font="ZoFontCenterScreenAnnounceSmall" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="">
+                    <Anchor point="TOP" offsetY="4" offsetX="30" />
+                </Label>
+            </Controls>
+        </Control>
+    </Controls>
+</GuiXml>
