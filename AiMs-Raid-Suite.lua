@@ -43,7 +43,15 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	--Second Boss
 	if abilityId == 140606 and result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_PLAYER then
 		d("meteor on you. block!")
-		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId), 3000, 0)
+		UpdateMessage("Incoming |cffa500Meteor|r on you. Block!", GetAbilityIcon(abilityId), 3000, 0)
+	end
+
+	if abilityId == 133808 then
+		d("frigid fog! result: "..result)
+	end
+
+	if abilityId == 133913 and result == 2200 then
+		UpdateMessage(GetString(ARS_FRIGID_FOG), GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	--Endboss
@@ -91,7 +99,7 @@ function ARS:Initialize()
 	test:SetAnchor(CENTER, nil, CENTER, 0, -250)
 	test:SetResizeToFitDescendents(true)
 	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(22095))
-	test:GetNamedChild("AlertMessage"):SetText(zo_strformat("|cffc107<<1>>|r on you in ", GetAbilityName(22095)))
+	test:GetNamedChild("AlertMessage"):SetText(zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)))
 	test:GetNamedChild("AlertTimer"):SetText("3.0s")
 
     --ARS:InitializeSynergyTracker(true)
