@@ -5,99 +5,50 @@ ARS.name = "AiMs-Raid-Suite"
 ARS.suitversion = "0.1"
 ARS.default = {}
 
-local zframe = nil
-local test = nil
-
-ARS.ActionResults = 
-{
-	ACTION_RESULT_DAMAGE,
-	ACTION_RESULT_BEGIN,
-	ACTION_RESULT_BEGIN_CHANNEL,
-	ACTION_RESULT_EFFECT_GAINED,
-	ACTION_RESULT_EFFECT_GAINED_DURATION,
-	ACTION_RESULT_EFFECT_FADED,
-	ACTION_RESULT_INTERRUPT, 
-	ACTION_RESULT_DIED,
-	--ACTION_RESULT_DIED_XP, -- only interested in spawns/minions, which don't give exp??
-}
-
 local log = {}
 
-for _, result in ipairs(ARS.ActionResults) do
-	log[result] = {}
-end
-
-function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)
-	if not log[result] then
-		return
-	end
-
-	if sType == COMBAT_UNIT_TYPE_PLAYER then
-		return
-	end
-
-	if abilityId < 130000 then
-		return
-	end
-
-	if (not log[result][abilityId] and targetType == COMBAT_UNIT_TYPE_PLAYER and (sourceType == COMBAT_UNIT_TYPE_OTHER or sourceType == COMBAT_UNIT_TYPE_NONE)) then
-		new_ability = {
-			name = GetAbilityName(abilityId),
-			source = sourceName,
-			target = targetName,
-			source_type = sourceType,
-			count = 1
-		}
-
-		log[result][abilityId] = new_ability
-		
-		--log[result][abilityId].count = log[result][abilityId].count + 1
-
-		ARS.debug.data[result][abilityId] = new_ability --writing updated log into saved variables
-
-		d("Found new ability [#"..abilityId..","..GetAbilityName(abilityId).."] MOB: "..sourceName.." RESULT: "..result)
-	end
-	
+function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash
 	if abilityId == 134196 and result == 2200 then
-		d("Crashing Wave. Block!")
-		UpdateMessage("|c03a9f4Crashing Wave|r. Dodge or Block!", GetAbilityIcon(abilityId), 3000, 0)
+		d("Crashing Wave. Block! "..targetType)
+		UpdateMessage("|c03a9f4Crashing Wave|r in ", GetAbilityIcon(abilityId), 4000, 3000, "|cff0000Block or Dodge|r")
 	end
 	
-	if abilityId == 133936 and result == 2200 then
+	if abilityId == 133936 and result == 2200 and targetType == COMBAT_UNIT_TYPE_PLAYER then
 		d("Exploding Spear Block!")
-		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0)
+		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0,nil)
 	end
 	
 	--First Boss
-	if abilityId == 133285 and result == 2240 then
-		d("Dragon Totem. Begins!")
-		UpdateMessage("|cff9800 Dragon Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0)
+	if abilityId == 133045 and result == 2200 then
+		UpdateMessage("|cff9800Dragon Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0, nil)
 	end
 	
-	if abilityId == 133285 and result == 2250 then
-		d("Dragon Totem ends")
-	end
-	
-	if abilityId == 136873 and result == 2240 then
-		d("Gargoyle Totem. Begins!")
-		UpdateMessage("|c795548 Gargoyle Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0)
+	if abilityId == 133513 and result == 2200 then
+		UpdateMessage("|c795548Gargoyle Totem|r spawns! Block!", GetAbilityIcon(abilityId), 3000, 0, nil)
 	end
 
-	if abilityId == 134023 and result == ACTION_RESULT_EFFECT_GAINED then
-		d("Meteor on you. block!")
-		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId), 3000, 0)
+	if abilityId == 133510 and result == 2200 then
+		UpdateMessage("|c795548Harpy Totem|r spawns!", GetAbilityIcon(abilityId), 3000, 0, nil)
+	end
+
+	if abilityId == 133515 and result == 2200 then
+		UpdateMessage("|c795548Chaurus Totem|r spawns! Don't Stack!", GetAbilityIcon(abilityId), 3000, 0, nil)
+	end
+
+	if abilityId == 134023 and result == 2200 then
+		UpdateMessage("Incoming |cffa500Meteor|r on you. Block!", GetAbilityIcon(abilityId), 3000, 0, nil)
 	end
 	
 	--Second Boss
-	if abilityId == 140606 and result == ACTION_RESULT_EFFECT_GAINED then
+	if abilityId == 140606 and result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_PLAYER then
 		d("meteor on you. block!")
 		UpdateMessage("Incoming |cffa500Meteor|r on you. Move out and Block!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 	
 	--Endboss
 	
-	if abilityId == 140941 and result == 2240 then
+	if abilityId == 140942 then
 		d("Instability. Move out! PLAYERS: "..targetName)
 		UpdateMessage("|cffeb3bInstability|r on you. Move out!", GetAbilityIcon(abilityId), 3000, 0)
 	end
@@ -119,25 +70,15 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 2240 and result == 2240 then
 		d("Hemorrhage")
-		UpdateMessage("|c9c27b0Hemorrhage|r. Don't Stack!", GetAbilityIcon(abilityId), 3000, 0)
+		UpdateMessage("|c9c27b0Hemorrhage|r begins!", GetAbilityIcon(abilityId), 3000, 0)
 	end
 end
 
-function UpdateMessage(message, texture, duration, countdown)
-	test:GetNamedChild("AlertTexture"):SetTexture(texture)
-    test:GetNamedChild("AlertMessage"):SetText(message)
-	test:SetHidden(false)
-	PlaySound(SOUNDS.DUEL_START)
-	zo_callLater(function()
-		test:SetHidden(true)
-	end, duration)
-end
-
 function ARS:Initialize()
-	--Saved Variables
-	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability" , EVENT_COMBAT_EVENT, ARS.Mechanics)
 	
 	ARS.debug = ZO_SavedVars:NewAccountWide("ARSAbilityLog", 1, nil, ARS.default)
+	
+	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability" , EVENT_COMBAT_EVENT, ARS.Mechanics)
 
 	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSAlertFrame")
 	zframe:SetResizeToFitDescendents(true)
@@ -146,9 +87,12 @@ function ARS:Initialize()
 	zframe:SetMouseEnabled(true)
 
 	test = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ARSTest", zframe, "ARSTest")
-	test:SetHidden(true)
+	test:SetHidden(false)
 	test:SetAnchor(CENTER, nil, CENTER, 0, -250)
 	test:SetResizeToFitDescendents(true)
+	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(22095))
+	test:GetNamedChild("AlertMessage"):SetText(zo_strformat("|cffc107<<1>>|r on you in ", GetAbilityName(22095)))
+	test:GetNamedChild("AlertTimer"):SetText("3.0s")
 
     --ARS:InitializeSynergyTracker(true)
     --ARS:InitializeTracker(true)

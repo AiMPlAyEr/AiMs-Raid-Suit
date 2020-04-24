@@ -1,14 +1,23 @@
 <GuiXml>
     <Controls>
-        <Control name="ARSTest" resizeToFitDescendents="true" virtual="true">
+        <Control name="ARSTest" resizeToFitDescendents="true" virtual="true" movable="true">
             <Controls>
-                <Texture name="$(parent)AlertTexture" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
-                    <Anchor point="LEFT" relativePoint="LEFT" />
+                <Texture name="$(parent)AlertFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
+                    <Anchor point="CENTER" relativePoint="LEFT" relativeTo="ARSTest" />
+                    <Dimensions x="60" y="60"/>
+                </Texture>
+
+                <Texture name="$(parent)AlertTexture" textureFile="esoui\art\actionbar\abilityframe64_up.dds">
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="$(parent)AlertFrame" />
                     <Dimensions x="48" y="48"/>
                 </Texture>
 
                 <Label name="$(parent)AlertMessage" color="ffffff" font="ZoFontCenterScreenAnnounceSmall" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="">
-                    <Anchor point="TOP" offsetY="4" offsetX="30" />
+                    <Anchor offsetX="10" relativePoint="TOPRIGHT" relativeTo="$(parent)AlertTexture"/>
+                </Label>
+
+                <Label name="$(parent)AlertTimer" color="ffffff" font="ZoFontCenterScreenAnnounceSmall" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
+                    <Anchor relativePoint="TOPRIGHT" offsetY="0" offsetX="10" relativeTo="$(parent)AlertMessage" />
                 </Label>
             </Controls>
         </Control>
