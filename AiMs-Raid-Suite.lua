@@ -82,11 +82,26 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 end
 
+function ARS.Debuffs(eventCode, changeType, effectSlot, effectName, unitTag, beginTime, endTime, stackCount, iconName, buffType, effectType, abilityType, statusEffectType, unitName, unitId, abilityId, sourceUnitType)
+	if abilityId == 133559 and result == EFFECT_RESULT_FADED then
+		d("1Debuff has been cleansed!")
+	elseif abilityId == 133559 then
+		d("1Debuff still active on "..stackCount)
+	end
+
+	if abilityId == 139812 and result == EFFECT_RESULT_FADED then
+		d("2Debuff has been cleansed!")
+	elseif abilityId == 139812 then
+		d("2Debuff still active on "..stackCount)
+	end
+end
+
 function ARS:Initialize()
 	
 	ARS.debug = ZO_SavedVars:NewAccountWide("ARSAbilityLog", 1, nil, ARS.default)
 	
-	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability" , EVENT_COMBAT_EVENT, ARS.Mechanics)
+	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability", EVENT_COMBAT_EVENT, ARS.Mechanics)
+	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Debuff", EVENT_EFFECT_CHANGED, ARS.Debuffs)
 
 	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSAlertFrame")
 	zframe:SetResizeToFitDescendents(true)
@@ -98,9 +113,9 @@ function ARS:Initialize()
 	test:SetHidden(false)
 	test:SetAnchor(CENTER, nil, CENTER, 0, -250)
 	test:SetResizeToFitDescendents(true)
-	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(22095))
-	test:GetNamedChild("AlertMessage"):SetText(zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)))
-	test:GetNamedChild("AlertTimer"):SetText("3.0s")
+	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(136678))
+	test:GetNamedChild("AlertMessage"):SetText(zo_strformat(GetString(ARS_PURGE_POISON), GetAbilityName(136678)))
+	test:GetNamedChild("AlertTimer"):SetText("")
 
     --ARS:InitializeSynergyTracker(true)
     --ARS:InitializeTracker(true)
