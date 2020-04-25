@@ -10,6 +10,20 @@ local pool
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash
+	if abilityId == 22095 and result == 2240 then
+		ability_settings = {
+			abilityid = 22095,
+			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)),
+			duration = GetGameTimeMilliseconds() + 3000,
+			isnew = true
+		}
+
+		table.insert(alert_pool, ability_settings)
+
+		d("ability used")
+	end
+
+
 	if abilityId == 134196 and result == 2200 then
 		d("Crashing Wave. Block! "..targetType)
 		UpdateMessage("|c03a9f4Crashing Wave|r in ", GetAbilityIcon(abilityId), 4000, 3000, "|cff0000Block or Dodge|r")
@@ -97,6 +111,31 @@ function ARS.Debuffs(eventCode, changeType, effectSlot, effectName, unitTag, beg
 	end
 end
 
+function UpdateAlerts()
+	pool:ReleaseAllObjects()
+
+	local currTime = GetGameTimeMilliseconds()
+	for k, v in ipairs(alert_pool) do
+		control = pool:AcquireObject(k)
+
+		if v.isnew then
+			PlaySound(SOUNDS.OBJECTIVE_DISCOVERED)
+			v.isnew = false
+		end
+
+		if currTime > v.duration then
+			control:SetHidden(true)
+			table.remove(alert_pool, k) --alert has expired, remove it from alert_pool
+		else
+			control:SetHidden(false)
+			control.texture:SetTexture(GetAbilityIcon(v.abilityid))
+			control.message:SetText(v.message)
+			control.timer:SetText(zo_strformat("<<1>>s", (v.duration - currTime) / 1000))
+			control:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (k - 1)))
+		end
+	end
+end	
+
 function CreateAlert(pool)
 	local name      = "Alert" .. pool:GetNextControlId()
 	control = WINDOW_MANAGER:CreateControlFromVirtual(name, zframe, "ARSTest")
@@ -122,6 +161,8 @@ function ARS:Initialize()
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability", EVENT_COMBAT_EVENT, ARS.Mechanics)
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Debuff", EVENT_EFFECT_CHANGED, ARS.Debuffs)
 
+	EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateAlerts", 100, UpdateAlerts)
+
 	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSParent")
 	zframe:SetResizeToFitDescendents(true)
 	zframe:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
@@ -138,14 +179,6 @@ function ARS:Initialize()
 		alert.message:SetMovable(true)
 		alert.timer:SetText("")
 	end
-
-	--[[test = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ARSTest", zframe, "ARSTest")
-	test:SetHidden(false)
-	test:SetAnchor(CENTER, nil, CENTER, 0, -250)
-	test:SetResizeToFitDescendents(true)
-	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(136678))
-	test:GetNamedChild("AlertMessage"):SetText(zo_strformat(GetString(ARS_PURGE_POISON), GetAbilityName(136678)))
-	test:GetNamedChild("AlertTimer"):SetText("")]]--
 
     --ARS:InitializeSynergyTracker(true)
     --ARS:InitializeTracker(true)
