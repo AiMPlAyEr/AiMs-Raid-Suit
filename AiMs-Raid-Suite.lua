@@ -5,7 +5,8 @@ ARS.name = "AiMs-Raid-Suite"
 ARS.suitversion = "0.1"
 ARS.default = {}
 
-local log = {}
+local alert_pool = {}
+local pool
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash
@@ -96,26 +97,55 @@ function ARS.Debuffs(eventCode, changeType, effectSlot, effectName, unitTag, beg
 	end
 end
 
+function CreateAlert(pool)
+	local name      = "Alert" .. pool:GetNextControlId()
+	control = WINDOW_MANAGER:CreateControlFromVirtual(name, zframe, "ARSTest")
+
+	control.texture = control:GetNamedChild("AlertTexture")
+	control.message = control:GetNamedChild("AlertMessage")
+	control.timer = control:GetNamedChild("AlertTimer")
+
+	return control
+end
+
+function RemoveAlert(control)
+    control:SetHidden(true)
+    control:ClearAnchors()
+end
+
 function ARS:Initialize()
+
+	pool = ZO_ObjectPool:New(CreateAlert, RemoveAlert)
 	
 	ARS.debug = ZO_SavedVars:NewAccountWide("ARSAbilityLog", 1, nil, ARS.default)
 	
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability", EVENT_COMBAT_EVENT, ARS.Mechanics)
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Debuff", EVENT_EFFECT_CHANGED, ARS.Debuffs)
 
-	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSAlertFrame")
+	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSParent")
 	zframe:SetResizeToFitDescendents(true)
 	zframe:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
 	zframe:SetMovable(true)
 	zframe:SetMouseEnabled(true)
 
-	test = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ARSTest", zframe, "ARSTest")
+	for i = 1, 3 do
+		alert = pool:AcquireObject(i)
+		alert:SetHidden(false)
+		alert:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (i - 1)))
+
+		alert.texture:SetTexture(GetAbilityIcon(136678))
+		alert.message:SetText(zo_strformat(GetString(ARS_PURGE_POISON), GetAbilityName(136678)))
+		alert.message:SetMovable(true)
+		alert.timer:SetText("")
+	end
+
+	--[[test = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ARSTest", zframe, "ARSTest")
 	test:SetHidden(false)
 	test:SetAnchor(CENTER, nil, CENTER, 0, -250)
 	test:SetResizeToFitDescendents(true)
 	test:GetNamedChild("AlertTexture"):SetTexture(GetAbilityIcon(136678))
 	test:GetNamedChild("AlertMessage"):SetText(zo_strformat(GetString(ARS_PURGE_POISON), GetAbilityName(136678)))
-	test:GetNamedChild("AlertTimer"):SetText("")
+	test:GetNamedChild("AlertTimer"):SetText("")]]--
 
     --ARS:InitializeSynergyTracker(true)
     --ARS:InitializeTracker(true)
