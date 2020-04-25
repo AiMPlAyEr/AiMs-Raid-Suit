@@ -1,4 +1,4 @@
-local ARS = ARS
+local ARS = ARS or {}
 
 local COMBUSTION_SYNERGY        = 1     -- orb and shard
 local CONDUIT_SYNERGY           = 2     -- liquid lightning
@@ -44,7 +44,7 @@ ARS.Synergies = {
     [115567]    = GRAVE_ROBBER_SYNERGY,         -- Boneyard Synergy         (Grave Robber)
     [115571]    = GRAVE_ROBBER_SYNERGY,         -- Avid Boneyard Synergy    (Grave Robber)
     [118610]    = PURE_AGONY_SYNERGY,           -- Agony Totem Synergy      (Pure Agony)
-    [88887]    = ICY_ESCAPE,                   -- Icy Escape Synergy       (Frozen Retreat)
+    [108950]    = ICY_ESCAPE                    -- Icy Escape Synergy       (Frozen Retreat)
 }
 
 ARS.SynergyTexture = {
