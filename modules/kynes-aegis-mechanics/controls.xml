@@ -4,12 +4,12 @@
             <Controls>
                 <Texture name="$(parent)AlertFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
                     <Anchor point="CENTER" relativePoint="LEFT" relativeTo="ARSTest" />
-                    <Dimensions x="60" y="60"/>
+                    <Dimensions x="50" y="50"/>
                 </Texture>
 
                 <Texture name="$(parent)AlertTexture" textureFile="esoui\art\actionbar\abilityframe64_up.dds">
                     <Anchor point="CENTER" relativePoint="CENTER" relativeTo="$(parent)AlertFrame" />
-                    <Dimensions x="48" y="48"/>
+                    <Dimensions x="40" y="40"/>
                 </Texture>
 
                 <Label name="$(parent)AlertMessage" color="ffffff" font="ZoFontCenterScreenAnnounceSmall" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="">
