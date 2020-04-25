@@ -4,6 +4,7 @@
 ## Version: 0.2
 ## APIVersion: 100031
 ## SavedVariables: ARSSaved
+## DependsOn: LibAddonMenu-2.0
 
 modules/kynes-aegis-mechanics/controls.xml
 
