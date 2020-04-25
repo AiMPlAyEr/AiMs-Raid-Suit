@@ -14,7 +14,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		ability_settings = {
 			abilityid = 22095,
 			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)),
-			duration = GetGameTimeMilliseconds() + 10000,
+			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = true,
 			isnew = true,
 		}
@@ -124,7 +124,6 @@ function UpdateAlerts()
 
 		if v.isdebuff == nil then
 			if currTime > v.duration then
-				control:SetHidden(true)
 				table.remove(alert_pool, k) --alert has expired, remove it from alert_pool
 			else
 				control:SetHidden(false)
@@ -143,7 +142,6 @@ function UpdateAlerts()
 				control.texture:SetTexture(GetAbilityIcon(v.abilityid))
 				control.message:SetText(v.message)
 			else
-				control:SetHidden(true)
 				table.remove(alert_pool, k) --debuff has expired, remove it from alert_pool
 			end
 		end
