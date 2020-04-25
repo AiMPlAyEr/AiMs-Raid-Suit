@@ -16,12 +16,10 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)),
 			duration = GetGameTimeMilliseconds() + 10000,
 			hascountdown = true,
-			isnew = true
+			isnew = true,
 		}
 
 		table.insert(alert_pool, ability_settings)
-
-		d("ability used")
 	end
 
 
@@ -124,19 +122,30 @@ function UpdateAlerts()
 			v.isnew = false
 		end
 
-		if currTime > v.duration then
-			control:SetHidden(true)
-			table.remove(alert_pool, k) --alert has expired, remove it from alert_pool
-		else
-			control:SetHidden(false)
-			control.texture:SetTexture(GetAbilityIcon(v.abilityid))
-			control.message:SetText(v.message)
-			if v.hascountdown then
-				control.timer:SetText(zo_strformat("<<1>>s", (v.duration - currTime) / 1000))
+		if v.isdebuff == nil then
+			if currTime > v.duration then
+				control:SetHidden(true)
+				table.remove(alert_pool, k) --alert has expired, remove it from alert_pool
 			else
-				control.timer:SetText("")
+				control:SetHidden(false)
+				control.texture:SetTexture(GetAbilityIcon(v.abilityid))
+				control.message:SetText(v.message)
+				if v.hascountdown then
+					control.timer:SetText(string.format("%.1f", (v.duration - currTime) / 1000))
+				else
+					control.timer:SetText("")
+				end
+				control:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (k - 1)))
 			end
-			control:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (k - 1)))
+		elseif v.isdebuff then
+			if not v.ispurged then
+				control:SetHidden(false)
+				control.texture:SetTexture(GetAbilityIcon(v.abilityid))
+				control.message:SetText(v.message)
+			else
+				control:SetHidden(true)
+				table.remove(alert_pool, k) --debuff has expired, remove it from alert_pool
+			end
 		end
 	end
 end	
@@ -166,7 +175,7 @@ function ARS:Initialize()
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Ability", EVENT_COMBAT_EVENT, ARS.Mechanics)
 	EVENT_MANAGER:RegisterForEvent(ARS.name .. "Debuff", EVENT_EFFECT_CHANGED, ARS.Debuffs)
 
-	EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateAlerts", 100, UpdateAlerts)
+	EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateAlerts", 50, UpdateAlerts)
 
 	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSParent")
 	zframe:SetResizeToFitDescendents(true)
