@@ -14,7 +14,8 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		ability_settings = {
 			abilityid = 22095,
 			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)),
-			duration = GetGameTimeMilliseconds() + 3000,
+			duration = GetGameTimeMilliseconds() + 10000,
+			hascountdown = true,
 			isnew = true
 		}
 
@@ -119,7 +120,7 @@ function UpdateAlerts()
 		control = pool:AcquireObject(k)
 
 		if v.isnew then
-			PlaySound(SOUNDS.OBJECTIVE_DISCOVERED)
+			PlaySound(SOUNDS.DUEL_START)
 			v.isnew = false
 		end
 
@@ -130,7 +131,11 @@ function UpdateAlerts()
 			control:SetHidden(false)
 			control.texture:SetTexture(GetAbilityIcon(v.abilityid))
 			control.message:SetText(v.message)
-			control.timer:SetText(zo_strformat("<<1>>s", (v.duration - currTime) / 1000))
+			if v.hascountdown then
+				control.timer:SetText(zo_strformat("<<1>>s", (v.duration - currTime) / 1000))
+			else
+				control.timer:SetText("")
+			end
 			control:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (k - 1)))
 		end
 	end
