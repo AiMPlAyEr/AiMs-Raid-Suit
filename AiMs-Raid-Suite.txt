@@ -3,7 +3,7 @@
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
 ## Version: 0.2
 ## APIVersion: 100031
-## SavedVariables: ARSSaved ARSAbilityLog
+## SavedVariables: ARSSaved
 
 modules/kynes-aegis-mechanics/controls.xml
 
