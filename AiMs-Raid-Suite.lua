@@ -7,6 +7,11 @@ ARS.default = {}
 
 local alert_pool = {}
 local pool
+local zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSParent")
+zframe:SetResizeToFitDescendents(true)
+zframe:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
+zframe:SetMovable(true)
+zframe:SetMouseEnabled(true)
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash
@@ -175,22 +180,10 @@ function ARS:Initialize()
 
 	EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateAlerts", 50, UpdateAlerts)
 
-	zframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSParent")
-	zframe:SetResizeToFitDescendents(true)
-	zframe:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
-	zframe:SetMovable(true)
-	zframe:SetMouseEnabled(true)
-
-	for i = 1, 3 do
-		alert = pool:AcquireObject(i)
-		alert:SetHidden(false)
-		alert:SetAnchor(CENTER, nil, CENTER, 0, -250 + (60 * (i - 1)))
-
-		alert.texture:SetTexture(GetAbilityIcon(136678))
-		alert.message:SetText(zo_strformat(GetString(ARS_PURGE_POISON), GetAbilityName(136678)))
-		alert.message:SetMovable(true)
-		alert.timer:SetText("")
-	end
+	fragment = ZO_HUDFadeSceneFragment:New(zframe)
+ 
+    HUD_SCENE:AddFragment(fragment)
+    HUD_UI_SCENE:AddFragment(fragment)
 
     --ARS:InitializeSynergyTracker(true)
     --ARS:InitializeTracker(true)
