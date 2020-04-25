@@ -15,19 +15,7 @@ zframe:SetMouseEnabled(true)
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash
-	if abilityId == 22095 and result == 2240 then
-		ability_settings = {
-			abilityid = 22095,
-			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(22095)),
-			duration = GetGameTimeMilliseconds() + 3000,
-			hascountdown = true,
-			isnew = true,
-		}
-		table.insert(alert_pool, ability_settings)
-	end
-
-
-	if abilityId == 134196 and result == 2200 then
+	if abilityId == 134196 and result == ACTION_RESULT_BEGIN then
 		d("Crashing Wave. Block! "..targetType)
 		UpdateMessage("|c03a9f4Crashing Wave|r in ", GetAbilityIcon(abilityId), 4000, 3000, "|cff0000Block or Dodge|r")
 		ability_settings = {
@@ -40,13 +28,13 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133936 and result == 2200 and targetType == COMBAT_UNIT_TYPE_PLAYER then
+	if abilityId == 133936 and result == ACTION_RESULT_BEGIN and targetType == COMBAT_UNIT_TYPE_PLAYER then
 		d("Exploding Spear Block!")
 		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0,nil)
 	end
 	
 	--First Boss
-	if abilityId == 133045 and result == 2200 then
+	if abilityId == 133045 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_DRAGON_TOTEM), GetAbilityName(abilityId)),
@@ -57,7 +45,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133513 and result == 2200 then
+	if abilityId == 133513 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_GARGOYLE_TOTEM), GetAbilityName(abilityId)),
@@ -68,7 +56,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133510 and result == 2200 then
+	if abilityId == 133510 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_Harpy_TOTEM), GetAbilityName(abilityId)),
@@ -79,7 +67,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133515 and result == 2200 then
+	if abilityId == 133515 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_CHAURUS_TOTEM), GetAbilityName(abilityId)),
@@ -90,7 +78,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 134023 and result == 2200 then
+	if abilityId == 134023 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
@@ -102,7 +90,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--Second Boss
-	if abilityId == 140606 and result == 2200 then
+	if abilityId == 140606 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
@@ -113,7 +101,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133808 and result == 2200 then
+	if abilityId == 133808 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_FRIGID_FOG), GetAbilityName(abilityId)),
@@ -130,7 +118,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		d("Instability! ID: "..abilityId.." RESULT: "..result)
 	end
 	
-	if abilityId == 134856 and result == 2200 then
+	if abilityId == 134856 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_SANGUINE_GRASP), GetAbilityName(abilityId)),
@@ -141,7 +129,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 132470 and result == 2240 then
+	if abilityId == 132470 and result == ACTION_RESULT_EFFECT_GAINED then
 		d("Sanguine Prison. Kill it!")
 		ability_settings = {
 			abilityid = abilityId,
@@ -153,12 +141,8 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 136315 and result == 2200 then
+	if abilityId == 136315 and result == ACTION_RESULT_BEGIN then
 		d("Blood Spear")
-	end
-	
-	if abilityId == 2240 and result == 2240 then
-		d("Hemorrhage")
 	end
 end
 
