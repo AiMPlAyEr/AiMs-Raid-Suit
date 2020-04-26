@@ -48,9 +48,8 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133936 and result == ACTION_RESULT_BEGIN and ARS.sv.exploding_spear then
-		d("Exploding Spear Block!")
-		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0,nil)
+	if string.match(abilityName, "Exploding") and ARS.sv.exploding_spear then
+		d("Exploding Spear! ID: "..abilityId.." RESULT: "..result)
 	end
 	
 	--First Boss
