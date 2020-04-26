@@ -190,7 +190,6 @@ function UpdateAlerts()
 		control = pool:AcquireObject(k)
 
 		if v.isnew then
-			d(ARS.sv.sound_played)
 			PlaySound(ARS.sv.sound_played)
 			v.isnew = false
 		end
