@@ -58,7 +58,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	--First Boss
 	if abilityId == 133045 and result == ACTION_RESULT_BEGIN and ARS.sv.dragon_totem then
 		ability_settings = {
-			abilityid = abilityId,
+			abilityid = 133264,
 			message = zo_strformat(GetString(ARS_DRAGON_TOTEM), GetAbilityName(133264)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
@@ -69,7 +69,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if abilityId == 133513 and result == ACTION_RESULT_BEGIN and ARS.sv.gargoyle_totem then
 		ability_settings = {
-			abilityid = abilityId,
+			abilityid = 133514,
 			message = zo_strformat(GetString(ARS_GARGOYLE_TOTEM), GetAbilityName(133514)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
@@ -80,7 +80,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 
 	if abilityId == 133510 and result == ACTION_RESULT_BEGIN and ARS.sv.harpy_totem then
 		ability_settings = {
-			abilityid = abilityId,
+			abilityid = 133511,
 			message = zo_strformat(GetString(ARS_HARPY_TOTEM), GetAbilityName(133511)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
@@ -91,7 +91,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 
 	if abilityId == 133515 and result == ACTION_RESULT_BEGIN and ARS.sv.chaurus_totem then
 		ability_settings = {
-			abilityid = abilityId,
+			abilityid = 133516,
 			message = zo_strformat(GetString(ARS_CHAURUS_TOTEM), GetAbilityName(133516)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
