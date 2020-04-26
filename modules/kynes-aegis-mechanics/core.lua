@@ -9,18 +9,7 @@ zframe:SetMovable(true)
 zframe:SetMouseEnabled(true)
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
-    --Trash
-    if abilityId == 22095 and result == 2240 then
-		ability_settings = {
-			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(abilityId)),
-			duration = GetGameTimeMilliseconds() + 3000,
-			hascountdown = true,
-			isnew = true,
-		}
-		table.insert(alert_pool, ability_settings)
-    end
-    
+    --Trash 
 	if abilityId == 134196 and result == ACTION_RESULT_BEGIN then
 		ability_settings = {
 			abilityid = abilityId,
@@ -118,7 +107,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	--Endboss
 	
-	if abilityName == "Instability" then
+	if string.match(abilityName, "Instability") then
 		d("Instability! ID: "..abilityId.." RESULT: "..result)
 	end
 	
@@ -145,7 +134,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 136315 and result == ACTION_RESULT_BEGIN then
+	if string.match(abilityName, "Blood Spear") then
 		d("Blood Spear")
 	end
 end
@@ -231,5 +220,7 @@ function ARS:InitializeKATracker(enabled)
     fragment = ZO_HUDFadeSceneFragment:New(zframe)
  
     HUD_SCENE:AddFragment(fragment)
-    HUD_UI_SCENE:AddFragment(fragment)
+	HUD_UI_SCENE:AddFragment(fragment)
+	
+	ARS.KAMechanicsSettings()
 end

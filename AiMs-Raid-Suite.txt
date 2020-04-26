@@ -6,14 +6,14 @@
 ## SavedVariables: ARSSaved
 ## DependsOn: LibAddonMenu-2.0
 
-modules/kynes-aegis-mechanics/controls.xml
-
 lang/$(language).lua
 AiMs-Raid-Suite.lua
 modules/synergy-tracker/controls.xml
 modules/synergy-tracker/core.lua
 modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
-
-modules/kynes-aegis-mechanics/core.lua
 libs/gunits.lua
+
+modules/kynes-aegis-mechanics/controls.xml
+modules/kynes-aegis-mechanics/core.lua
+modules/kynes-aegis-mechanics/menu.lua

@@ -7,8 +7,8 @@ ARS.default = {}
 
 function ARS:Initialize()
 
-    ARS:InitializeSynergyTracker(true)
-	ARS:InitializeTracker(true)
+    --ARS:InitializeSynergyTracker(true)
+	--ARS:InitializeTracker(true)
 	
 	ARS:InitializeKATracker(true)
 end
