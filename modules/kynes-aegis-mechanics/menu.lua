@@ -10,7 +10,7 @@ function ARS.KAMechanicsSettings()
         name = "Kynes-Aegis-Mechanics",
         displayName = "Kynes-Aegis-Mechanics",
         author = "|cfd6a02AiMPlAyEr[EU]|r",
-        version = ARS.version,
+        version = ARS.suiteversion,
     }
     local panel = LAM:RegisterAddonPanel(panelName, panelData)
     local optionsData = {}
