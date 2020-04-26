@@ -15,6 +15,15 @@ function ARS.KAMechanicsSettings()
     local optionsData = {}
 
     table.insert(optionsData, {
+        type = "dropdown",
+        name = "Alert Sound",
+        tooltip = "Selected sound will play if a new mechanics begins",
+        choices = {SOUNDS.DUEL_START, SOUNDS.CHAMPION_POINTS_COMMITTED, SOUNDS.CHAMPION_POINT_GAINED},
+        getFunc = function() return ARS.sv.sound_played end,
+        setFunc = function(value) ARS.sv.sound_played = value end,
+    })
+
+    table.insert(optionsData, {
         type = "submenu",
         name = "Trash",
         controls = {

@@ -9,20 +9,23 @@ zframe:SetMovable(true)
 zframe:SetMouseEnabled(true)
 
 ARS.default = {
-	crashing_wave 		= true,
-	exploding_spear 	= true,
-	dragon_totem 		= true,
-	gargoyle_toem 		= true,
-	harpy_totem 		= true,
-	chaurus_totem 		= true,
-	meteor_yandir 		= true,
-	chaurus_bile 		= true,
-	meteor_vrol 		= true,
-	frigid_fog 			= true,
-	instability 		= true,
-	sanguine_grasp 		= true,
-	sanguine_prison 	= true,
-	blood_spear 		= true
+	mechanics = {
+		crashing_wave 		= true,
+		exploding_spear 	= true,
+		dragon_totem 		= true,
+		gargoyle_toem 		= true,
+		harpy_totem 		= true,
+		chaurus_totem 		= true,
+		meteor_yandir 		= true,
+		chaurus_bile 		= true,
+		meteor_vrol 		= true,
+		frigid_fog 			= true,
+		instability 		= true,
+		sanguine_grasp 		= true,
+		sanguine_prison 	= true,
+		blood_spear 		= true
+	},
+	sound_played = SOUNDS.DUEL_START
 }
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
@@ -187,7 +190,8 @@ function UpdateAlerts()
 		control = pool:AcquireObject(k)
 
 		if v.isnew then
-			PlaySound(SOUNDS.DUEL_START)
+			d(ARS.sv.sound_played)
+			PlaySound(ARS.sv.sound_played)
 			v.isnew = false
 		end
 
