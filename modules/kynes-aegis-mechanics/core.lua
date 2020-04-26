@@ -30,7 +30,7 @@ ARS.default = {
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash 
-	if abilityId == 22095 and result == 2240 then
+	--[[if abilityId == 22095 and result == 2240 then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(abilityId)),
@@ -39,7 +39,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 			isnew = true,
 		}
 		table.insert(alert_pool, ability_settings)
-	end
+	end]]--
 	if abilityId == 134196 and result == ACTION_RESULT_BEGIN and ARS.sv.crashing_wave then
 		ability_settings = {
 			abilityid = abilityId,
@@ -59,7 +59,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if abilityId == 133045 and result == ACTION_RESULT_BEGIN and ARS.sv.dragon_totem then
 		ability_settings = {
 			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_DRAGON_TOTEM), GetAbilityName(abilityId)),
+			message = zo_strformat(GetString(ARS_DRAGON_TOTEM), GetAbilityName(133264)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
@@ -67,10 +67,10 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133513 and result == ACTION_RESULT_BEGIN and ARS.sv.gargoyle_toem then
+	if abilityId == 133513 and result == ACTION_RESULT_BEGIN and ARS.sv.gargoyle_totem then
 		ability_settings = {
 			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_GARGOYLE_TOTEM), GetAbilityName(abilityId)),
+			message = zo_strformat(GetString(ARS_GARGOYLE_TOTEM), GetAbilityName(133514)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
@@ -81,7 +81,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if abilityId == 133510 and result == ACTION_RESULT_BEGIN and ARS.sv.harpy_totem then
 		ability_settings = {
 			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_Harpy_TOTEM), GetAbilityName(abilityId)),
+			message = zo_strformat(GetString(ARS_HARPY_TOTEM), GetAbilityName(133511)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
@@ -92,7 +92,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if abilityId == 133515 and result == ACTION_RESULT_BEGIN and ARS.sv.chaurus_totem then
 		ability_settings = {
 			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_CHAURUS_TOTEM), GetAbilityName(abilityId)),
+			message = zo_strformat(GetString(ARS_CHAURUS_TOTEM), GetAbilityName(133516)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
@@ -100,28 +100,32 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 134023 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_yandir then
-		ability_settings = {
-			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
-			duration = GetGameTimeMilliseconds() + 5000,
-			hascountdown = false,
-			isnew = true,
-		}
-		table.insert(alert_pool, ability_settings)
+	if abilityId == 140603 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_yandir then
+		if hitValue == 2000 then 
+			ability_settings = {
+				abilityid = abilityId,
+				message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
+				duration = GetGameTimeMilliseconds() + hitValue,
+				hascountdown = true,
+				isnew = true,
+			}
+			table.insert(alert_pool, ability_settings)
+		end
 	end
 	
 	--Second Boss
-	if abilityId == 140606 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_vrol then
-		ability_settings = {
-			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
-			duration = GetGameTimeMilliseconds() + 5000,
-			hascountdown = false,
-			isnew = true,
-		}
-		table.insert(alert_pool, ability_settings)
-	end
+	if abilityId == 134023 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_vrol then
+		if hitValue == 2000 then 
+			ability_settings = {
+				abilityid = abilityId,
+				message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
+				duration = GetGameTimeMilliseconds() + 5000,
+				hascountdown = false,
+				isnew = true,
+			}
+			table.insert(alert_pool, ability_settings)
+		end
+	end	
 
 	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and ARS.sv.frigid_fog then
 		ability_settings = {
@@ -138,6 +142,10 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	if string.match(abilityName, "Instability") and ARS.sv.instability then
 		d("Instability! ID: "..abilityId.." RESULT: "..result)
+	end
+
+	if string.match(abilityName, "Portal") and ARS.sv.instability then
+		d("Portal spawn! ID: "..abilityId.." RESULT: "..result)
 	end
 	
 	if abilityId == 134856 and result == ACTION_RESULT_BEGIN and ARS.sv.sanguine_grasp then

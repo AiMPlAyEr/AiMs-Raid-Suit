@@ -5,8 +5,8 @@ ZO_CreateStringId("ARS_EXPLODING_SPEAR", "|cffc107<<1>>|r. Block!")
 --nur mechaniken vom ersten boss
 ZO_CreateStringId("ARS_DRAGON_TOTEM", "|cff9800<<1>>|r spawnt!")
 ZO_CreateStringId("ARS_GARGOYLE_TOTEM", "|c795548<<1>>|r spawnt! Block!")
-ZO_CreateStringId("ARS_HARPY_TOTEM", "|c795548<<1>>|r spawnt!")
-ZO_CreateStringId("ARS_CHAURUS_TOTEM", "|c795548<<1>>|r spawnt! Nicht Stacken!")
+ZO_CreateStringId("ARS_HARPY_TOTEM", "|cadd8e6<<1>>|r spawnt!")
+ZO_CreateStringId("ARS_CHAURUS_TOTEM", "|c90ee90<<1>>|r spawnt! Nicht Stacken!")
 
 --mechaniken vom ersten und zweiten boss
 ZO_CreateStringId("ARS_METEOR", "|cffa500<<1>>|r. Block!")
