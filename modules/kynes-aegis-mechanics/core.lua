@@ -8,9 +8,36 @@ zframe:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
 zframe:SetMovable(true)
 zframe:SetMouseEnabled(true)
 
+ARS.default = {
+	crashing_wave 		= true,
+	exploding_spear 	= true,
+	dragon_totem 		= true,
+	gargoyle_toem 		= true,
+	harpy_totem 		= true,
+	chaurus_totem 		= true,
+	meteor_yandir 		= true,
+	chaurus_bile 		= true,
+	meteor_vrol 		= true,
+	frigid_fog 			= true,
+	instability 		= true,
+	sanguine_grasp 		= true,
+	sanguine_prison 	= true,
+	blood_spear 		= true
+}
+
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
-    --Trash 
-	if abilityId == 134196 and result == ACTION_RESULT_BEGIN then
+	--Trash 
+	if abilityId == 22095 and result == 2240 then
+		ability_settings = {
+			abilityid = abilityId,
+			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(abilityId)),
+			duration = GetGameTimeMilliseconds() + 5000,
+			hascountdown = true,
+			isnew = true,
+		}
+		table.insert(alert_pool, ability_settings)
+	end
+	if abilityId == 134196 and result == ACTION_RESULT_BEGIN and ARS.sv.crashing_wave then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(abilityId)),
@@ -21,13 +48,13 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133936 and result == ACTION_RESULT_BEGIN and targetType == COMBAT_UNIT_TYPE_PLAYER then
+	if abilityId == 133936 and result == ACTION_RESULT_BEGIN and ARS.sv.exploding_spear then
 		d("Exploding Spear Block!")
 		UpdateMessage("|cffc107Exploding Spear|r. Block!", GetAbilityIcon(abilityId), 3000, 0,nil)
 	end
 	
 	--First Boss
-	if abilityId == 133045 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 133045 and result == ACTION_RESULT_BEGIN and ARS.sv.dragon_totem then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_DRAGON_TOTEM), GetAbilityName(abilityId)),
@@ -38,7 +65,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 133513 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 133513 and result == ACTION_RESULT_BEGIN and ARS.sv.gargoyle_toem then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_GARGOYLE_TOTEM), GetAbilityName(abilityId)),
@@ -49,7 +76,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133510 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 133510 and result == ACTION_RESULT_BEGIN and ARS.sv.harpy_totem then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_Harpy_TOTEM), GetAbilityName(abilityId)),
@@ -60,7 +87,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133515 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 133515 and result == ACTION_RESULT_BEGIN and ARS.sv.chaurus_totem then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_CHAURUS_TOTEM), GetAbilityName(abilityId)),
@@ -71,7 +98,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 134023 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 134023 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_yandir then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
@@ -83,7 +110,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--Second Boss
-	if abilityId == 140606 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 140606 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_vrol then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
@@ -94,7 +121,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 
-	if abilityId == 133808 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and ARS.sv.frigid_fog then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_FRIGID_FOG), GetAbilityName(abilityId)),
@@ -107,11 +134,11 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	
 	--Endboss
 	
-	if string.match(abilityName, "Instability") then
+	if string.match(abilityName, "Instability") and ARS.sv.instability then
 		d("Instability! ID: "..abilityId.." RESULT: "..result)
 	end
 	
-	if abilityId == 134856 and result == ACTION_RESULT_BEGIN then
+	if abilityId == 134856 and result == ACTION_RESULT_BEGIN and ARS.sv.sanguine_grasp then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_SANGUINE_GRASP), GetAbilityName(abilityId)),
@@ -122,7 +149,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if abilityId == 132470 and result == ACTION_RESULT_EFFECT_GAINED then
+	if abilityId == 132470 and result == ACTION_RESULT_EFFECT_GAINED and ARS.sv.sanguine_prison then
 		d("Sanguine Prison. Kill it!")
 		ability_settings = {
 			abilityid = abilityId,
@@ -134,8 +161,8 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		table.insert(alert_pool, ability_settings)
 	end
 	
-	if string.match(abilityName, "Blood Spear") then
-		d("Blood Spear")
+	if string.match(abilityName, "Blood Spear") and ARS.sv.blood_spear then
+		d("Blood Spear! ID: "..abilityId.." RESULT: "..result)
 	end
 end
 
@@ -208,7 +235,9 @@ function RemoveAlert(control)
 end
 
 function ARS:InitializeKATracker(enabled)
-    if not enabled then return end
+	if not enabled then return end
+	
+	ARS.sv = ZO_SavedVars:NewAccountWide("KASaved", 1, nil, ARS.default)
 
     pool = ZO_ObjectPool:New(CreateAlert, RemoveAlert)
 	
