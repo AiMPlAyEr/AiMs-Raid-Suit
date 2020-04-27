@@ -177,16 +177,11 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 end
 
 function ARS.Debuffs(eventCode, changeType, effectSlot, effectName, unitTag, beginTime, endTime, stackCount, iconName, buffType, effectType, abilityType, statusEffectType, unitName, unitId, abilityId, sourceUnitType)
-	if abilityId == 133559 and result == EFFECT_RESULT_FADED then
-		d("1Debuff has been cleansed!")
-	elseif abilityId == 133559 then
-		d("1Debuff still active on "..stackCount)
-	end
-
 	if abilityId == 139812 and result == EFFECT_RESULT_FADED then
 		d("2Debuff has been cleansed!")
-	elseif abilityId == 139812 then
-		d("2Debuff still active on "..stackCount)
+	elseif abilityId == 139812 and result == EFFECT_RESULT_GAINED then
+		local remainingTime = (endTime - GetGameTimeMilliseconds()) / 1000
+		d("Debuff is active for "..stackCount.." seconds")
 	end
 end
 
