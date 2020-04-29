@@ -8,7 +8,7 @@ ZO_CreateStringId("ARS_GARGOYLE_TOTEM", "|c795548<<1>>|r spawns! Block!")
 ZO_CreateStringId("ARS_HARPY_TOTEM", "|cadd8e6<<1>>|r spawns!")
 ZO_CreateStringId("ARS_CHAURUS_TOTEM", "|c90ee90<<1>>|r spawns! Don't Stack!")
 ZO_CreateStringId("ARS_PURGE_POISON", "|c4b8b3b<<1>>|r is spreading! Purge!")
-ZO_CreateStringId("ARS_HAILSTONE_SHIELD", "|cffc107<<1>>|r on Yandir!")
+ZO_CreateStringId("ARS_HAILSTONE_SHIELD", "|c3c53b4<<1>>|r on Yandir!")
 
 --first boss and second boss mechanics
 ZO_CreateStringId("ARS_METEOR", "|cffa500<<1>>|r. Block!")
