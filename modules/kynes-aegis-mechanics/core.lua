@@ -13,17 +13,18 @@ ARS.default = {
 		crashing_wave 		= true,
 		exploding_spear 	= true,
 		dragon_totem 		= true,
-		gargoyle_toem 		= true,
+		gargoyle_totem 		= true,
 		harpy_totem 		= true,
 		chaurus_totem 		= true,
 		meteor_yandir 		= true,
 		chaurus_bile 		= true,
 		meteor_vrol 		= true,
-		frigid_fog 			= true,
+		frigid_fog 			= false,
 		instability 		= true,
 		sanguine_grasp 		= true,
 		sanguine_prison 	= true,
-		blood_spear 		= true
+		blood_spear 		= true,
+		hailstone_shield 	= false,
 	},
 	sound_played = SOUNDS.DUEL_START
 }
@@ -44,7 +45,7 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	if abilityId > 132000 and abilityId ~= 140767 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
 		d("["..GetAbilityName(abilityId).."] ID: "..abilityId.." RESULT: "..result)
 	end
-	
+
 	if abilityId == 134196 and result == ACTION_RESULT_BEGIN and ARS.sv.crashing_wave then
 		ability_settings = {
 			abilityid = abilityId,

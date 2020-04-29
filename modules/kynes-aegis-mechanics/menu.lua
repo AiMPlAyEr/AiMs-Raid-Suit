@@ -90,6 +90,13 @@ function ARS.KAMechanicsSettings()
                 getFunc = function() return ARS.sv.chaurus_bile end,
                 setFunc = function(value) ARS.sv.chaurus_bile = value end,
             },
+            [7] = {
+                type = "checkbox",
+                name = "Hailstone Shield",
+                tooltip = "",
+                getFunc = function() return ARS.sv.hailstone_shield end,
+                setFunc = function(value) ARS.sv.hailstone_shield = value end,
+            },
         },
     })
 
