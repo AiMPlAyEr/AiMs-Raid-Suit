@@ -31,17 +31,6 @@ ARS.default = {
 
 function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abilityActionSlotType,sourceName,sourceType,targetName,targetType,hitValue,powerType,damageType,combatEventLog,sourceUnitId,targetUnitId,abilityId)	
 	--Trash 
-	--[[if abilityId == 22095 and result == 2240 then
-		ability_settings = {
-			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_CRASHING_WAVE), GetAbilityName(abilityId)),
-			duration = GetGameTimeMilliseconds() + 5000,
-			hascountdown = true,
-			isnew = true,
-		}
-		table.insert(alert_pool, ability_settings)
-	end]]--
-
 	if abilityId > 132000 and abilityId ~= 140767 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
 		d("["..GetAbilityName(abilityId).."] ID: "..abilityId.." RESULT: "..result)
 	end
@@ -114,11 +103,11 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 
 	if abilityId == 140603 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_yandir then
-		if hitValue == 2000 then 
+		if hitValue == 3000 then 
 			ability_settings = {
 				abilityid = abilityId,
 				message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
-				duration = GetGameTimeMilliseconds() + hitValue,
+				duration = GetGameTimeMilliseconds() + 5000,
 				hascountdown = true,
 				isnew = true,
 			}
@@ -126,28 +115,30 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		end
 	end
 
-	if abilityId == 133004 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
+	if abilityId == 133004 and result == ACTION_RESULT_BEGIN and ARS.sv.hailstone_shield then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_HAILSTONE_SHIELD), GetAbilityName(abilityId)),
-			duration = GetGameTimeMilliseconds() + hitValue,
-			hascountdown = true,
+			duration = GetGameTimeMilliseconds() + 5000,
+			hascountdown = false,
 			isnew = true,
 		}
 		table.insert(alert_pool, ability_settings)
 	end
 	
 	--Second Boss
-	--[[if string.match(abilityName, "Meteor") then
+	if abilityId == 134023 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_vrol then
+		if hitValue == 3000 then 
 			ability_settings = {
 				abilityid = abilityId,
 				message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
-				duration = GetGameTimeMilliseconds() + hitValue,
-				hascountdown = false,
+				duration = GetGameTimeMilliseconds() + 5000,
+				hascountdown = true,
 				isnew = true,
 			}
 			table.insert(alert_pool, ability_settings)
-	end]]	
+		end
+	end
 
 	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and ARS.sv.frigid_fog then
 		ability_settings = {

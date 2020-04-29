@@ -1,5 +1,6 @@
 ARS = ARS or {}
 
+
 function ARS.KAMechanicsSettings()
     local LAM = LibAddonMenu2
     local panelName = ARS.name
@@ -18,7 +19,7 @@ function ARS.KAMechanicsSettings()
         type = "dropdown",
         name = "Alert Sound",
         tooltip = "Selected sound will play if a new mechanics begins",
-        choices = {SOUNDS.DUEL_START, SOUNDS.CHAMPION_POINTS_COMMITTED, SOUNDS.CHAMPION_POINT_GAINED},
+        choices = {SOUNDS.DUEL_START, SOUNDS.CHAMPION_POINTS_COMMITTED, SOUNDS.CHAMPION_POINT_GAINED, SOUNDS.BOOK_ACQUIRED, SOUNDS.AVA_GATE_CLOSED, SOUNDS.LEVEL_UP},
         getFunc = function() return ARS.sv.sound_played end,
         setFunc = function(value) ARS.sv.sound_played = value end,
     })
