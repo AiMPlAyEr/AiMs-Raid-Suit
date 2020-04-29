@@ -40,6 +40,11 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		}
 		table.insert(alert_pool, ability_settings)
 	end]]--
+
+	if abilityId > 132000 and abilityId ~= 140767 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
+		d("["..GetAbilityName(abilityId).."] ID: "..abilityId.." RESULT: "..result)
+	end
+	
 	if abilityId == 134196 and result == ACTION_RESULT_BEGIN and ARS.sv.crashing_wave then
 		ability_settings = {
 			abilityid = abilityId,
@@ -50,9 +55,16 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		}
 		table.insert(alert_pool, ability_settings)
 	end
-	
-	if string.match(abilityName, "Exploding") and ARS.sv.exploding_spear then
-		d("Exploding Spear! ID: "..abilityId.." RESULT: "..result)
+
+	if abilityId == 133936 and result == ACTION_RESULT_BEGIN and ARS.sv.exploding_spear then
+		ability_settings = {
+			abilityid = abilityId,
+			message = zo_strformat(GetString(ARS_EXPLODING_SPEAR), GetAbilityName(abilityId)),
+			duration = GetGameTimeMilliseconds() + 3000,
+			hascountdown = true,
+			isnew = true,
+		}
+		table.insert(alert_pool, ability_settings)
 	end
 	
 	--First Boss
@@ -112,20 +124,29 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 			table.insert(alert_pool, ability_settings)
 		end
 	end
+
+	if abilityId == 133004 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
+		ability_settings = {
+			abilityid = abilityId,
+			message = zo_strformat(GetString(ARS_HAILSTONE_SHIELD), GetAbilityName(abilityId)),
+			duration = GetGameTimeMilliseconds() + hitValue,
+			hascountdown = true,
+			isnew = true,
+		}
+		table.insert(alert_pool, ability_settings)
+	end
 	
 	--Second Boss
-	if abilityId == 134023 and result == ACTION_RESULT_BEGIN and ARS.sv.meteor_vrol then
-		if hitValue == 2000 then 
+	--[[if string.match(abilityName, "Meteor") then
 			ability_settings = {
 				abilityid = abilityId,
 				message = zo_strformat(GetString(ARS_METEOR), GetAbilityName(abilityId)),
-				duration = GetGameTimeMilliseconds() + 5000,
+				duration = GetGameTimeMilliseconds() + hitValue,
 				hascountdown = false,
 				isnew = true,
 			}
 			table.insert(alert_pool, ability_settings)
-		end
-	end	
+	end]]	
 
 	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and ARS.sv.frigid_fog then
 		ability_settings = {
@@ -139,14 +160,21 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	--Endboss
-	
-	if string.match(abilityName, "Instability") and ARS.sv.instability then
-		d("Instability! ID: "..abilityId.." RESULT: "..result)
+	if abilityId == 133846 and result == ACTION_RESULT_BEGIN and ARS.sv.instability then
+		d("Instability! ID: "..abilityId.." Time: "..hitValue)
+		ability_settings = {
+			abilityid = abilityId,
+			message = zo_strformat(GetString(ARS_SANGUINE_GRASP), GetAbilityName(abilityId)),
+			duration = GetGameTimeMilliseconds() + 5000,
+			hascountdown = true,
+			isnew = true,
+		}
+		table.insert(alert_pool, ability_settings)
 	end
 
-	if string.match(abilityName, "Portal") and ARS.sv.instability then
+	--[[if string.match(abilityName, "Portal") and ARS.sv.instability then
 		d("Portal spawn! ID: "..abilityId.." RESULT: "..result)
-	end
+	end]]--
 	
 	if abilityId == 134856 and result == ACTION_RESULT_BEGIN and ARS.sv.sanguine_grasp then
 		ability_settings = {
@@ -160,10 +188,10 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	if abilityId == 132470 and result == ACTION_RESULT_EFFECT_GAINED and ARS.sv.sanguine_prison then
-		d("Sanguine Prison. Kill it!")
+		d("Sanguine Prison on "..targetName.." Target-ID: "..targetUnitId)
 		ability_settings = {
 			abilityid = abilityId,
-			message = zo_strformat(GetString(ARS_SANGUINE_PRISON), GetAbilityName(abilityId)),
+			message = zo_strformat(GetString(ARS_SANGUINE_PRISON), GetAbilityName(abilityId), ARS.GetNameForUnitId(targetUnitId)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
