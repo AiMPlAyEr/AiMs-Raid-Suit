@@ -15,7 +15,7 @@ ZO_CreateStringId("ARS_METEOR", "|cffa500<<1>>|r. Block!")
 
 --nur mechaniken vom zweiten boss
 ZO_CreateStringId("ARS_FRIGID_FOG", "|cffc107<<1>>|r auf Dir. Geh raus!")
-ZO_CreateStringId("ARS_SHOCKING_HARPOON", "|cffc107<<1>>|r. Block!")
+ZO_CreateStringId("ARS_SHOCKING_HARPOON", "|cffc107<<1>>|r erscheint!")
 
 --nur mechaniken vom endboss
 ZO_CreateStringId("ARS_INSTABILITY", "|cffeb3b<<1>>|r. Geh raus!")

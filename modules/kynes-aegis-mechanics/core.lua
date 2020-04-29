@@ -140,10 +140,21 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		end
 	end
 
-	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and ARS.sv.frigid_fog then
+	if abilityId == 133808 and result == ACTION_RESULT_BEGIN and targetType == COMBAT_UNIT_TYPE_PLAYER and ARS.sv.frigid_fog then
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_FRIGID_FOG), GetAbilityName(abilityId)),
+			duration = GetGameTimeMilliseconds() + 3000,
+			hascountdown = false,
+			isnew = true,
+		}
+		table.insert(alert_pool, ability_settings)
+	end
+
+	if abilityId == 133913 and result == ACTION_RESULT_BEGIN and ARS.sv.shocking_harpoon then
+		ability_settings = {
+			abilityid = abilityId,
+			message = zo_strformat(GetString(ARS_SHOCKING_HARPOON), GetAbilityName(abilityId)),
 			duration = GetGameTimeMilliseconds() + 3000,
 			hascountdown = false,
 			isnew = true,
@@ -163,10 +174,6 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 		}
 		table.insert(alert_pool, ability_settings)
 	end
-
-	--[[if string.match(abilityName, "Portal") and ARS.sv.instability then
-		d("Portal spawn! ID: "..abilityId.." RESULT: "..result)
-	end]]--
 	
 	if abilityId == 134856 and result == ACTION_RESULT_BEGIN and ARS.sv.sanguine_grasp then
 		ability_settings = {
@@ -200,7 +207,6 @@ function ARS.Debuffs(eventCode, changeType, effectSlot, effectName, unitTag, beg
 	if abilityId == 139812 and result == EFFECT_RESULT_FADED then
 		d("2Debuff has been cleansed!")
 	elseif abilityId == 139812 and result == EFFECT_RESULT_GAINED then
-		local remainingTime = (endTime - GetGameTimeMilliseconds()) / 1000
 		d("Debuff is active for "..stackCount.." seconds")
 	end
 end
@@ -222,7 +228,11 @@ function UpdateAlerts()
 				table.remove(alert_pool, k) --alert has expired, remove it from alert_pool
 			else
 				control:SetHidden(false)
-				control.texture:SetTexture(GetAbilityIcon(v.abilityid))
+				if v.texture ~= nil then
+					control.texture:SetTexture(v.texture)
+				else
+					control.texture:SetTexture(GetAbilityIcon(v.abilityid))
+				end
 				control.message:SetText(v.message)
 				if v.hascountdown then
 					control.timer:SetText(string.format("%.1f", (v.duration - currTime) / 1000))
