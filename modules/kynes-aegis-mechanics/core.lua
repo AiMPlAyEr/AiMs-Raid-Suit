@@ -9,6 +9,7 @@ zframe:SetMovable(true)
 zframe:SetMouseEnabled(true)
 
 ARS.default = {
+	--0 none, 1 self, 2 all
 	mechanics = {
 		crashing_wave 		= true,
 		exploding_spear 	= true,
@@ -25,6 +26,7 @@ ARS.default = {
 		sanguine_prison 	= true,
 		blood_spear 		= true,
 		hailstone_shield 	= false,
+		shocking_harpoon	= true,
 	},
 	sound_played = SOUNDS.DUEL_START
 }
@@ -187,7 +189,6 @@ function ARS.Mechanics(eventCode,result,isError,abilityName,abilityGraphic,abili
 	end
 	
 	if abilityId == 132470 and result == ACTION_RESULT_EFFECT_GAINED and ARS.sv.sanguine_prison then
-		d("Sanguine Prison on "..targetName.." Target-ID: "..targetUnitId)
 		ability_settings = {
 			abilityid = abilityId,
 			message = zo_strformat(GetString(ARS_SANGUINE_PRISON), GetAbilityName(abilityId), ARS.GetNameForUnitId(targetUnitId)),

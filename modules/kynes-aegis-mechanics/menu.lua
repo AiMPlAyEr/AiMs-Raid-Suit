@@ -119,6 +119,13 @@ function ARS.KAMechanicsSettings()
                 getFunc = function() return ARS.sv.frigid_fog end,
                 setFunc = function(value) ARS.sv.frigid_fog = value end,
             },
+            [3] = {
+                type = "checkbox",
+                name = "Shocking Harpoon",
+                tooltip = "",
+                getFunc = function() return ARS.sv.shocking_harpoon end,
+                setFunc = function(value) ARS.sv.shocking_harpoon = value end,
+            },
         },
     })
 
