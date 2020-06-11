@@ -26,7 +26,7 @@ local function UpdateTracker()
     for k, v in ipairs(ARS.savedsolo.synergies) do
         if not v then return end
         local trackerunit = pool:AcquireObject(k)
-        trackerunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 50 * (index - 1), 0)
+        trackerunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 55 * (index - 1), 0)
 
         trackerunit.texture:SetTexture(ARS.SynergyTexture[k])
         index = index + 1
@@ -41,6 +41,13 @@ end
 local function RestorePosition()
     ARSSingleTrackerFrame:ClearAnchors();
     ARSSingleTrackerFrame:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, ARS.savedsolo.left, ARS.savedsolo.top)
+end
+
+local function AddToFragment(element)
+    fragment = ZO_HUDFadeSceneFragment:New(element)
+ 
+    HUD_SCENE:AddFragment(fragment)
+    HUD_UI_SCENE:AddFragment(fragment)
 end
 
 function ARS.synergyCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
@@ -109,6 +116,8 @@ function ARS:InitializeTracker(enabled)
     ARS.savedsolo = ZO_SavedVars:NewCharacterIdSettings("TrackerSaved", 1, nil, defaults)
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
+
+    AddToFragment(pframe)
 
     UpdateTracker()
     RestorePosition()

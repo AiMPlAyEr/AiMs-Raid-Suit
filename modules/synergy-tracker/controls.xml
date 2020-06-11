@@ -78,7 +78,7 @@
             <Controls>
                 <Texture name="$(parent)SynergyFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
                     <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplate" />
-                    <Dimensions x="48" y="48"/>
+                    <Dimensions x="50" y="50"/>
                 </Texture>
 
                 <Texture name="$(parent)SynergyIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
