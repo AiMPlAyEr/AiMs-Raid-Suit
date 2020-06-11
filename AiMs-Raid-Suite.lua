@@ -6,11 +6,21 @@ ARS.suiteversion = "0.2"
 ARS.default = {}
 
 function ARS:Initialize()
-
-    --ARS:InitializeSynergyTracker(true)
-	--ARS:InitializeTracker(true)
+    ARS:InitializeSynergyTracker(true)
+	ARS:InitializeTracker(true)
 	
-	ARS:InitializeKATracker(true)
+	ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", ARS.SynergyUsed)
+end
+
+function ARS.SynergyUsed()
+	local synergyName, iconFilename = GetSynergyInfo()
+
+	if not synergyName then return end
+
+	if synergyName == "Feed" then
+		SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true)
+		return true
+	end
 end
 
 function ARS.OnAddOnLoaded(event, addonName)

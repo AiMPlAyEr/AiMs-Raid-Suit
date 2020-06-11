@@ -27,6 +27,7 @@ ARS.Synergies = {
     [108793]    = RADIATE_SYNERGY,              -- Radiate Synergy          (Inner Fire)
     [108794]    = BONE_SYNERGY,                 -- Bone Wall Synergy        (Bone Shield)
     [108797]    = BONE_SYNERGY,                 -- Spinal Surge Synergy     (Bone Surge)
+    --[61919]     = COMBUSTION_SYNERGY,
     [108799]    = COMBUSTION_SYNERGY,           -- Combustion Synergy       (Necrotic Orb)
     [108802]    = COMBUSTION_SYNERGY,           -- Combustion Synergy       (Energy Orb)
     [108821]    = COMBUSTION_SYNERGY,           -- Holy Shards Synergy      (Luminous Shards)
