@@ -4,11 +4,7 @@ local pool
 
 local timer = {}
 
-local pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSSingleTrackerFrame")
-pframe:SetResizeToFitDescendents(true)
-pframe:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 600, 600)
-pframe:SetMovable(true)
-pframe:SetMouseEnabled(true)
+local pframe = nil
 
 local function CreateBuff(pool)
     local name      = "ARSTracker" .. pool:GetNextControlId()
@@ -37,6 +33,16 @@ local function UpdateTracker()
     end
 end
 
+local function SetPosition()
+    ARS.savedsolo.left = ARSSingleTrackerFrame:GetLeft()
+    ARS.savedsolo.top = ARSSingleTrackerFrame:GetTop()
+end
+
+local function RestorePosition()
+    ARSSingleTrackerFrame:ClearAnchors();
+    ARSSingleTrackerFrame:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, ARS.savedsolo.left, ARS.savedsolo.top)
+end
+
 function ARS.synergyCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
     local start = GetFrameTimeSeconds()
 
@@ -58,7 +64,7 @@ function ARS.Cooldown()
             unit.stimer:SetText(rTime)
             unit.texture:SetColor(0.5, 0.5, 0.5, 1)
         else
-            unit.stimer:SetText('0.0')
+            unit.stimer:SetText('0')
             unit.texture:SetColor(1, 1, 1, 1)
             table.remove(timer, k)
         end
@@ -67,6 +73,13 @@ end
 
 function ARS:InitializeTracker(enabled)
     if not enabled then return end
+
+    pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSSingleTrackerFrame")
+    pframe:SetResizeToFitDescendents(true)
+    pframe:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 600, 600)
+    pframe:SetMovable(true)
+    pframe:SetMouseEnabled(true)
+    pframe:SetHandler("OnMoveStop", SetPosition)
 
     local defaults = {
         synergies = {
@@ -87,7 +100,10 @@ function ARS:InitializeTracker(enabled)
             [15] = false,
             [16] = false,
             [17] = false,
-        }
+        },
+        top = 500,
+        left = 500,
+
     }
 
     ARS.savedsolo = ZO_SavedVars:NewCharacterIdSettings("TrackerSaved", 1, nil, defaults)
@@ -95,6 +111,7 @@ function ARS:InitializeTracker(enabled)
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
 
     UpdateTracker()
+    RestorePosition()
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy",EVENT_COMBAT_EVENT, ARS.synergyCheck)
 
