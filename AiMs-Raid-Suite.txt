@@ -9,12 +9,22 @@
 lang/en.lua
 lang/$(language).lua
 AiMs-Raid-Suite.lua
+
+
+#Synergy Tracker files
 modules/synergy-tracker/controls.xml
 modules/synergy-tracker/core.lua
 modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
 libs/gunits.lua
 
+
+#kynes-aegis-mechanics files (deprecated)
 modules/kynes-aegis-mechanics/controls.xml
 modules/kynes-aegis-mechanics/core.lua
 modules/kynes-aegis-mechanics/menu.lua
+
+
+#Blocking Synergies files
+modules/blocking-synergies/core.lua
+modules/blocking-synergies/data.lua

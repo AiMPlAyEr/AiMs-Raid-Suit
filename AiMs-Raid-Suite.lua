@@ -8,19 +8,8 @@ ARS.default = {}
 function ARS:Initialize()
     ARS:InitializeSynergyTracker(true)
 	ARS:InitializeTracker(true)
-	
-	ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", ARS.SynergyUsed)
-end
 
-function ARS.SynergyUsed()
-	local synergyName, iconFilename = GetSynergyInfo()
-
-	if not synergyName then return end
-
-	if synergyName == "Feed" then
-		SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true)
-		return true
-	end
+	ARS:InitializeBlockingSynergies(true)
 end
 
 function ARS.OnAddOnLoaded(event, addonName)
