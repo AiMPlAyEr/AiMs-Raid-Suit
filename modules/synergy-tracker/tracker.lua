@@ -55,7 +55,9 @@ function ARS.synergyCheck(eventCode, result, _, abilityName, _, _, _, sourceType
 
     if (sourceType == COMBAT_UNIT_TYPE_PLAYER or sourceType == COMBAT_UNIT_TYPE_GROUP) then
         if ARS.Synergies[abilityId] then
-            timer[ARS.Synergies[abilityId]] = start + 20
+            if ARS.savedsolo.synergies[ARS.Synergies[abilityId]] then 
+                timer[ARS.Synergies[abilityId]] = start + 20
+            end
         end
     end
 end

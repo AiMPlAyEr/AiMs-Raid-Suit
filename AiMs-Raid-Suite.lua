@@ -6,10 +6,10 @@ ARS.suiteversion = "0.2"
 ARS.default = {}
 
 function ARS:Initialize()
-    ARS:InitializeSynergyTracker(true)
-	ARS:InitializeTracker(true)
+    ARS:InitializeSynergyTracker(true) --group tracker
+	ARS:InitializeTracker(true) --solo tracker
 
-	ARS:InitializeBlockingSynergies(true)
+	ARS:InitializeBlockingSynergies(false)
 end
 
 function ARS.OnAddOnLoaded(event, addonName)
