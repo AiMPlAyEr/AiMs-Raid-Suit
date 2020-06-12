@@ -6,7 +6,7 @@ function ARS.SynergyTrackerSettings()
     
     local panelData = {
         type = "panel",
-        name = "AiM's-Synergy-Tracker Settings",
+        name = "AiM's-Synergy-Tracker",
         author = "AiMPlAyEr[EU]",
     }
     local panel = LAM:RegisterAddonPanel(panelName, panelData)
@@ -14,8 +14,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[1],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -31,8 +31,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[2],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -48,8 +48,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[3],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -65,8 +65,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[4],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -82,8 +82,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[5],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -99,8 +99,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[6],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -116,8 +116,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[7],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -133,8 +133,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[8],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -150,8 +150,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[9],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -167,8 +167,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[10],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -184,8 +184,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[11],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -201,8 +201,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[12],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -218,8 +218,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[13],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -235,8 +235,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[14],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -252,8 +252,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[15],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -269,8 +269,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[16],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
@@ -286,8 +286,8 @@ function ARS.SynergyTrackerSettings()
         {
             type = "texture",
             image = ARS.SynergyTexture[17],
-            imageWidth = "40",
-            imageHeight = "40",
+            imageWidth = "32",
+            imageHeight = "32",
             width = "half"
         },
         {
