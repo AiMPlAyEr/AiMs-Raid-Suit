@@ -21,15 +21,19 @@ local function RemoveBuff(control)
     control:ClearAnchors()
 end
 
-local function UpdateTracker()
+function ARS.UpdateTracker()
+    pool:ReleaseAllObjects()
+    
     local index = 1
     for k, v in ipairs(ARS.savedsolo.synergies) do
-        if not v then return end
-        local trackerunit = pool:AcquireObject(k)
-        trackerunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 55 * (index - 1), 0)
+        if v then
+            local trackerunit = pool:AcquireObject(k)
+            trackerunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 55 * (index - 1), 0)
 
-        trackerunit.texture:SetTexture(ARS.SynergyTexture[k])
-        index = index + 1
+            trackerunit:SetHidden(false)
+            trackerunit.texture:SetTexture(ARS.SynergyTexture[k])
+            index = index + 1
+        end
     end
 end
 
@@ -121,8 +125,9 @@ function ARS:InitializeTracker(enabled)
 
     AddToFragment(pframe)
 
-    UpdateTracker()
+    ARS.UpdateTracker()
     RestorePosition()
+    ARS.SynergyTrackerSettings()
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy",EVENT_COMBAT_EVENT, ARS.synergyCheck)
 

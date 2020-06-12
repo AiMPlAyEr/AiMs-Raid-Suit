@@ -16,6 +16,7 @@ modules/synergy-tracker/controls.xml
 modules/synergy-tracker/core.lua
 modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
+modules/synergy-tracker/menu.lua
 libs/gunits.lua
 
 
