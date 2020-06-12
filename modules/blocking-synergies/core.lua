@@ -8,6 +8,8 @@ function ARS.SynergyUsed()
 
     local id = GetAbilityId(synergyName)
 
+    if id == nil then return end
+
     --blocking synergie if true
     if not ARS.savedblock[id] then
         SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true)

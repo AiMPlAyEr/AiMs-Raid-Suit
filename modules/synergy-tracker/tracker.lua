@@ -75,7 +75,7 @@ function ARS.Cooldown()
 
         if rTime > 0 then
             unit.stimer:SetText(rTime)
-            unit.texture:SetColor(0.5, 0.5, 0.5, 1)
+            unit.texture:SetColor(0.7, 0.7, 0.7, 1)
         else
             unit.stimer:SetText('0')
             unit.texture:SetColor(1, 1, 1, 1)
