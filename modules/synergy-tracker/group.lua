@@ -4,11 +4,7 @@ local pool
 local headercontrol
 local synergypool = {}
 
-local pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSTrackerFrame")
-pframe:SetResizeToFitDescendents(true)
-pframe:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 600, 100)
-pframe:SetMovable(true)
-pframe:SetMouseEnabled(true)
+local pframe = nil
 
 local function AddToFragment(element)
     fragment = ZO_HUDFadeSceneFragment:New(element)
@@ -215,8 +211,32 @@ function UpdateCooldown()
     end
 end
 
+function SetPosition()
+    ARS.savedgroup.left = ARSTrackerFrame:GetLeft()
+    ARS.savedgroup.top = ARSTrackerFrame:GetTop()
+end
+
+local function RestorePosition()
+    ARSTrackerFrame:ClearAnchors();
+    ARSTrackerFrame:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, ARS.savedgroup.left, ARS.savedgroup.top)
+end
+
 function ARS:InitializeSynergyTracker(enabled)
     if not enabled then return end
+
+    pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSTrackerFrame")
+    pframe:SetResizeToFitDescendents(true)
+    pframe:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 600, 100)
+    pframe:SetMovable(true)
+    pframe:SetMouseEnabled(true)
+    pframe:SetHandler("OnMoveStop", SetPosition)
+
+    defaults = {
+        top = 500,
+        left = 500,
+    }
+
+    ARS.savedgroup = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "GroupTracker", defaults)
 
     AddToFragment(pframe)
     CreateFrameHeader()
@@ -227,6 +247,7 @@ function ARS:InitializeSynergyTracker(enabled)
 
     UpdateTimer()
     UpdateGroup()
+    RestorePosition()
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , UpdateGroup)
