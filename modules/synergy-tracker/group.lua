@@ -16,8 +16,6 @@ end
 local function CreateFrameHeader()
     headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", pframe, "TrackerHeaderTemplate")
     headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
-    headercontrol:GetNamedChild("PrimarySynergy"):SetTexture(ARS.SynergyTexture[1])
-    headercontrol:GetNamedChild("SecondarySynergy"):SetTexture(ARS.SynergyTexture[2])
 end
  
 local function CreateBuff(pool)
@@ -40,8 +38,48 @@ local function RemoveBuff(control)
     control:ClearAnchors()
 end
  
-local function UpdateGroup()
+function ARS.UpdateGroup()
     UpdateTimer()
+    
+    local indexer = 0
+
+    if ARS.savedgroup.primarysynergy ~= 99 then
+        headercontrol:GetNamedChild("PrimarySynergy"):SetTexture(ARS.SynergyTexture[ARS.savedgroup.primarysynergy])
+        headercontrol:GetNamedChild("PrimarySynergy"):SetHidden(false)
+        headercontrol:GetNamedChild("PrimarySynergy"):SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 168 + (30 * indexer), 0)
+        indexer = indexer + 1
+    else
+        headercontrol:GetNamedChild("PrimarySynergy"):SetHidden(true)
+    end
+
+    if ARS.savedgroup.secondarysynergy ~= 99 then
+        headercontrol:GetNamedChild("SecondarySynergy"):SetTexture(ARS.SynergyTexture[ARS.savedgroup.secondarysynergy])
+        headercontrol:GetNamedChild("SecondarySynergy"):SetHidden(false)
+        headercontrol:GetNamedChild("SecondarySynergy"):SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 168 + (30 * indexer), 0)
+        indexer = indexer + 1
+    else
+        headercontrol:GetNamedChild("SecondarySynergy"):SetHidden(true)
+    end
+
+    if ARS.savedgroup.tertiarysynergy ~= 99 then
+        headercontrol:GetNamedChild("TertiarySynergy"):SetTexture(ARS.SynergyTexture[ARS.savedgroup.tertiarysynergy])
+        headercontrol:GetNamedChild("TertiarySynergy"):SetHidden(false)
+        headercontrol:GetNamedChild("TertiarySynergy"):SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 168 + (30 * indexer), 0)
+        indexer = indexer + 1
+    else
+        headercontrol:GetNamedChild("TertiarySynergy"):SetHidden(true)
+    end
+
+    if ARS.savedgroup.quaternarysynergy ~= 99 then
+        headercontrol:GetNamedChild("QuaternarySynergy"):SetTexture(ARS.SynergyTexture[ARS.savedgroup.quaternarysynergy])
+        headercontrol:GetNamedChild("QuaternarySynergy"):SetHidden(false)
+        headercontrol:GetNamedChild("QuaternarySynergy"):SetAnchor(TOPLEFT, headercontrol, TOPLEFT, 168 + (30 * indexer), 0)
+        indexer = indexer + 1
+    else
+        headercontrol:GetNamedChild("QuaternarySynergy"):SetHidden(true)
+    end
+
+    headercontrol:GetNamedChild("Backdrop"):SetDimensions(168 + (30 * indexer), 26)
 
     if GetGroupSize() < 1 then
         headercontrol:SetHidden(true)
@@ -67,8 +105,12 @@ local function UpdateGroup()
         if accName ~= nil and role ~= 0 then
             groupunit = pool:AcquireObject(i)
 
+            local unitIndexer = 0
+
             groupunit:SetHidden(false)
             groupunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 24 * position + 2)
+
+            groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
 
             if HodorReflexes and HodorReflexes.player.GetIconForUserId(accName) ~= nil then
                 groupunit.role:SetTexture(HodorReflexes.player.GetIconForUserId(accName))
@@ -80,14 +122,49 @@ local function UpdateGroup()
             end
 
             --reseting timer if someone joins, leaves or disconnects
-            groupunit.primarysynergy:SetText("0")
-            groupunit.primarysynergy:SetColor(255, 255, 255)
-            groupunit.secondarysynergy:SetText("0")
-            groupunit.secondarysynergy:SetColor(255, 255, 255)
-            groupunit.tertiarysynergy:SetText("0")
-            groupunit.tertiarysynergy:SetColor(255, 255, 255)
-            groupunit.quaternarysynergy:SetText("0")
-            groupunit.quaternarysynergy:SetColor(255, 255, 255)
+
+            if ARS.savedgroup.primarysynergy ~= 99 then
+                groupunit.primarysynergy:SetText("0")
+                groupunit.primarysynergy:SetColor(255, 255, 255)
+                groupunit.primarysynergy:SetHidden(false)
+                groupunit.primarysynergy:SetAnchor(TOPLEFT, groupunit, TOPLEFT, 168 + (30 * unitIndexer), 0)
+                unitIndexer = unitIndexer + 1
+            else
+                groupunit.primarysynergy:SetHidden(true)
+            end
+
+            if ARS.savedgroup.secondarysynergy ~= 99 then
+                groupunit.secondarysynergy:SetText("0")
+                groupunit.secondarysynergy:SetColor(255, 255, 255)
+                groupunit.secondarysynergy:SetHidden(false)
+                groupunit.secondarysynergy:SetAnchor(TOPLEFT, groupunit, TOPLEFT, 168 + (30 * unitIndexer), 0)
+                unitIndexer = unitIndexer + 1
+            else
+                groupunit.secondarysynergy:SetHidden(true)
+            end
+
+            if ARS.savedgroup.tertiarysynergy ~= 99 then
+                groupunit.tertiarysynergy:SetText("0")
+                groupunit.tertiarysynergy:SetColor(255, 255, 255)
+                groupunit.tertiarysynergy:SetHidden(false)
+                groupunit.tertiarysynergy:SetAnchor(TOPLEFT, groupunit, TOPLEFT, 168 + (30 * unitIndexer), 0)
+                unitIndexer = unitIndexer + 1
+            else
+                groupunit.tertiarysynergy:SetHidden(true)
+            end
+
+            if ARS.savedgroup.quaternarysynergy ~= 99 then
+                groupunit.quaternarysynergy:SetText("0")
+                groupunit.quaternarysynergy:SetColor(255, 255, 255)
+                groupunit.quaternarysynergy:SetHidden(false)
+                groupunit.quaternarysynergy:SetAnchor(TOPLEFT, groupunit, TOPLEFT, 168 + (30 * unitIndexer), 0)
+                unitIndexer = unitIndexer + 1
+            else
+                groupunit.quaternarysynergy:SetHidden(true)
+            end
+
+            groupunit.backdrop:SetDimensions(168 + (30 * unitIndexer), 24)
+
             position = position + 1
         end
 
@@ -101,13 +178,13 @@ function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, ta
 
     for k, v in ipairs(synergypool) do
         if synergypool[k].name == getunit then
-            if getunit ~= "" and ARS.Synergies[abilityId] == 1 then
+            if getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.primarysynergy then
                 synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == 2 then
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.secondarysynergy then
                 synergypool[k].secondarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == 4 then
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.tertiarysynergy then
                 synergypool[k].tertiarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == 5 then
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.quaternarysynergy then
                 synergypool[k].quaternarysynergy = GetGameTimeSeconds() + 20
             end
         end
@@ -232,8 +309,13 @@ function ARS:InitializeSynergyTracker(enabled)
     pframe:SetHandler("OnMoveStop", SetPosition)
 
     defaults = {
-        top = 500,
-        left = 500,
+        top                 = 500,
+        left                = 500,
+        primarysynergy      = 1,
+        secondarysynergy    = 2,
+        tertiarysynergy     = 3,
+        quaternarysynergy   = 4,
+        bgopacity           = 0.5,
     }
 
     ARS.savedgroup = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "GroupTracker", defaults)
@@ -246,13 +328,13 @@ function ARS:InitializeSynergyTracker(enabled)
     ARS.RegisterUnitCollectingEvent()
 
     UpdateTimer()
-    UpdateGroup()
+    ARS.UpdateGroup()
     RestorePosition()
 
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , ARS.UpdateGroup)
     for k, v in pairs(ARS.Synergies) do
         EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, GetSynergy)
         EVENT_MANAGER:AddFilterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, k)

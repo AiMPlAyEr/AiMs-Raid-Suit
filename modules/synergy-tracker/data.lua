@@ -66,3 +66,31 @@ ARS.SynergyTexture = {
     [PURE_AGONY_SYNERGY]     = "/esoui/art/icons/ability_necromancer_010_b.dds",
     [ICY_ESCAPE]             = "/esoui/art/icons/ability_warden_005_b.dds",
 }
+
+ARS.GroupSynergyList = {
+	"Nothing",
+    "Blood Funnel", 
+    "Spawn Broodlings", 
+    "Bone Wall", 
+    "Combustion", 
+    "Conduit", 
+    "Harvest", 
+    "Purge", 
+    "Supernova",
+    "Grave Robber",
+    "Pure Agony",
+}
+
+ARS.GroupSynergyListValues = {
+	99,
+    6, 
+    7, 
+    5, 
+    1, 
+    2, 
+    4, 
+    3, 
+    12,
+    15,
+    16,
+}
