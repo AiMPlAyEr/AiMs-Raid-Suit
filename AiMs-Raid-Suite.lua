@@ -9,7 +9,7 @@ function ARS:Initialize()
     ARS:InitializeSynergyTracker(true) --group tracker
 	ARS:InitializeTracker(true) --solo tracker
 
-	ARS:InitializeBlockingSynergies(true)
+	ARS:InitializeBlockingSynergies(false)
 end
 
 function ARS.OnAddOnLoaded(event, addonName)

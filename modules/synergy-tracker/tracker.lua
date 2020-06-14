@@ -75,7 +75,7 @@ function ARS.Cooldown()
 
         if rTime > 0 then
             unit.stimer:SetText(rTime)
-            unit.texture:SetColor(0.7, 0.7, 0.7, 1)
+            unit.texture:SetColor(0.3, 0.3, 0.3, 1)
         else
             unit.stimer:SetText('0')
             unit.texture:SetColor(1, 1, 1, 1)
@@ -119,7 +119,7 @@ function ARS:InitializeTracker(enabled)
 
     }
 
-    ARS.savedsolo = ZO_SavedVars:NewCharacterIdSettings("TrackerSaved", 1, nil, defaults)
+    ARS.savedsolo = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "SoloTracker", defaults)
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
 

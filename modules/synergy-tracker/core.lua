@@ -76,12 +76,12 @@ local function UpdateGroup()
 
             if HodorReflexes and HodorReflexes.player.GetIconForUserId(accName) ~= nil then
                 groupunit.role:SetTexture(HodorReflexes.player.GetIconForUserId(accName))
+                groupunit.name:SetText(HodorReflexes.player.GetAliasForUserId(accName, true))
             else
                 groupunit.role:SetTexture(UnitType[role])
+                accName = accName:gsub('%@', '')
+                groupunit.name:SetText(accName)
             end
-
-            accName = accName:gsub('%@', '')
-            groupunit.name:SetText(accName)
 
             --reseting timer if someone joins, leaves or disconnects
             groupunit.primarysynergy:SetText("0")
@@ -109,6 +109,10 @@ function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, ta
                 synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
             elseif getunit ~= "" and ARS.Synergies[abilityId] == 2 then
                 synergypool[k].secondarysynergy = GetGameTimeSeconds() + 20
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == 4 then
+                synergypool[k].tertiarysynergy = GetGameTimeSeconds() + 20
+            elseif getunit ~= "" and ARS.Synergies[abilityId] == 5 then
+                synergypool[k].quaternarysynergy = GetGameTimeSeconds() + 20
             end
         end
     end
@@ -139,9 +143,12 @@ function UpdateCooldown()
         if v.online ~= 0 then
             local pRemainingTime = math.floor(v.primarysynergy - GetGameTimeSeconds())
             local sRemainingTime = math.floor(v.secondarysynergy - GetGameTimeSeconds())
+            local tRemainingTime = math.floor(v.tertiarysynergy - GetGameTimeSeconds())
+            local qRemainingTime = math.floor(v.quaternarysynergy - GetGameTimeSeconds())
 
             groupunit = pool:AcquireObject(k)
 
+            --primary
             if pRemainingTime > 3 then
                 groupunit.primarysynergy:SetColor(255, 0, 0)
                 groupunit.primarysynergy:SetText(pRemainingTime)
@@ -157,6 +164,7 @@ function UpdateCooldown()
                 groupunit.primarysynergy:SetText("0")
             end
 
+            --secondary
             if sRemainingTime > 3 then
                 groupunit.secondarysynergy:SetColor(255, 0, 0)
                 groupunit.secondarysynergy:SetText(sRemainingTime)
@@ -170,6 +178,38 @@ function UpdateCooldown()
             if sRemainingTime == 0 then
                 groupunit.secondarysynergy:SetColor(255, 255, 255)
                 groupunit.secondarysynergy:SetText("0")
+            end
+
+            --tertiary
+            if tRemainingTime > 3 then
+                groupunit.tertiarysynergy:SetColor(255, 0, 0)
+                groupunit.tertiarysynergy:SetText(tRemainingTime)
+            end
+
+            if tRemainingTime < 4 and tRemainingTime > 0 then
+                groupunit.tertiarysynergy:SetColor(255, 255, 0)
+                groupunit.tertiarysynergy:SetText(tRemainingTime)
+            end
+
+            if tRemainingTime == 0 then
+                groupunit.tertiarysynergy:SetColor(255, 255, 255)
+                groupunit.tertiarysynergy:SetText("0")
+            end
+
+            --quarternary
+            if qRemainingTime > 3 then
+                groupunit.quaternarysynergy:SetColor(255, 0, 0)
+                groupunit.quaternarysynergy:SetText(qRemainingTime)
+            end
+
+            if qRemainingTime < 4 and qRemainingTime > 0 then
+                groupunit.quaternarysynergy:SetColor(255, 255, 0)
+                groupunit.quaternarysynergy:SetText(qRemainingTime)
+            end
+
+            if qRemainingTime == 0 then
+                groupunit.quaternarysynergy:SetColor(255, 255, 255)
+                groupunit.quaternarysynergy:SetText("0")
             end
         end
     end

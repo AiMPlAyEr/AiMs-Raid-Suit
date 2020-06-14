@@ -3,7 +3,7 @@
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
 ## Version: 0.2
 ## APIVersion: 100031
-## SavedVariables: KASaved TrackerSaved BlockSaved
+## SavedVariables: ARSsaved
 ## DependsOn: LibAddonMenu-2.0
 
 lang/en.lua

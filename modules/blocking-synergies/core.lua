@@ -39,7 +39,7 @@ function ARS:InitializeBlockingSynergies(enabled)
 
     ARS.BlockedSynergySettings()
 
-    ARS.savedblock = ZO_SavedVars:NewCharacterIdSettings("BlockSaved", 1, nil, defaults)
+    ARS.savedblock = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "SynergyBlocker", defaults)
 
     ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", ARS.SynergyUsed)
     EVENT_MANAGER:RegisterForEvent(ARS.name .. "BarSwap", EVENT_ACTION_SLOTS_ACTIVE_HOTBAR_UPDATED, BarSwap)
