@@ -1,7 +1,7 @@
 ARS = ARS or {}
 
 ARS.name = "AiMs-Raid-Suite"
-ARS.suiteversion = "0.2"
+ARS.version = "0.2"
 ARS.default = {}
 
 function ARS:Initialize()

@@ -7,7 +7,8 @@ function ARS.SynergyTrackerSettings()
     local panelData = {
         type = "panel",
         name = "AiM's-Synergy-Tracker",
-        author = "AiMPlAyEr[EU]",
+        author = "|cfd6a02AiMPlAyEr[EU]|r",
+        version = ARS.version,
     }
     local panel = LAM:RegisterAddonPanel(panelName, panelData)
     local optionsData = {}
@@ -47,293 +48,182 @@ function ARS.SynergyTrackerSettings()
             name = "Solo Tracker",
             controls = {
                 {
-                    type = "texture",
-                    image = ARS.SynergyTexture[1],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    type = "description",
+                    text = [[The |cff0000Solo Tracker|r shows you the cooldowns of your synergies.]],               
+                },
+                {
+                    type = "header",
+                    name = "Synergies"
                 },
                 {
                     type = "checkbox",
-                    name = "Combustion",
+                    name = "|t32:32:"..ARS.SynergyTexture[1].."|t "..GetAbilityName(39301),
                     getFunc = function() return ARS.savedsolo.synergies[1] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[1] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[2],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Conduit",
+                    name = "|t32:32:"..ARS.SynergyTexture[2].."|t "..GetAbilityName(23196),
                     getFunc = function() return ARS.savedsolo.synergies[2] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[2] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[3],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Purge",
+                    name = "|t32:32:"..ARS.SynergyTexture[3].."|t "..GetAbilityName(26305),
                     getFunc = function() return ARS.savedsolo.synergies[3] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[3] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[4],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Harvest",
+                    name = "|t32:32:"..ARS.SynergyTexture[4].."|t "..GetAbilityName(85577),
                     getFunc = function() return ARS.savedsolo.synergies[4] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[4] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[5],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Bone Wall",
+                    name = "|t32:32:"..ARS.SynergyTexture[5].."|t "..GetAbilityName(39379),
                     getFunc = function() return ARS.savedsolo.synergies[5] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[5] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[6],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Blood Altar",
+                    name = "|t32:32:"..ARS.SynergyTexture[6].."|t "..GetAbilityName(39489),
                     getFunc = function() return ARS.savedsolo.synergies[6] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[6] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[7],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Trapping Webs",
+                    name = "|t32:32:"..ARS.SynergyTexture[7].."|t "..GetAbilityName(42020),
                     getFunc = function() return ARS.savedsolo.synergies[7] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[7] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[8],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Radiate",
+                    name = "|t32:32:"..ARS.SynergyTexture[8].."|t "..GetAbilityName(41838),
                     getFunc = function() return ARS.savedsolo.synergies[8] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[8] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[9],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Atronach",
+                    name = "|t32:32:"..ARS.SynergyTexture[9].."|t "..GetAbilityName(48076),
                     getFunc = function() return ARS.savedsolo.synergies[9] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[9] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[10],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Shackle",
+                    name = "|t32:32:"..ARS.SynergyTexture[10].."|t "..GetAbilityName(32905),
                     getFunc = function() return ARS.savedsolo.synergies[10] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[10] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[11],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Ignite",
+                    name = "|t32:32:"..ARS.SynergyTexture[11].."|t "..GetAbilityName(32974),
                     getFunc = function() return ARS.savedsolo.synergies[11] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[11] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[12],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Nova",
+                    name = "|t32:32:"..ARS.SynergyTexture[12].."|t "..GetAbilityName(31597),
                     getFunc = function() return ARS.savedsolo.synergies[12] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[12] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[13],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Hidden Refresh",
+                    name = "|t32:32:"..ARS.SynergyTexture[13].."|t "..GetAbilityName(37729),
                     getFunc = function() return ARS.savedsolo.synergies[13] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[13] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[14],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Soul Leech",
+                    name = "|t32:32:"..ARS.SynergyTexture[14].."|t "..GetAbilityName(25170),
                     getFunc = function() return ARS.savedsolo.synergies[14] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[14] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[15],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Grave Robber",
+                    name = "|t32:32:"..ARS.SynergyTexture[15].."|t "..GetAbilityName(115548),
                     getFunc = function() return ARS.savedsolo.synergies[15] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[15] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[16],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Pure Agony",
+                    name = "|t32:32:"..ARS.SynergyTexture[16].."|t "..GetAbilityName(118604),
                     getFunc = function() return ARS.savedsolo.synergies[16] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[16] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
-                },
-                {
-                    type = "texture",
-                    image = ARS.SynergyTexture[17],
-                    imageWidth = "32",
-                    imageHeight = "32",
-                    width = "half"
+                    width = "full"
                 },
                 {
                     type = "checkbox",
-                    name = "Icy Escape",
+                    name = "|t32:32:"..ARS.SynergyTexture[12].."|t "..GetAbilityName(88884),
                     getFunc = function() return ARS.savedsolo.synergies[17] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[17] = value 
                         ARS.UpdateTracker()
                     end,
-                    width = "half"
+                    width = "full"
                 }  
             }
         })
@@ -344,6 +234,10 @@ function ARS.SynergyTrackerSettings()
             type = "submenu",
             name = "Group Tracker",
             controls = {
+                {
+                    type = "description",
+                    text = [[The |c0000ffGroup Tracker|r shows cooldowns of synergies for yourself and your group.]],               
+                },
                 {
                     type = "dropdown",
                     name = "Primary Synergy",
@@ -398,12 +292,16 @@ function ARS.SynergyTrackerSettings()
             name ="Trial Synergy Blocker",
             controls = {
                 {
+                    type = "description",
+                    text = [[|c00ff00Trial Synergy Blocker|r is blocking synergies if they are set to false.]],               
+                },
+                {
                     type = "header",
                     name = "Kynes Aegis"
                 },
                 {
                     type = "checkbox",
-                    name = GetAbilityName(134016),
+                    name = "|t32:32:"..GetAbilityIcon(134016).."|t "..GetAbilityName(134016),
                     getFunc = function() return ARS.savedblock[134016] end,
                     setFunc = function(value) 
                         ARS.savedblock[134016] = value 
@@ -415,7 +313,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "checkbox",
-                    name = GetAbilityName(103489),
+                    name = "|t32:32:"..GetAbilityIcon(103489).."|t "..GetAbilityName(103489),
                     getFunc = function() return ARS.savedblock[103489] end,
                     setFunc = function(value) 
                         ARS.savedblock[103489] = value 
@@ -427,7 +325,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "checkbox",
-                    name = GetAbilityName(56667),
+                    name = "|t32:32:"..GetAbilityIcon(56667).."|t "..GetAbilityName(56667),
                     getFunc = function() return ARS.savedblock[56667] end,
                     setFunc = function(value) 
                         ARS.savedblock[56667] = value 
@@ -439,7 +337,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "checkbox",
-                    name = GetAbilityName(121216),
+                    name = "|t32:32:"..GetAbilityIcon(121216).."|t "..GetAbilityName(121216),
                     getFunc = function() return ARS.savedblock[121216] end,
                     setFunc = function(value) 
                         ARS.savedblock[121216] = value 

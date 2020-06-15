@@ -12,5 +12,5 @@ ARS.BSynergies = {
     },
     [121216] = {
         name = GetAbilityName(121216) --Time Breach (Nahviintas - Endboss vSS)
-    }    
+    },    
 }

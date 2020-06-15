@@ -69,16 +69,16 @@ ARS.SynergyTexture = {
 
 ARS.GroupSynergyList = {
 	"Nothing",
-    "Blood Funnel", 
-    "Spawn Broodlings", 
-    "Bone Wall", 
-    "Combustion", 
-    "Conduit", 
-    "Harvest", 
-    "Purge", 
-    "Supernova",
-    "Grave Robber",
-    "Pure Agony",
+    GetAbilityName(39489), 
+    GetAbilityName(42020), 
+    GetAbilityName(39379), 
+    GetAbilityName(39301), 
+    GetAbilityName(23196), 
+    GetAbilityName(85577), 
+    GetAbilityName(26305), 
+    GetAbilityName(31597),
+    GetAbilityName(115548),
+    GetAbilityName(118604),
 }
 
 ARS.GroupSynergyListValues = {

@@ -4,16 +4,17 @@ ARS = ARS or {}
 function ARS.SynergyUsed()
 	local synergyName, iconFilename = GetSynergyInfo()
 
-    if not synergyName then return end
+    if synergyName and iconFilename then
 
-    local id = GetAbilityId(synergyName)
+        local id = GetAbilityId(synergyName)
 
-    if id == nil then return end
+        if ARS.savedblock[id] ~= nil then
+            --blocking synergie if false
+            if ARS.savedblock[id] == false then d(ARS.savedblock[id]) SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 
-    --blocking synergie if false
-    if ARS.savedblock[id] == false then
-        SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true)
-        return true
+        else
+            return false
+        end
     end
 end
 
@@ -24,8 +25,10 @@ function GetAbilityId(abilityName)
 end
 
 local function BarSwap(_, didBarswap)
-    if didBarswap then SYNERGY:OnSynergyAbilityChanged() end
-  end
+    if didBarswap then 
+        SYNERGY:OnSynergyAbilityChanged() 
+    end
+end
 
 function ARS:InitializeBlockingSynergies(enabled)
     if not enabled then return end
