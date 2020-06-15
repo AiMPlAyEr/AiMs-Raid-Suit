@@ -176,13 +176,13 @@ function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, ta
 
     for k, v in ipairs(synergypool) do
         if synergypool[k].name == getunit then
-            if getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.primarysynergy then
+            if ARS.Synergies[abilityId] == ARS.savedgroup.primarysynergy then
                 synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.secondarysynergy then
+            elseif ARS.Synergies[abilityId] == ARS.savedgroup.secondarysynergy then
                 synergypool[k].secondarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.tertiarysynergy then
+            elseif ARS.Synergies[abilityId] == ARS.savedgroup.tertiarysynergy then
                 synergypool[k].tertiarysynergy = GetGameTimeSeconds() + 20
-            elseif getunit ~= "" and ARS.Synergies[abilityId] == ARS.savedgroup.quaternarysynergy then
+            elseif ARS.Synergies[abilityId] == ARS.savedgroup.quaternarysynergy then
                 synergypool[k].quaternarysynergy = GetGameTimeSeconds() + 20
             end
         end
