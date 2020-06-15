@@ -127,7 +127,6 @@ function ARS:InitializeTracker(enabled)
 
     ARS.UpdateTracker()
     RestorePosition()
-    ARS.SynergyTrackerSettings()
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy",EVENT_COMBAT_EVENT, ARS.synergyCheck)
 

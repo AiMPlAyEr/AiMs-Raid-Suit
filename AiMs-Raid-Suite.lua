@@ -6,10 +6,19 @@ ARS.suiteversion = "0.2"
 ARS.default = {}
 
 function ARS:Initialize()
-    ARS:InitializeSynergyTracker(true) --group tracker
-	ARS:InitializeTracker(true) --solo tracker
+	defaults = {
+		synergytracker = true,
+		grouptracker = false,
+		synergyblocker = false,
+	}
 
-	ARS:InitializeBlockingSynergies(false)
+	ARS.savedgeneral = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "general", defaults)
+
+    ARS:InitializeSynergyTracker(ARS.savedgeneral.grouptracker) --group tracker
+	ARS:InitializeTracker(ARS.savedgeneral.synergytracker) --solo tracker
+	ARS:InitializeBlockingSynergies(ARS.savedgeneral.synergyblocker)
+
+	ARS.SynergyTrackerSettings()
 end
 
 function ARS.OnAddOnLoaded(event, addonName)

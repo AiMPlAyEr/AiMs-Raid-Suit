@@ -37,8 +37,6 @@ function ARS:InitializeBlockingSynergies(enabled)
         [121216] = false,
     }
 
-    ARS.BlockedSynergySettings()
-
     ARS.savedblock = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "SynergyBlocker", defaults)
 
     ZO_PreHook(SYNERGY, "OnSynergyAbilityChanged", ARS.SynergyUsed)

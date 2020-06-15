@@ -10,8 +10,39 @@ function ARS.SynergyTrackerSettings()
         author = "AiMPlAyEr[EU]",
     }
     local panel = LAM:RegisterAddonPanel(panelName, panelData)
-    local optionsData = {
-        {
+    local optionsData = {}
+
+    table.insert(optionsData, {
+        type = "checkbox",
+        name = "Synergy Tracker",
+        getFunc = function() return ARS.savedgeneral.synergytracker end,
+        setFunc = function(value) 
+            ARS.savedgeneral.synergytracker = value 
+        end,
+        warning = "Will need to reload the UI.",
+    })
+
+    table.insert(optionsData, {
+        type = "checkbox",
+        name = "Group Tracker",
+        getFunc = function() return ARS.savedgeneral.grouptracker end,
+        setFunc = function(value) 
+            ARS.savedgeneral.grouptracker = value 
+        end,
+        warning = "Will need to reload the UI.",
+    })
+    table.insert(optionsData, {
+        type = "checkbox",
+        name = "Synergy Blocker",
+        getFunc = function() return ARS.savedgeneral.synergyblocker end,
+        setFunc = function(value) 
+            ARS.savedgeneral.synergyblocker = value 
+        end,
+        warning = "Will need to reload the UI.",
+    })
+
+    if ARS.savedgeneral.synergytracker then
+        table.insert(optionsData, {
             type = "submenu",
             name = "Solo Tracker",
             controls = {
@@ -305,8 +336,11 @@ function ARS.SynergyTrackerSettings()
                     width = "half"
                 }  
             }
-        },
-        {
+        })
+    end
+
+    if ARS.savedgeneral.grouptracker then
+        table.insert(optionsData, {
             type = "submenu",
             name = "Group Tracker",
             controls = {
@@ -355,7 +389,65 @@ function ARS.SynergyTrackerSettings()
                     end
                 },
             }
-        }
-    }
+        })
+    end
+
+    if ARS.savedgeneral.synergyblocker then
+        table.insert(optionsData, {
+            type = "submenu",
+            name ="Trial Synergy Blocker",
+            controls = {
+                {
+                    type = "header",
+                    name = "Kynes Aegis"
+                },
+                {
+                    type = "checkbox",
+                    name = GetAbilityName(134016),
+                    getFunc = function() return ARS.savedblock[134016] end,
+                    setFunc = function(value) 
+                        ARS.savedblock[134016] = value 
+                    end
+                },
+                {
+                    type = "header",
+                    name = "Cloudrest"
+                },
+                {
+                    type = "checkbox",
+                    name = GetAbilityName(103489),
+                    getFunc = function() return ARS.savedblock[103489] end,
+                    setFunc = function(value) 
+                        ARS.savedblock[103489] = value 
+                    end
+                },
+                {
+                    type = "header",
+                    name = "Hel Ra Citadel"
+                },
+                {
+                    type = "checkbox",
+                    name = GetAbilityName(56667),
+                    getFunc = function() return ARS.savedblock[56667] end,
+                    setFunc = function(value) 
+                        ARS.savedblock[56667] = value 
+                    end
+                },
+                {
+                    type = "header",
+                    name = "Sunspire"
+                },
+                {
+                    type = "checkbox",
+                    name = GetAbilityName(121216),
+                    getFunc = function() return ARS.savedblock[121216] end,
+                    setFunc = function(value) 
+                        ARS.savedblock[121216] = value 
+                    end
+                },
+            }
+        })
+    end
+
     LAM:RegisterOptionControls(panelName, optionsData)
 end
