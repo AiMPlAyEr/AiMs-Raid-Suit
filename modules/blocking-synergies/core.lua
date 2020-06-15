@@ -10,8 +10,8 @@ function ARS.SynergyUsed()
 
     if id == nil then return end
 
-    --blocking synergie if true
-    if not ARS.savedblock[id] then
+    --blocking synergie if false
+    if ARS.savedblock[id] == false then
         SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true)
         return true
     end
@@ -31,10 +31,10 @@ function ARS:InitializeBlockingSynergies(enabled)
     if not enabled then return end
 
     local defaults = {
-        [134016] = false,
-        [103489] = false,
-        [56667] = false,
-        [121216] = false,
+        [134016] = true,
+        [103489] = true,
+        [56667] = true,
+        [121216] = true,
     }
 
     ARS.savedblock = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "SynergyBlocker", defaults)
