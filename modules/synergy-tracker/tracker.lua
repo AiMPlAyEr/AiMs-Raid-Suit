@@ -67,10 +67,9 @@ local function Cooldown()
         if rTime > 0 then
             unit.stimer:SetText(rTime)
             unit.texture:SetColor(0.3, 0.3, 0.3, 1)
-        else
+        elseif rTime <= 0 then
             unit.stimer:SetText('0')
             unit.texture:SetColor(1, 1, 1, 1)
-            table.remove(timer, k)
         end
     end
 end
