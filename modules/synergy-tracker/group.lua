@@ -4,8 +4,6 @@ local pool
 local headercontrol
 local synergypool = {}
 
-local pframe = nil
-
 local function AddToFragment(element)
     fragment = ZO_HUDFadeSceneFragment:New(element)
  
@@ -14,13 +12,13 @@ local function AddToFragment(element)
 end
 
 local function CreateFrameHeader()
-    headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", pframe, "TrackerHeaderTemplate")
-    headercontrol:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 0)
+    headercontrol = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)TrackerHeader", ARSTrackerFrame, "TrackerHeaderTemplate")
+    headercontrol:SetAnchor(TOPLEFT, ARSTrackerFrame, TOPLEFT, 0, 0)
 end
  
 local function CreateBuff(pool)
     local name      = "ARSUnit" .. pool:GetNextControlId()
-    local container = WINDOW_MANAGER:CreateControlFromVirtual(name, pframe, "UnitTemplate")
+    local container = WINDOW_MANAGER:CreateControlFromVirtual(name, ARSTrackerFrame, "UnitTemplate")
 
     container.name              = container:GetNamedChild("UnitName")
     container.role              = container:GetNamedChild("Role")
@@ -108,7 +106,7 @@ function ARS.UpdateGroup()
             local unitIndexer = 0
 
             groupunit:SetHidden(false)
-            groupunit:SetAnchor(TOPLEFT, pframe, TOPLEFT, 0, 24 * position + 2)
+            groupunit:SetAnchor(TOPLEFT, ARSTrackerFrame, TOPLEFT, 0, 24 * position + 2)
 
             groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
 
@@ -288,7 +286,7 @@ function UpdateCooldown()
     end
 end
 
-function SetPosition()
+function ARS.SetGroupPosition()
     ARS.savedgroup.left = ARSTrackerFrame:GetLeft()
     ARS.savedgroup.top = ARSTrackerFrame:GetTop()
 end
@@ -300,13 +298,6 @@ end
 
 function ARS:InitializeSynergyTracker(enabled)
     if not enabled then return end
-
-    pframe = WINDOW_MANAGER:CreateTopLevelWindow("ARSTrackerFrame")
-    pframe:SetResizeToFitDescendents(true)
-    pframe:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 600, 100)
-    pframe:SetMovable(true)
-    pframe:SetMouseEnabled(true)
-    pframe:SetHandler("OnMoveStop", SetPosition)
 
     defaults = {
         top                 = 500,
@@ -320,7 +311,7 @@ function ARS:InitializeSynergyTracker(enabled)
 
     ARS.savedgroup = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "GroupTracker", defaults)
 
-    AddToFragment(pframe)
+    AddToFragment(ARSTrackerFrame)
     CreateFrameHeader()
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)

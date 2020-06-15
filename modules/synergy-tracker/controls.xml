@@ -1,5 +1,12 @@
 <GuiXml>
     <Controls>
+        <TopLevelControl name="ARSTrackerFrame" mouseEnabled="true" movable="true" clampedToScreen="true" resizeToFitDescendents="true">
+            <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
+            <OnMoveStop>
+                ARS.SetGroupPosition()
+            </OnMoveStop>
+        </TopLevelControl>
+
         <Control name="TrackerHeaderTemplate" resizeToFitDescendents="true" virtual="true">
             <Controls>
                 <Texture name="$(parent)Backdrop" hidden="false" color="000000" alpha="0.5">
@@ -74,6 +81,14 @@
                 </Label>
             </Controls>
         </Control>
+
+        <TopLevelControl name="ARSSingleTrackerFrame" mouseEnabled="true" movable="true" clampedToScreen="true" resizeToFitDescendents="true">
+            <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
+        <OnMoveStop>
+            ARS.SetPosition()
+        </OnMoveStop>
+        </TopLevelControl>
+
         <Control name="TrackerTemplate" resizeToFitDescendents="true" virtual="true">
             <Controls>
                 <Texture name="$(parent)SynergyFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
