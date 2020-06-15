@@ -379,7 +379,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "dropdown",
-                    name = "Tertiary Synergy",
+                    name = "Quaternary Synergy",
                     choices = ARS.GroupSynergyList,
                     choicesValues = ARS.GroupSynergyListValues,
                     getFunc = function() return ARS.savedgroup.quaternarysynergy end,
