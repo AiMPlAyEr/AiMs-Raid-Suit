@@ -70,6 +70,7 @@ local function Cooldown()
         elseif rTime <= 0 then
             unit.stimer:SetText('0')
             unit.texture:SetColor(1, 1, 1, 1)
+            timer[k] = nil
         end
     end
 end

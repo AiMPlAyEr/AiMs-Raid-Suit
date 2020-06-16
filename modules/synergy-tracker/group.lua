@@ -80,7 +80,8 @@ function ARS.UpdateGroup()
     headercontrol:GetNamedChild("Backdrop"):SetDimensions(168 + (30 * indexer), 26)
 
     if GetGroupSize() < 1 then
-        headercontrol:SetHidden(true)
+        local pvpArea = IsPlayerInAvAWorld() or IsActiveWorldBattleground()
+        headercontrol:SetHidden(pvpArea)
     else 
         headercontrol:SetHidden(false)
     end
