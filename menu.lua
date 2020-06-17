@@ -217,7 +217,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "checkbox",
-                    name = "|t32:32:"..ARS.SynergyTexture[12].."|t "..GetAbilityName(88884),
+                    name = "|t32:32:"..ARS.SynergyTexture[17].."|t "..GetAbilityName(88884),
                     getFunc = function() return ARS.savedsolo.synergies[17] end,
                     setFunc = function(value) 
                         ARS.savedsolo.synergies[17] = value 
