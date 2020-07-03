@@ -41,6 +41,15 @@ function ARS.SynergyTrackerSettings()
         end,
         warning = "Will need to reload the UI.",
     })
+    table.insert(optionsData, {
+        type = "checkbox",
+        name = "Roaring Opportunist Tracker",
+        getFunc = function() return ARS.savedgeneral.roaringtracker end,
+        setFunc = function(value) 
+            ARS.savedgeneral.roaringtracker = value 
+        end,
+        warning = "Will need to reload the UI.",
+    })
 
     if ARS.savedgeneral.synergytracker then
         table.insert(optionsData, {

@@ -10,7 +10,7 @@ function ARS.SynergyUsed()
 
         if ARS.savedblock[id] ~= nil then
             --blocking synergie if false
-            if ARS.savedblock[id] == false then d(ARS.savedblock[id]) SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
+            if ARS.savedblock[id] == false then SHARED_INFORMATION_AREA:SetHidden(SYNERGY, true) return true end
 
         else
             return false

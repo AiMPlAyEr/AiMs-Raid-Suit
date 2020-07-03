@@ -9,6 +9,7 @@ function ARS:Initialize()
 		synergytracker 	= true,
 		grouptracker 	= false,
 		synergyblocker 	= false,
+		roaringtracker = false,
 	}
 
 	ARS.savedgeneral = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "general", defaults)
@@ -16,6 +17,7 @@ function ARS:Initialize()
     ARS:InitializeSynergyTracker(ARS.savedgeneral.grouptracker) --group tracker
 	ARS:InitializeTracker(ARS.savedgeneral.synergytracker) --solo tracker
 	ARS:InitializeBlockingSynergies(ARS.savedgeneral.synergyblocker)
+	ARS:InitializeRoaringTracker(ARS.savedgeneral.roaringtracker)
 
 	ARS.SynergyTrackerSettings()
 end

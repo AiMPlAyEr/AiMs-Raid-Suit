@@ -24,5 +24,9 @@ modules/blocking-synergies/core.lua
 modules/blocking-synergies/data.lua
 
 
+#Roaring Opportunist Tracker files
+modules/roaring-opportunist-tracker/core.lua
+
+
 #menu files
 menu.lua
