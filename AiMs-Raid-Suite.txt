@@ -18,14 +18,10 @@ modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
 libs/gunits.lua
 
-
-#Blocking Synergies files
-modules/blocking-synergies/core.lua
-modules/blocking-synergies/data.lua
-
-
-#Roaring Opportunist Tracker files
-modules/roaring-opportunist-tracker/core.lua
+#RG Mechanics
+modules/rgmechanics/controls.xml
+modules/rgmechanics/data.lua
+modules/rgmechanics/mechanics.lua
 
 
 #menu files

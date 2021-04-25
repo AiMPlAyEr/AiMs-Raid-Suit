@@ -17,6 +17,7 @@ local SOUL_LEECH_SYNERGY        = 14    -- Soul Shred
 local GRAVE_ROBBER_SYNERGY      = 15    -- Grave Robber
 local PURE_AGONY_SYNERGY        = 16    -- Pure Agony
 local ICY_ESCAPE                = 17    -- Icy Escape
+local MISC                      = 18
 
 ARS.Synergies = {
     [108782]    = BLOOD_SYNERGY,                -- Blood Funnel Synergy     (Blood Altar)
@@ -44,7 +45,8 @@ ARS.Synergies = {
     [115567]    = GRAVE_ROBBER_SYNERGY,         -- Boneyard Synergy         (Grave Robber)
     [115571]    = GRAVE_ROBBER_SYNERGY,         -- Avid Boneyard Synergy    (Grave Robber)
     [118610]    = PURE_AGONY_SYNERGY,           -- Agony Totem Synergy      (Pure Agony)
-    [108950]    = ICY_ESCAPE                    -- Icy Escape Synergy       (Frozen Retreat)
+    [108950]    = ICY_ESCAPE,                   -- Icy Escape Synergy       (Frozen Retreat)
+    [75753]     = MISC
 }
 
 ARS.SynergyTexture = {

@@ -1,0 +1,21 @@
+<GuiXml>
+    <Controls>
+        <Control name="MechanicTemplate" resizeToFitDescendents="true" virtual="true">
+            <Controls>
+                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplate" />
+                    <Dimensions x="50" y="50"/>
+                </Texture>
+
+                <Texture name="$(parent)MechanicIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplate"/>
+                    <Dimensions y="40" x="40" />
+                </Texture>
+
+                <Label name="$(parent)MechanicText" color="ffffff" font="$(MEDIUM_FONT)|$(KB_28)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplate" offsetY="8" offsetX="50"/>
+                </Label>
+            </Controls>
+        </Control>
+    </Controls>
+</GuiXml>
