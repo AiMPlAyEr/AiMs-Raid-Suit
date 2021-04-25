@@ -11,8 +11,8 @@
                 </Texture>
 
                 <Texture name="$(parent)MechanicIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
-                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" offsetX="3"/>
-                    <Dimensions y="44" x="44" />
+                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" offsetX="2" offsetY="2"/>
+                    <Dimensions y="46" x="46" />
                 </Texture>
 
                 <Label name="$(parent)MechanicText" color="ffffff" font="$(MEDIUM_FONT)|$(KB_32)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">

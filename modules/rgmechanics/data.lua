@@ -66,7 +66,7 @@ ARS.MechanicsData = {
         name = "|c0392CEAbomination|r spawns!",
         icon = GetAbilityIcon(152486),
         duration = GetAbilityDuration(152486),
-    }
+    },
 
     -----------------------------------------------------------
     -----------------------------------------------------------

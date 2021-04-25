@@ -97,8 +97,8 @@
                 </Texture>
 
                 <Texture name="$(parent)SynergyIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
-                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplate"/>
-                    <Dimensions y="40" x="40" />
+                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplateSynergyFrame"/>
+                    <Dimensions y="46" x="46" />
                 </Texture>
 
                 <Label name="$(parent)SynergyTimer" color="ffffff" font="$(MEDIUM_FONT)|$(KB_21)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">

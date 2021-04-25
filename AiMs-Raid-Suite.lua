@@ -21,9 +21,8 @@ function ARS:Initialize()
 end
 
 function ARS.OnAddOnLoaded(event, addonName)
-	d("blubb")
 	if addonName ~= ARS.name then return end
-        ARS:Initialize()
+    ARS:Initialize()
 end
 
 EVENT_MANAGER:RegisterForEvent(ARS.name, EVENT_ADD_ON_LOADED, ARS.OnAddOnLoaded)
