@@ -20,7 +20,6 @@ local function RemoveNotification(control)
 end
 
 local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
-    --if (sourceType == COMBAT_UNIT_TYPE_PLAYER or sourceType == COMBAT_UNIT_TYPE_GROUP or targetType == COMBAT_UNIT_TYPE_GROUP or targetType == COMBAT_UNIT_TYPE_PLAYER) then
     local currentTime = GetGameTimeMilliseconds()
 
     if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION then --funktioniert
@@ -109,21 +108,6 @@ function ARS:InitializeRGMechanics(enabled)
     ARS.rgmechanics = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "RGMechanics", defaults)
 
     pool2 = ZO_ObjectPool:New(CreateNotification, RemoveNotification)
-
-    --[[local loopIndex = 0
-    for k, v in pairs(ARS.MechanicsData) do
-        local remainingTime = (v.duration - GetGameTimeMilliseconds()) / 1000
-        local trackerunit = pool2:AcquireObject(k)
-        trackerunit:SetAnchor(TOPLEFT, ARSMechanicFrame, TOPLEFT, 0, 60 * loopIndex)
-        trackerunit:SetHidden(false)
-        trackerunit.texture:SetTexture(v.icon)
-        if v.countdown then
-            trackerunit.mtext:SetText(v.name..string.format("%.1f", remainingTime))
-        else
-            trackerunit.mtext:SetText(v.name)
-        end
-        loopIndex=loopIndex+1
-    end]]--
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."mechanic", EVENT_COMBAT_EVENT, MechanicCheck)
     EVENT_MANAGER:RegisterForEvent(ARS.name, EVENT_PLAYER_COMBAT_STATE, CombatState)
