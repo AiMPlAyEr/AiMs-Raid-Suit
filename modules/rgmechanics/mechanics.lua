@@ -2,6 +2,7 @@ ARS = ARS or {}
 
 local pool2
 local mechanics = {}
+local noxiousPuddleCooldown = 0
 
 local function CreateNotification(pool2)
     local name      = "ARSMechanic" .. pool2:GetNextControlId()
@@ -31,7 +32,10 @@ local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceT
     elseif abilityId == 153434 and result == ACTION_RESULT_BEGIN then --funktioniert (result muss aber noch im Auge behalten werden)
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
     elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER then --result muss noch getestet werden
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = false }
+        if noxiousPuddleCooldown <= currentTime then
+            mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = false }
+            noxiousPuddleCooldown = currentTime + 2000
+        end
     elseif abilityId == 149414 and result == ACTION_RESULT_BEGIN then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
     elseif abilityId == 157337 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
