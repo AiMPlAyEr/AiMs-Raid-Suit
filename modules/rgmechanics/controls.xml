@@ -20,25 +20,5 @@
                 </Label>
             </Controls>
         </Control>
-        <Control name="ARSDodgeTemplate" resizeToFitDescendents="true" virtual="true">
-            <Controls>
-                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
-                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" />
-                    <Dimensions x="50" y="50"/>
-                </Texture>
-
-                <Texture name="$(parent)MechanicIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
-                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" offsetX="3"/>
-                    <Dimensions y="44" x="44" />
-                </Texture>
-
-                <Label name="$(parent)MechanicText" color="ffffff" font="$(MEDIUM_FONT)|$(KB_32)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
-                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" offsetY="0" offsetX="70"/>
-                </Label>
-                <Label name="$(parent)MechanicDodge" color="ff0000" font="$(MEDIUM_FONT)|$(KB_32)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
-                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplateMechanicText" offsetY="0" offsetX="20"/>
-                </Label>
-            </Controls>
-        </Control>
     </Controls>
 </GuiXml>
