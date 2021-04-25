@@ -108,7 +108,11 @@ function ARS.UpdateGroup()
             groupunit:SetHidden(false)
             groupunit:SetAnchor(TOPLEFT, ARSTrackerFrame, TOPLEFT, 0, 24 * position + 2)
 
-            groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
+            if synergypool[i].alkosh then
+                groupunit.backdrop:SetColor(255, 255, 0, ARS.savedgroup.bgopacity);
+            else
+                groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
+            end
 
             if HodorReflexes and HodorReflexes.player.GetIconForUserId(accName) ~= nil then
                 groupunit.role:SetTexture(HodorReflexes.player.GetIconForUserId(accName))
@@ -169,13 +173,15 @@ function ARS.UpdateGroup()
     end
 end
 
-function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, targetUnitId, abilityId)
+function GetSynergy(eventCode, result, _, abilityName, _, _, _, _, _, _, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
     if result ~= ACTION_RESULT_EFFECT_GAINED then return end
 
     local getunit = ARS.GetNameForUnitId(targetUnitId)
+    local getSource = ARS.GetNameForUnitId(sourceUnitId)
 
     for k, v in ipairs(synergypool) do
-        if synergypool[k].name == getunit then
+        --checking if this works in a group
+        if synergypool[k].name == getunit or synergypool[k].name == getSource then
             if ARS.Synergies[abilityId] == ARS.savedgroup.primarysynergy then
                 synergypool[k].primarysynergy = GetGameTimeSeconds() + 20
             elseif ARS.Synergies[abilityId] == ARS.savedgroup.secondarysynergy then
@@ -184,6 +190,10 @@ function GetSynergy(eventCode, result, _, _, _, _, _, _, _, _, _, _, _, _, _, ta
                 synergypool[k].tertiarysynergy = GetGameTimeSeconds() + 20
             elseif ARS.Synergies[abilityId] == ARS.savedgroup.quaternarysynergy then
                 synergypool[k].quaternarysynergy = GetGameTimeSeconds() + 20
+            end
+
+            if abilityId == 75753 and ARS.savedgroup.halkosh then
+                synergypool[k].alkosh = true
             end
         end
     end
@@ -205,6 +215,9 @@ function UpdateTimer()
             synergypool[i].secondarysynergy = "0"
             synergypool[i].tertiarysynergy  = "0"
             synergypool[i].quaternarysynergy = "0"
+            if ARS.savedgroup.halkosh then
+                synergypool[i].alkosh = false
+            end
         end
     end
 end
@@ -218,6 +231,12 @@ function UpdateCooldown()
             local qRemainingTime = math.floor(v.quaternarysynergy - GetGameTimeSeconds())
 
             groupunit = pool:AcquireObject(k)
+
+            if v.alkosh and ARS.savedgroup.halkosh then
+                groupunit.backdrop:SetColor(255, 255, 0, ARS.savedgroup.bgopacity);
+            else
+
+            end
 
             --primary
             if pRemainingTime > 3 then
@@ -326,9 +345,11 @@ function ARS:InitializeSynergyTracker(enabled)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , ARS.UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , ARS.UpdateGroup)
     EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , ARS.UpdateGroup)
-    for k, v in pairs(ARS.Synergies) do
+
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy", EVENT_COMBAT_EVENT, GetSynergy)
+    --[[for k, v in pairs(ARS.Synergies) do
         EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, GetSynergy)
         EVENT_MANAGER:AddFilterForEvent(ARS.name.."Synergy"..k, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, k)
-    end
+    end]]--
     EVENT_MANAGER:RegisterForUpdate(ARS.name.."UpdateCooldown", 250, UpdateCooldown)
 end

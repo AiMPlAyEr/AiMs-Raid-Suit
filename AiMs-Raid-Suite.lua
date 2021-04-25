@@ -8,16 +8,14 @@ function ARS:Initialize()
 	defaults = {
 		synergytracker 	= true,
 		grouptracker 	= false,
-		synergyblocker 	= false,
-		roaringtracker = false,
+		rgmechanics		= false,
 	}
 
 	ARS.savedgeneral = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "general", defaults)
 
     ARS:InitializeSynergyTracker(ARS.savedgeneral.grouptracker) --group tracker
 	ARS:InitializeTracker(ARS.savedgeneral.synergytracker) --solo tracker
-	ARS:InitializeBlockingSynergies(ARS.savedgeneral.synergyblocker)
-	ARS:InitializeRoaringTracker(ARS.savedgeneral.roaringtracker)
+	ARS:InitializeRGMechanics(ARS.savedgeneral.rgmechanics) --Rockgrave mechanics
 
 	ARS.SynergyTrackerSettings()
 end

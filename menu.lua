@@ -34,13 +34,14 @@ function ARS.SynergyTrackerSettings()
     })
     table.insert(optionsData, {
         type = "checkbox",
-        name = "Synergy Blocker",
-        getFunc = function() return ARS.savedgeneral.synergyblocker end,
+        name = "Rockgrave Mechanics",
+        getFunc = function() return ARS.savedgeneral.rgmechanics end,
         setFunc = function(value) 
-            ARS.savedgeneral.synergyblocker = value 
+            ARS.savedgeneral.rgmechanics = value 
         end,
         warning = "Will need to reload the UI.",
     })
+    --[[
     table.insert(optionsData, {
         type = "checkbox",
         name = "Roaring Opportunist Tracker",
@@ -51,6 +52,7 @@ function ARS.SynergyTrackerSettings()
         warning = "Will need to reload the UI.",
     })
 
+    ]]--
     if ARS.savedgeneral.synergytracker then
         table.insert(optionsData, {
             type = "submenu",
@@ -290,6 +292,15 @@ function ARS.SynergyTrackerSettings()
                         ARS.savedgroup.quaternarysynergy = var 
                         ARS.UpdateGroup()
                     end
+                },
+                {
+                    type = "checkbox",
+                    name = "Highlight Alkosh User",
+                    getFunc = function() return ARS.savedgroup.halkosh end,
+                    setFunc = function(value) 
+                        ARS.savedgroup.halkosh = value 
+                    end,
+                    width = "full"
                 },
             }
         })

@@ -1,8 +1,8 @@
 ## Title: AiM's-Raid-Suite
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
-## Version: 0.2
-## APIVersion: 100031
+## Version: 0.3
+## APIVersion: 100035
 ## SavedVariables: ARSsaved
 ## DependsOn: LibAddonMenu-2.0
 
@@ -18,14 +18,10 @@ modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
 libs/gunits.lua
 
-
-#Blocking Synergies files
-modules/blocking-synergies/core.lua
-modules/blocking-synergies/data.lua
-
-
-#Roaring Opportunist Tracker files
-modules/roaring-opportunist-tracker/core.lua
+#RG Mechanics
+modules/rgmechanics/controls.xml
+modules/rgmechanics/data.lua
+modules/rgmechanics/mechanics.lua
 
 
 #menu files
