@@ -78,9 +78,9 @@ function ARS.UpdateRemainingTime()
             trackerunit:SetHidden(false)
             trackerunit.texture:SetTexture(v.icon)
             if v.countdown then
-                trackerunit.mtext:SetText(v.name..string.format("%.1f", remainingTime))
+                trackerunit.mtext:SetText(zo_strformat(GetString(v.text), v.name, remainingTime))
             else
-                trackerunit.mtext:SetText(v.name)
+                trackerunit.mtext:SetText(zo_strformat(GetString(v.text), v.name))
             end
             i=i+1
         elseif remainingTime <= 0 then
