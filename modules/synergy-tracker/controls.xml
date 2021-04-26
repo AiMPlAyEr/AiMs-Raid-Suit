@@ -97,7 +97,7 @@
                 </Texture>
 
                 <Texture name="$(parent)SynergyIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
-                    <Anchor point="CENTER" relativePoint="CENTER" relativeTo="TrackerTemplateSynergyFrame"/>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="TrackerTemplateSynergyFrame" offsetX="2" offsetY="2"/>
                     <Dimensions y="46" x="46" />
                 </Texture>
 

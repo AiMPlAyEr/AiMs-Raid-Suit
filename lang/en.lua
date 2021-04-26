@@ -1,23 +1,14 @@
+--Oaxiltso
+ZO_CreateStringId("ARS_NOXIOUS_PUDDLE", "|c00E676<<1>>|r. Go out!")
+ZO_CreateStringId("ARS_NOXIOUS_SLUDGE", "|c26980c<<1>>|r. Go out!")
+ZO_CreateStringId("ARS_METEOR_CRASH", "|cFABC02<<1>>|r. Kite! <<2>>")
+ZO_CreateStringId("ARS_SAVAGE_BLITZ", "|cA7194B<<1>>|r begins in: <<2>>")
+ZO_CreateStringId("ARS_SAVAGE_BLITZ_YOU", "|cA7194B<<1>>|r will charge at you in: <<2>>")
+
+--Flame-Herald Bahsei
+ZO_CreateStringId("ARS_DEATH_TOUCH", "|c0392CE<<1>>|r on you in: <<2>>")
+ZO_CreateStringId("ARS_FIERY_DETONATION", "|cFD5308<<1>>|r explodes in: <<2>>")
+ZO_CreateStringId("ARS_ABOMINATION_SPAWN", "|c663AB6<<1>>|r spawns!")
+
 --trash
-ZO_CreateStringId("ARS_CRASHING_WAVE", "|c03a9f4<<1>>|r in ")
-ZO_CreateStringId("ARS_EXPLODING_SPEAR", "|cffc107<<1>>|r. Block!")
-
---first boss only mechanics
-ZO_CreateStringId("ARS_DRAGON_TOTEM", "|cff9800<<1>>|r spawned!")
-ZO_CreateStringId("ARS_GARGOYLE_TOTEM", "|c795548<<1>>|r spawns! Block!")
-ZO_CreateStringId("ARS_HARPY_TOTEM", "|cadd8e6<<1>>|r spawned!")
-ZO_CreateStringId("ARS_CHAURUS_TOTEM", "|c90ee90<<1>>|r spawned! Don't Stack!")
-ZO_CreateStringId("ARS_PURGE_POISON", "|c4b8b3b<<1>>|r is spreading! Purge!")
-ZO_CreateStringId("ARS_HAILSTONE_SHIELD", "|c6db0dA<<1>>|r on Yandir!")
-
---first boss and second boss mechanics
-ZO_CreateStringId("ARS_METEOR", "Incoming |cffa500<<1>>|r. Block!")
-
---second boss only mechanics
-ZO_CreateStringId("ARS_FRIGID_FOG", "|cffc107<<1>>|r on you. Move out!")
-ZO_CreateStringId("ARS_SHOCKING_HARPOON", "|cffc107<<1>>|r spawns!")
-
---end boss mechanics
-ZO_CreateStringId("ARS_INSTABILITY", "|cffeb3b<<1>>|r. Move out!")
-ZO_CreateStringId("ARS_SANGUINE_GRASP", "|cffc107<<1>>|r. Kite around!")
-ZO_CreateStringId("ARS_SANGUINE_PRISON", "|cffc107<<1>>|r on <<2>>")
+ZO_CreateStringId("ARS_PRIME_METEOR", "|cFABC02<<1>>|r. Kill it! Explodes in: <<2>>")
