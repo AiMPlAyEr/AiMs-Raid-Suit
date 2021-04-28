@@ -34,7 +34,7 @@ function ARS.SynergyTrackerSettings()
     })
     table.insert(optionsData, {
         type = "checkbox",
-        name = "Rockgrave Mechanics",
+        name = "Rockgrove Mechanics",
         getFunc = function() return ARS.savedgeneral.rgmechanics end,
         setFunc = function(value) 
             ARS.savedgeneral.rgmechanics = value 

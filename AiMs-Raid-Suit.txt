@@ -1,4 +1,4 @@
-## Title: AiM's-Raid-Suite
+## Title: AiM's-Raid-Suit
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
 ## Version: 0.3
@@ -8,7 +8,7 @@
 
 lang/en.lua
 lang/$(language).lua
-AiMs-Raid-Suite.lua
+AiMs-Raid-Suit.lua
 
 
 #Synergy Tracker files

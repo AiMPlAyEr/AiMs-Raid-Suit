@@ -1,14 +1,14 @@
 ARS = ARS or {}
 
-ARS.name = "AiMs-Raid-Suite"
-ARS.version = "0.2"
+ARS.name = "AiMs-Raid-Suit"
+ARS.version = "0.3"
 ARS.default = {}
 
 function ARS:Initialize()
 	defaults = {
 		synergytracker 	= true,
 		grouptracker 	= false,
-		rgmechanics		= false,
+		rgmechanics		= true,
 	}
 
 	ARS.savedgeneral = ZO_SavedVars:NewCharacterIdSettings("ARSsaved", 1, "general", defaults)

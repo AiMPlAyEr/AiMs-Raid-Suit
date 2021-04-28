@@ -5,14 +5,14 @@
         </TopLevelControl>
         <Control name="ARSMechanicTemplate" resizeToFitDescendents="true" virtual="true">
             <Controls>
-                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds">
+                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds" level="1">
                     <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" />
-                    <Dimensions x="50" y="50"/>
+                    <Dimensions x="56" y="56"/>
                 </Texture>
 
-                <Texture name="$(parent)MechanicIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds">
+                <Texture name="$(parent)MechanicIcon" textureFile="/esoui/art/icons/ability_undaunted_005b.dds" level="0">
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="ARSMechanicTemplate" offsetX="2" offsetY="2"/>
-                    <Dimensions y="46" x="46" />
+                    <Dimensions y="52" x="52" />
                 </Texture>
                 <Label name="$(parent)MechanicText" color="ffffff" font="$(MEDIUM_FONT)|$(KB_32)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="0">
                     <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" offsetY="0" offsetX="70"/>

@@ -25,7 +25,7 @@ function ARS.UpdateTracker()
     for k, v in ipairs(ARS.savedsolo.synergies) do
         if v then
             local trackerunit = pool:AcquireObject(k)
-            trackerunit:SetAnchor(TOPLEFT, ARSSingleTrackerFrame, TOPLEFT, 55 * (index - 1), 0)
+            trackerunit:SetAnchor(TOPLEFT, ARSSingleTrackerFrame, TOPLEFT, 61 * (index - 1), 0)
 
             trackerunit:SetHidden(false)
             trackerunit.texture:SetTexture(ARS.SynergyTexture[k])

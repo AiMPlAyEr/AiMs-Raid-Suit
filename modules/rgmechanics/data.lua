@@ -6,7 +6,9 @@ ARS.MechanicsData = {
         name = GetAbilityName(150078),
         icon = GetAbilityIcon(150078),
         duration = GetAbilityDuration(150078)+1000,
-        text = ARS_DEATH_TOUCH
+        text = ARS_DEATH_TOUCH,
+        notifySound = true,
+        timer = true,
     },
 
     --noxious puddle 1.Boss - Giftsuppe
@@ -14,26 +16,30 @@ ARS.MechanicsData = {
         name = GetAbilityName(150061),
         icon = GetAbilityIcon(150061),
         duration = 2000, --might need adjustments
-        text = ARS_NOXIOUS_PUDDLE
+        text = ARS_NOXIOUS_PUDDLE,
+        notifySound = true,
+        timer = false,
     },
 
-    --Prime Meteor Spawn + Time until Explosion 2. Boss -- slime like thingy at 15%
-    --wird im trash nach dem zweiten boss angezeigt
-    --zweiter trash pull, wurde zwei mal angezeigt
+    --Prime Meteor Spawn + Time until Explosion 
     [153434] = {
         name = GetAbilityName(153434),
         icon = GetAbilityIcon(153434),
         duration = GetAbilityDuration(153434)-5000,
-        text = ARS_PRIME_METEOR
+        text = ARS_PRIME_METEOR,
+        notifySound = true,
+        timer = true,
 
     },
 
-    --Noxious Sludge get out!
+    --Noxious Sludge
     [149193] = {
         name = GetAbilityName(157860),
         icon = GetAbilityIcon(157860),
         duration = 3000,
-        text = ARS_NOXIOUS_SLUDGE
+        text = ARS_NOXIOUS_SLUDGE,
+        notifySound = true,
+        timer = true,
 
     },
 
@@ -42,28 +48,34 @@ ARS.MechanicsData = {
         name = GetAbilityName(152370),
         icon = GetAbilityIcon(152370),
         duration = GetAbilityDuration(152365),
-        text = ARS_METEOR_CRASH
+        text = ARS_METEOR_CRASH,
+        notifySound = true,
+        timer = true,
 
     },
 
 
     --Savage Blitz 1. Boss - boss charge
-    --149421 - if he is charging at you
+    --149421 - if you are in his path
     --target type none
     [149414] = {
         name = GetAbilityName(149414),
         icon = GetAbilityIcon(149414),
         duration = 3500,
-        text = ARS_SAVAGE_BLITZ
+        text = ARS_SAVAGE_BLITZ,
+        notifySound = true,
+        timer = true,
     },
 
     --Fiery Detonation 2. Boss - Flame Atro explosion
     --GET OUT Message
-    [157632] = {
+    [157346] = {
         name = GetAbilityName(157632),
         icon = GetAbilityIcon(157632),
-        duration = GetAbilityDuration(157632),
-        text = ARS_FIERY_DETONATION
+        duration = GetAbilityDuration(157346)-2000,
+        text = ARS_FIERY_DETONATION,
+        notifySound = true,
+        timer = true,
     },
 
     --Abomination spawns
@@ -71,7 +83,9 @@ ARS.MechanicsData = {
         name = "Abomination",
         icon = GetAbilityIcon(152486),
         duration = GetAbilityDuration(152486),
-        text = ARS_ABOMINATION_SPAWN
+        text = ARS_ABOMINATION_SPAWN,
+        notifySound = true,
+        timer = false,
     },
 
     -----------------------------------------------------------
@@ -79,36 +93,14 @@ ARS.MechanicsData = {
     -----------------------------------------------------------
     -----------------------------------------------------------
     -----------------------------------------------------------
-
-    --[[Fiery Detonation 2. Boss - Flame Atro explosion
-    --GET OUT Message
-    [157632] = {
-        name = "|cFD5308"..GetAbilityName(157632).."|r",
-        icon = GetAbilityIcon(157632),
-        duration = GetAbilityDuration(157632),
-    },
-    --Luminous Eruption Explosion 2. Boss - Slime
-    [152738] = {
-        name = "|c"..GetAbilityName(152738).."|r",
-        icon = GetAbilityIcon(152738),
-        duration = GetAbilityDuration(152738)+2000,
-    },
-    ]]--
-
-    --Noxious Sludge on you
-    --kann ggf. gelöscht werden
-    --[[[149190] = {
-        name = "|c26980c"..GetAbilityName(157860).."|r. Cleans yourself!",
-        icon = GetAbilityIcon(157860),
-        duration = 3000,
-        type = nil,
-
-    },]]--
 
     --unstable wall of fire
     --[[[39053] = {
         name = "|cA7194B"..GetAbilityName(39053).."|r",
         icon = GetAbilityIcon(39053),
-        duration = GetAbilityDuration(39053)+30000
+        duration = GetAbilityDuration(39053)+30000,
+        text = ARS_ABOMINATION_SPAWN,
+        notifySound = true,
+        timer = false,
     },]]--
 }

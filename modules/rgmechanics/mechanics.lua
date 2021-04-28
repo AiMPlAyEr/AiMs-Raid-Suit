@@ -22,45 +22,53 @@ end
 local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
     local currentTime = GetGameTimeMilliseconds()
 
-    if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION then --funktioniert
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
-    elseif abilityId == 149193 and targetType == COMBAT_UNIT_TYPE_PLAYER then --funktioniert
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = false }
-    elseif abilityId == 152365 and result == ACTION_RESULT_BEGIN then --funktioniert
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
-    elseif abilityId == 153434 and result == ACTION_RESULT_BEGIN then --funktioniert (result muss aber noch im Auge behalten werden)
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
-    elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER then --result muss noch getestet werden
+    if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 149193 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 152365 and result == ACTION_RESULT_BEGIN then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 153434 and result == ACTION_RESULT_EFFECT_GAINED then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER then
         if noxiousPuddleCooldown <= currentTime then
-            mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = false }
+            mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
             noxiousPuddleCooldown = currentTime + 2000
         end
     elseif abilityId == 149414 and result == ACTION_RESULT_BEGIN then
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
-    elseif abilityId == 157337 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
+        if true then
+            mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+        end
     elseif abilityId == 152486 and result == ACTION_RESULT_EFFECT_GAINED then
-        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = false }
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 157346 and result == ACTION_RESULT_EFFECT_GAINED then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     end
 
     --[[if abilityId == 39053 then
-        mechanics[abilityId] = { duration = GetGameTimeMilliseconds() + ARS.MechanicsData[abilityId].duration, name = ARS.MechanicsData[abilityId].name, icon = ARS.MechanicsData[abilityId].icon, notifySound = true, countdown = true }
+        mechanics[abilityId] = { duration = GetGameTimeMilliseconds() + ARS.MechanicsData[abilityId].duration, notifySound = true }
     end]]--
 
-    if abilityId == 149417 then
-        d("Savage Blitz is targeting you! ("..abilityId..")".." result: "..result)
+    --sunburst 1. Boss
+
+    if abilityName == "Sunburst" then
+        d("Sunburst ("..abilityId..")".." result: "..result)
     end
 
     if abilityId == 152716 then
         d("Meteor Bomb ("..abilityId..")".." result: "..result)
     end
 
-    if abilityId == 153434 then
-        d("Prime Meteor ("..abilityId..")".." result: "..result)
+    if abilityName == "Prime Meteor" then
+        d("Prime Meteor! ("..abilityId..")".." result: "..result)
     end
 
-    if abilityId == 152737 or abilityId == 152738 then
-        d("luminous eruption ("..abilityId..")".." result: "..result)
+    if abilityName == "Ember Chains" then
+        d("Ember chains! ("..abilityId..")".." result: "..result)
+    end
+
+    if abilityName == "Summon Abomination" then
+        d("Abomination spawns! Check position! ("..abilityId..")".." result: "..result)
     end
 end
 
@@ -76,11 +84,11 @@ function ARS.UpdateRemainingTime()
             local trackerunit = pool2:AcquireObject(k)
             trackerunit:SetAnchor(TOPLEFT, ARSMechanicFrame, TOPLEFT, 0, 60 * i)
             trackerunit:SetHidden(false)
-            trackerunit.texture:SetTexture(v.icon)
-            if v.countdown then
-                trackerunit.mtext:SetText(zo_strformat(GetString(v.text), v.name, remainingTime))
+            trackerunit.texture:SetTexture(ARS.MechanicsData[k].icon)
+            if ARS.MechanicsData[k].timer then
+                trackerunit.mtext:SetText(zo_strformat(GetString(ARS.MechanicsData[k].text), ARS.MechanicsData[k].name, remainingTime))
             else
-                trackerunit.mtext:SetText(zo_strformat(GetString(v.text), v.name))
+                trackerunit.mtext:SetText(zo_strformat(GetString(ARS.MechanicsData[k].text), ARS.MechanicsData[k].name))
             end
             i=i+1
         elseif remainingTime <= 0 then

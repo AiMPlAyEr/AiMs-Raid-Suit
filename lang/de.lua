@@ -11,4 +11,4 @@ ZO_CreateStringId("ARS_FIERY_DETONATION", "|cFD5308<<1>>|r explodiert in: ")
 ZO_CreateStringId("ARS_ABOMINATION_SPAWN", "|c663AB6<<1>>|r wird beschworen!")
 
 --trash
-ZO_CreateStringId("ARS_PRIME_METEOR", "|cFABC02<<1>>|r. Fokussiere es! Explodiert in: ")
+ZO_CreateStringId("ARS_PRIME_METEOR", "|cFABC02<<1>>|r explodiert in: ")
