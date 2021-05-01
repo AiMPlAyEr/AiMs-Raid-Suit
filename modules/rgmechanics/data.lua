@@ -127,6 +127,22 @@ ARS.MechanicsData = {
         notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = true,
     },
+    [152688] = {
+        name = GetAbilityName(152692),
+        icon = GetAbilityIcon(152692),
+        duration = 2000,
+        text = ARS_CINDER_CLEAVE,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
+        timer = true,
+    },
+    [157282] = {
+        name = GetAbilityName(157281),
+        icon = GetAbilityIcon(157281),
+        duration = GetAbilityDuration(157282),
+        text = ARS_CREEPING_MANIFOLD,
+        notifySound = SOUNDS.DUEL_START,
+        timer = true,
+    },
     -----------------------------------------------------------
     -----------------------------------------------------------
     -----------------------------------------------------------

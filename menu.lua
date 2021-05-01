@@ -396,6 +396,15 @@ function ARS.SynergyTrackerSettings()
                     width = "full"
                 },
                 {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[152688].icon.."|t "..ARS.MechanicsData[152688].name,
+                    getFunc = function() return ARS.rgmechanics.cindercleave end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.noxiouspuddle = value
+                    end,
+                    width = "full"
+                },
+                {
                     type = "header",
                     name = "Flame-Herald Bahsei (2. Boss)"
                 },
@@ -438,6 +447,15 @@ function ARS.SynergyTrackerSettings()
                 {
                     type = "header",
                     name = "Xalvakka (3. Boss)"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[157282].icon.."|t "..ARS.MechanicsData[157282].name,
+                    getFunc = function() return ARS.rgmechanics.creepingmanifold end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.creepingmanifold = value
+                    end,
+                    width = "full"
                 },
             }
         })

@@ -17,6 +17,8 @@ local defaults = {
     fierydetonation = true,
     abomination = true,
     meteorswarm = true,
+    cindercleave = false,
+    creepingmanifold = false,
 }
 
 local function CreateNotification(pool2)
@@ -69,6 +71,10 @@ local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceT
     elseif abilityId == 157466 and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.soulresonance then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     elseif abilityId == 149346 and result == ACTION_RESULT_EFFECT_GAINED_DURATION and ARS.rgmechanics.ignited then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 152688 and result == ACTION_RESULT_BEGIN and ARS.rgmechanics.cindercleave then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 157282 and result == ACTION_RESULT_EFFECT_GAINED_DURATION and ARS.rgmechanics.creepingmanifold then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     end
 
