@@ -7,7 +7,7 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(150078),
         duration = GetAbilityDuration(150078)+1000,
         text = ARS_DEATH_TOUCH,
-        notifySound = true,
+        notifySound = SOUNDS.DUEL_START,
         timer = true,
     },
 
@@ -15,9 +15,9 @@ ARS.MechanicsData = {
     [157859] = {
         name = GetAbilityName(150061),
         icon = GetAbilityIcon(150061),
-        duration = 2000, --might need adjustments
+        duration = 1000,
         text = ARS_NOXIOUS_PUDDLE,
-        notifySound = true,
+        notifySound = SOUNDS.DUEL_START,
         timer = false,
     },
 
@@ -27,7 +27,7 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(153434),
         duration = GetAbilityDuration(153434)-5000,
         text = ARS_PRIME_METEOR,
-        notifySound = true,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = true,
 
     },
@@ -38,7 +38,7 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(157860),
         duration = 3000,
         text = ARS_NOXIOUS_SLUDGE,
-        notifySound = true,
+        notifySound = SOUNDS.DUEL_START,
         timer = true,
 
     },
@@ -49,7 +49,7 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(152370),
         duration = GetAbilityDuration(152365),
         text = ARS_METEOR_CRASH,
-        notifySound = true,
+        notifySound = SOUNDS.DUEL_START,
         timer = true,
 
     },
@@ -63,7 +63,16 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(149414),
         duration = 3500,
         text = ARS_SAVAGE_BLITZ,
-        notifySound = true,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
+        timer = true,
+    },
+
+    [149421] = {
+        name = GetAbilityName(149421),
+        icon = GetAbilityIcon(149421),
+        duration = 2000,
+        text = ARS_SAVAGE_BLITZ_DODGE,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = true,
     },
 
@@ -74,20 +83,50 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(157632),
         duration = GetAbilityDuration(157346)-2000,
         text = ARS_FIERY_DETONATION,
-        notifySound = true,
+        notifySound = SOUNDS.DUEL_START,
         timer = true,
     },
-
     --Abomination spawns
     [152486] = {
         name = "Abomination",
         icon = GetAbilityIcon(152486),
         duration = GetAbilityDuration(152486),
         text = ARS_ABOMINATION_SPAWN,
-        notifySound = true,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = false,
     },
-
+    [157243] = {
+        name = "Taking Aim",
+        icon = GetAbilityIcon(157243),
+        duration = 3500,
+        text = ARS_TAKING_AIM,
+        notifySound = SOUNDS.DUEL_START,
+        timer = true,
+    },
+    [155357] = {
+        name = "Meteor",
+        icon = GetAbilityIcon(155357),
+        duration = GetAbilityDuration(155357),
+        text = ARS_METEOR_SWARM,
+        notifySound = SOUNDS.DUEL_START,
+        timer = true,
+    },
+    [157466] = {
+        name = GetAbilityName(157466),
+        icon = GetAbilityIcon(157466),
+        duration = 2000,
+        text = ARS_SOUL_RESONANCE,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
+        timer = false,
+    },
+    [149346] = {
+        name = GetAbilityName(149346),
+        icon = GetAbilityIcon(149346),
+        duration = GetAbilityDuration(149346),
+        text = ARS_IGNITED,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
+        timer = true,
+    },
     -----------------------------------------------------------
     -----------------------------------------------------------
     -----------------------------------------------------------
@@ -100,7 +139,7 @@ ARS.MechanicsData = {
         icon = GetAbilityIcon(39053),
         duration = GetAbilityDuration(39053)+30000,
         text = ARS_ABOMINATION_SPAWN,
-        notifySound = true,
+        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = false,
     },]]--
 }

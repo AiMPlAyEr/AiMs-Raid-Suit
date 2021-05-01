@@ -5,7 +5,7 @@
         </TopLevelControl>
         <Control name="ARSMechanicTemplate" resizeToFitDescendents="true" virtual="true">
             <Controls>
-                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_down.dds" level="1">
+                <Texture name="$(parent)MechanicFrame" textureFile="/esoui/art/actionbar/abilityframe64_up.dds" level="1">
                     <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSMechanicTemplate" />
                     <Dimensions x="56" y="56"/>
                 </Texture>

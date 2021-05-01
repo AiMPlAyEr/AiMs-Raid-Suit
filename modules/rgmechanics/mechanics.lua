@@ -19,7 +19,7 @@ local function RemoveNotification(control)
     control:ClearAnchors()
 end
 
-local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, _, _, _, _, sourceUnitId, targetUnitId, abilityId)
+local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, hitValue, _, _, _, sourceUnitId, targetUnitId, abilityId)
     local currentTime = GetGameTimeMilliseconds()
 
     if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
@@ -33,15 +33,27 @@ local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceT
     elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER then
         if noxiousPuddleCooldown <= currentTime then
             mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-            noxiousPuddleCooldown = currentTime + 2000
+            noxiousPuddleCooldown = currentTime + 1000
         end
     elseif abilityId == 149414 and result == ACTION_RESULT_BEGIN then
-        if true then
-            mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 149421 then
+        d("result: "..result.." hitValue: "..hitValue.. " duration: "..GetAbilityDuration(149420))
+        if mechanics[149414] then
+           mechanics[14914] = nil
         end
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     elseif abilityId == 152486 and result == ACTION_RESULT_EFFECT_GAINED then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     elseif abilityId == 157346 and result == ACTION_RESULT_EFFECT_GAINED then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 157243 and result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_PLAYER then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 155357 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 157466 and result == ACTION_RESULT_EFFECT_GAINED then
+        mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
+    elseif abilityId == 149346 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     end
 
@@ -51,25 +63,10 @@ local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceT
 
     --sunburst 1. Boss
 
-    if abilityName == "Sunburst" then
-        d("Sunburst ("..abilityId..")".." result: "..result)
-    end
+    --[[if (sourceType == COMBAT_UNIT_TYPE_OTHER or sourceType == COMBAT_UNIT_TYPE_NONE) and (result == 2240 or result == 2245) and targetType ~= COMBAT_UNIT_TYPE_OTHER then
+        d('mechanic: '..GetAbilityName(abilityId).."("..abilityId..")".." result: "..result.." ".." hitValue "..hitValue)    
+    end]]--
 
-    if abilityId == 152716 then
-        d("Meteor Bomb ("..abilityId..")".." result: "..result)
-    end
-
-    if abilityName == "Prime Meteor" then
-        d("Prime Meteor! ("..abilityId..")".." result: "..result)
-    end
-
-    if abilityName == "Ember Chains" then
-        d("Ember chains! ("..abilityId..")".." result: "..result)
-    end
-
-    if abilityName == "Summon Abomination" then
-        d("Abomination spawns! Check position! ("..abilityId..")".." result: "..result)
-    end
 end
 
 function ARS.UpdateRemainingTime()
@@ -78,7 +75,7 @@ function ARS.UpdateRemainingTime()
         local remainingTime = (v.duration - GetGameTimeMilliseconds()) / 1000
         if remainingTime > 0 then
             if v.notifySound then
-                PlaySound(SOUNDS.DUEL_START)
+                PlaySound(ARS.MechanicsData[k].notifySound)
                 v.notifySound = false
             end
             local trackerunit = pool2:AcquireObject(k)
