@@ -88,7 +88,7 @@ ARS.MechanicsData = {
     },
     --Abomination spawns
     [152486] = {
-        name = "Abomination",
+        name = "Flesh Abomination",
         icon = GetAbilityIcon(152486),
         duration = GetAbilityDuration(152486),
         text = ARS_ABOMINATION_SPAWN,
@@ -96,7 +96,7 @@ ARS.MechanicsData = {
         timer = false,
     },
     [157243] = {
-        name = "Taking Aim",
+        name = GetAbilityName(157243),
         icon = GetAbilityIcon(157243),
         duration = 3500,
         text = ARS_TAKING_AIM,

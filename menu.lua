@@ -306,66 +306,143 @@ function ARS.SynergyTrackerSettings()
         })
     end
 
-    if ARS.savedgeneral.synergyblocker then
+    if ARS.savedgeneral.rgmechanics then
         table.insert(optionsData, {
             type = "submenu",
-            name ="Trial Synergy Blocker",
+            name = "Rockgrove Mechanics",
             controls = {
                 {
                     type = "description",
-                    text = [[|c00ff00Trial Synergy Blocker|r is blocking synergies if they are set to false.]],               
+                    text = [[ Alerts for Rockgrove ]],               
                 },
                 {
                     type = "header",
-                    name = "Kynes Aegis"
+                    name = "Trash"
                 },
                 {
                     type = "checkbox",
-                    name = "|t32:32:"..GetAbilityIcon(134016).."|t "..GetAbilityName(134016),
-                    getFunc = function() return ARS.savedblock[134016] end,
+                    name = "|t32:32:"..ARS.MechanicsData[157243].icon.."|t "..ARS.MechanicsData[157243].name,
+                    getFunc = function() return ARS.rgmechanics.takingaim end,
                     setFunc = function(value) 
-                        ARS.savedblock[134016] = value 
-                    end
+                        ARS.rgmechanics.takingaim = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[153434].icon.."|t "..ARS.MechanicsData[153434].name,
+                    getFunc = function() return ARS.rgmechanics.primemeteor end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.primemeteor = value 
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[157466].icon.."|t "..ARS.MechanicsData[157466].name,
+                    getFunc = function() return ARS.rgmechanics.soulresonance end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.soulresonance = value 
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[149346].icon.."|t "..ARS.MechanicsData[149346].name,
+                    getFunc = function() return ARS.rgmechanics.ignited end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.ignited = value 
+                    end,
+                    width = "full"
                 },
                 {
                     type = "header",
-                    name = "Cloudrest"
+                    name = "Oaxiltso (1. Boss)"
                 },
                 {
                     type = "checkbox",
-                    name = "|t32:32:"..GetAbilityIcon(103489).."|t "..GetAbilityName(103489),
-                    getFunc = function() return ARS.savedblock[103489] end,
+                    name = "|t32:32:"..ARS.MechanicsData[157859].icon.."|t "..ARS.MechanicsData[157859].name,
+                    getFunc = function() return ARS.rgmechanics.noxiouspuddle end,
                     setFunc = function(value) 
-                        ARS.savedblock[103489] = value 
-                    end
+                        ARS.rgmechanics.noxiouspuddle = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[149193].icon.."|t "..ARS.MechanicsData[149193].name,
+                    getFunc = function() return ARS.rgmechanics.noxiousludge end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.noxiousludge = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[152365].icon.."|t "..ARS.MechanicsData[152365].name,
+                    getFunc = function() return ARS.rgmechanics.meteorcrash end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.meteorcrash = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[149414].icon.."|t "..ARS.MechanicsData[149414].name,
+                    getFunc = function() return ARS.rgmechanics.savageblitz end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.savageblitz = value
+                    end,
+                    width = "full"
                 },
                 {
                     type = "header",
-                    name = "Hel Ra Citadel"
+                    name = "Flame-Herald Bahsei (2. Boss)"
                 },
                 {
                     type = "checkbox",
-                    name = "|t32:32:"..GetAbilityIcon(56667).."|t "..GetAbilityName(56667),
-                    getFunc = function() return ARS.savedblock[56667] end,
+                    name = "|t32:32:"..ARS.MechanicsData[150078].icon.."|t "..ARS.MechanicsData[150078].name,
+                    getFunc = function() return ARS.rgmechanics.deathtouch end,
                     setFunc = function(value) 
-                        ARS.savedblock[56667] = value 
-                    end
+                        ARS.rgmechanics.deathtouch = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[157346].icon.."|t "..ARS.MechanicsData[157346].name,
+                    getFunc = function() return ARS.rgmechanics.fierydetonation end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.fierydetonation = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[152486].icon.."|t "..ARS.MechanicsData[152486].name,
+                    getFunc = function() return ARS.rgmechanics.abomination end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.abomination = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[155357].icon.."|t "..ARS.MechanicsData[155357].name,
+                    getFunc = function() return ARS.rgmechanics.meteorswarm end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.meteorswarm = value
+                    end,
+                    width = "full"
                 },
                 {
                     type = "header",
-                    name = "Sunspire"
-                },
-                {
-                    type = "checkbox",
-                    name = "|t32:32:"..GetAbilityIcon(121216).."|t "..GetAbilityName(121216),
-                    getFunc = function() return ARS.savedblock[121216] end,
-                    setFunc = function(value) 
-                        ARS.savedblock[121216] = value 
-                    end
+                    name = "Xalvakka (3. Boss)"
                 },
             }
         })
     end
+
 
     LAM:RegisterOptionControls(panelName, optionsData)
 end

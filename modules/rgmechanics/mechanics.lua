@@ -4,6 +4,21 @@ local pool2
 local mechanics = {}
 local noxiousPuddleCooldown = 0
 
+local defaults = {
+    takingaim = true,
+    primemeteor = true,
+    soulresonance = true,
+    ignited = true,
+    noxiouspuddle = true,
+    noxiousludge = true,
+    meteorcrash = true,
+    savageblitz = true,
+    deathtouch = true,
+    fierydetonation = true,
+    abomination = true,
+    meteorswarm = true,
+}
+
 local function CreateNotification(pool2)
     local name      = "ARSMechanic" .. pool2:GetNextControlId()
     local container = WINDOW_MANAGER:CreateControlFromVirtual(name, ARSMechanicFrame, "ARSMechanicTemplate")
@@ -22,38 +37,38 @@ end
 local function MechanicCheck(eventCode, result, _, abilityName, _, _, _, sourceType, _, targetType, hitValue, _, _, _, sourceUnitId, targetUnitId, abilityId)
     local currentTime = GetGameTimeMilliseconds()
 
-    if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if abilityId == 150078 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED_DURATION and ARS.rgmechanics.deathtouch then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 149193 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED then
+    elseif abilityId == 149193 and targetType == COMBAT_UNIT_TYPE_PLAYER and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.noxiousludge then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 152365 and result == ACTION_RESULT_BEGIN then
+    elseif abilityId == 152365 and result == ACTION_RESULT_BEGIN and ARS.rgmechanics.meteorcrash then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 153434 and result == ACTION_RESULT_EFFECT_GAINED then
+    elseif abilityId == 153434 and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.primemeteor then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER then
+    elseif abilityId == 157859 and targetType == COMBAT_UNIT_TYPE_PLAYER and ARS.rgmechanics.noxiouspuddle then
         if noxiousPuddleCooldown <= currentTime then
             mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
             noxiousPuddleCooldown = currentTime + 1000
         end
-    elseif abilityId == 149414 and result == ACTION_RESULT_BEGIN then
+    elseif abilityId == 149414 and result == ACTION_RESULT_BEGIN and ARS.rgmechanics.savageblitz then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     elseif abilityId == 149421 then
-        d("result: "..result.." hitValue: "..hitValue.. " duration: "..GetAbilityDuration(149420))
+        d("result: "..result.." hitValue: "..hitValue.. " duration: "..GetAbilityDuration(149421))
         if mechanics[149414] then
            mechanics[14914] = nil
         end
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 152486 and result == ACTION_RESULT_EFFECT_GAINED then
+    elseif abilityId == 152486 and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.abomination then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 157346 and result == ACTION_RESULT_EFFECT_GAINED then
+    elseif abilityId == 157346 and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.fierydetonation then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 157243 and result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_PLAYER then
+    elseif abilityId == 157243 and result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_PLAYER and ARS.rgmechanics.takingaim then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 155357 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    elseif abilityId == 155357 and result == ACTION_RESULT_EFFECT_GAINED_DURATION and ARS.rgmechanics.meteorswarm then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 157466 and result == ACTION_RESULT_EFFECT_GAINED then
+    elseif abilityId == 157466 and result == ACTION_RESULT_EFFECT_GAINED and ARS.rgmechanics.soulresonance then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
-    elseif abilityId == 149346 and result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    elseif abilityId == 149346 and result == ACTION_RESULT_EFFECT_GAINED_DURATION and ARS.rgmechanics.ignited then
         mechanics[abilityId] = { duration = currentTime + ARS.MechanicsData[abilityId].duration, notifySound = true }
     end
 

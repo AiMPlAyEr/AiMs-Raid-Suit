@@ -1,7 +1,7 @@
 ## Title: AiM's-Raid-Suit
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
-## Version: 0.3
+## Version: 0.3.1
 ## APIVersion: 100035
 ## SavedVariables: ARSsaved
 ## DependsOn: LibAddonMenu-2.0
