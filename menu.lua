@@ -370,7 +370,7 @@ function ARS.SynergyTrackerSettings()
                 },
                 {
                     type = "checkbox",
-                    name = "|t32:32:"..ARS.MechanicsData[149193].icon.."|t "..ARS.MechanicsData[149193].name,
+                    name = "|t32:32:"..ARS.MechanicsData[149190].icon.."|t "..ARS.MechanicsData[149190].name,
                     getFunc = function() return ARS.rgmechanics.noxiousludge end,
                     setFunc = function(value) 
                         ARS.rgmechanics.noxiousludge = value
@@ -400,7 +400,16 @@ function ARS.SynergyTrackerSettings()
                     name = "|t32:32:"..ARS.MechanicsData[152688].icon.."|t "..ARS.MechanicsData[152688].name,
                     getFunc = function() return ARS.rgmechanics.cindercleave end,
                     setFunc = function(value) 
-                        ARS.rgmechanics.noxiouspuddle = value
+                        ARS.rgmechanics.cindercleave = value
+                    end,
+                    width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.MechanicsData[153181].icon.."|t "..ARS.MechanicsData[153181].name,
+                    getFunc = function() return ARS.rgmechanics.sunhammer end,
+                    setFunc = function(value) 
+                        ARS.rgmechanics.sunhammer = value
                     end,
                     width = "full"
                 },

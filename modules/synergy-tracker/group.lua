@@ -335,8 +335,6 @@ function ARS:InitializeSynergyTracker(enabled)
 
     pool = ZO_ObjectPool:New(CreateBuff, RemoveBuff)
 
-    ARS.RegisterUnitCollectingEvent()
-
     UpdateTimer()
     ARS.UpdateGroup()
     RestorePosition()

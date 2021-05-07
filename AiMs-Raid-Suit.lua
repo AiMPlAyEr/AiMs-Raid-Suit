@@ -15,9 +15,11 @@ function ARS:Initialize()
 
     ARS:InitializeSynergyTracker(ARS.savedgeneral.grouptracker) --group tracker
 	ARS:InitializeTracker(ARS.savedgeneral.synergytracker) --solo tracker
-	ARS:InitializeRGMechanics(ARS.savedgeneral.rgmechanics) --Rockgrave mechanics
+	ARS:InitializeRGMechanics(ARS.savedgeneral.rgmechanics) --Rockgrove mechanics
 
 	ARS.SynergyTrackerSettings()
+
+	ARS.RegisterUnitCollectingEvent()
 end
 
 function ARS.OnAddOnLoaded(event, addonName)

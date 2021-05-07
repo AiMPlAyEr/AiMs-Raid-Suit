@@ -7,7 +7,6 @@
 ## DependsOn: LibAddonMenu-2.0
 
 lang/en.lua
-lang/$(language).lua
 AiMs-Raid-Suit.lua
 
 

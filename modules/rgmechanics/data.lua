@@ -33,7 +33,7 @@ ARS.MechanicsData = {
     },
 
     --Noxious Sludge
-    [149193] = {
+    [149190] = {
         name = GetAbilityName(157860),
         icon = GetAbilityIcon(157860),
         duration = 3000,
@@ -56,22 +56,13 @@ ARS.MechanicsData = {
 
 
     --Savage Blitz 1. Boss - boss charge
-    --149421 - if you are in his path
+    --149421 - if you are in his path kind of?
     --target type none
     [149414] = {
         name = GetAbilityName(149414),
         icon = GetAbilityIcon(149414),
-        duration = 3500,
-        text = ARS_SAVAGE_BLITZ,
-        notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
-        timer = true,
-    },
-
-    [149421] = {
-        name = GetAbilityName(149421),
-        icon = GetAbilityIcon(149421),
         duration = 2000,
-        text = ARS_SAVAGE_BLITZ_DODGE,
+        text = ARS_SAVAGE_BLITZ,
         notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = true,
     },
@@ -130,10 +121,10 @@ ARS.MechanicsData = {
     [152688] = {
         name = GetAbilityName(152692),
         icon = GetAbilityIcon(152692),
-        duration = 2000,
+        duration = 5000,
         text = ARS_CINDER_CLEAVE,
         notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
-        timer = true,
+        timer = false,
     },
     [157282] = {
         name = GetAbilityName(157281),
@@ -142,6 +133,14 @@ ARS.MechanicsData = {
         text = ARS_CREEPING_MANIFOLD,
         notifySound = SOUNDS.DUEL_START,
         timer = true,
+    },
+    [153181] = {
+        name = "Sunhammer",
+        icon = GetAbilityIcon(153192),
+        duration = nil,
+        text = ARS_SUNHAMMER,
+        notifySound = SOUNDS.DUEL_START,
+        timer = false,
     },
     -----------------------------------------------------------
     -----------------------------------------------------------
@@ -154,7 +153,7 @@ ARS.MechanicsData = {
         name = "|cA7194B"..GetAbilityName(39053).."|r",
         icon = GetAbilityIcon(39053),
         duration = GetAbilityDuration(39053)+30000,
-        text = ARS_ABOMINATION_SPAWN,
+        text = ARS_WALL,
         notifySound = SOUNDS.OBJECTIVE_DISCOVERED,
         timer = false,
     },]]--

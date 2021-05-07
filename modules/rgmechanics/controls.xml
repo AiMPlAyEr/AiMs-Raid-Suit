@@ -19,5 +19,24 @@
                 </Label>
             </Controls>
         </Control>
+
+        <TopLevelControl name="ARSStatusPanel" mouseEnabled="true" movable="true" clampedToScreen="true" resizeToFitDescendents="true" hidden="true" >
+            <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="400" offsetY="400" />
+
+            <Controls>
+                <Label name="$(parent)BlitzText" color="A7194B" font="$(BOLD_FONT)|$(KB_24)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="Next Charge: ">
+                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSStatusPanel" offsetY="0" offsetX="0"/>
+                </Label>
+                <Label name="$(parent)BlitzTimer" color="ffffff" font="$(BOLD_FONT)|$(KB_24)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="32s">
+                    <Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="ARSStatusPanelBlitzText" offsetY="0" offsetX="70"/>
+                </Label>
+                <Label name="$(parent)PoisonText" color="26980c" font="$(BOLD_FONT)|$(KB_24)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="Next Poison: ">
+                    <Anchor point="LEFT" relativePoint="LEFT" relativeTo="ARSStatusPanel" offsetY="40" offsetX="0"/>
+                </Label>
+                <Label name="$(parent)PoisonTimer" color="ffffff" font="$(BOLD_FONT)|$(KB_24)|thick-outline" horizontalAlignment="CENTER" verticalAlignment="CENTER" text="28s">
+                    <Anchor point="RIGHT" relativePoint="RIGHT" relativeTo="ARSStatusPanelPoisonText" offsetY="0" offsetX="73"/>
+                </Label>
+            </Controls>
+        </TopLevelControl>
     </Controls>
 </GuiXml>
