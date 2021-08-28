@@ -1,12 +1,11 @@
 ## Title: AiM's-Raid-Suit
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
-## Version: 0.3.3
+## Version: 0.3.4
 ## APIVersion: 100035
 ## SavedVariables: ARSsaved
 ## DependsOn: LibAddonMenu-2.0
 
-lang/en.lua
 AiMs-Raid-Suit.lua
 
 
