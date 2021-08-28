@@ -1,7 +1,7 @@
 ## Title: AiM's-Raid-Suit
 ## Description:
 ## Author: |cfd6a02AiMPlAyEr[EU]|r
-## Version: 0.3.2
+## Version: 0.3.3
 ## APIVersion: 100035
 ## SavedVariables: ARSsaved
 ## DependsOn: LibAddonMenu-2.0
@@ -16,11 +16,6 @@ modules/synergy-tracker/group.lua
 modules/synergy-tracker/data.lua
 modules/synergy-tracker/tracker.lua
 libs/gunits.lua
-
-#RG Mechanics
-modules/rgmechanics/controls.xml
-modules/rgmechanics/data.lua
-modules/rgmechanics/mechanics.lua
 
 
 #menu files

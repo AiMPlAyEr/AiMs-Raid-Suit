@@ -1,7 +1,7 @@
 ARS = ARS or {}
 
 ARS.name = "AiMs-Raid-Suit"
-ARS.version = "0.3.2"
+ARS.version = "0.3.3"
 ARS.default = {}
 
 function ARS:Initialize()
@@ -15,7 +15,6 @@ function ARS:Initialize()
 
     ARS:InitializeSynergyTracker(ARS.savedgeneral.grouptracker) --group tracker
 	ARS:InitializeTracker(ARS.savedgeneral.synergytracker) --solo tracker
-	ARS:InitializeRGMechanics(ARS.savedgeneral.rgmechanics) --Rockgrove mechanics
 
 	ARS.SynergyTrackerSettings()
 
