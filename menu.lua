@@ -214,6 +214,16 @@ function ARS.SynergyTrackerSettings()
                         ARS.UpdateTracker()
                     end,
                     width = "full"
+                },
+                {
+                    type = "checkbox",
+                    name = "|t32:32:"..ARS.SynergyTexture[18].."|t "..GetAbilityName(141920),
+                    getFunc = function() return ARS.savedsolo.synergies[18] end,
+                    setFunc = function(value) 
+                        ARS.savedsolo.synergies[18] = value 
+                        ARS.UpdateTracker()
+                    end,
+                    width = "full"
                 }  
             }
         })
