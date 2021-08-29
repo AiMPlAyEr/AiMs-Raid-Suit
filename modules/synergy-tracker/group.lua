@@ -4,6 +4,8 @@ local pool
 local headercontrol
 local synergypool = {}
 
+local alkosh_user;
+
 local function AddToFragment(element)
     fragment = ZO_HUDFadeSceneFragment:New(element)
  
@@ -108,7 +110,7 @@ function ARS.UpdateGroup()
             groupunit:SetHidden(false)
             groupunit:SetAnchor(TOPLEFT, ARSTrackerFrame, TOPLEFT, 0, 24 * position + 2)
 
-            if synergypool[i].alkosh then
+            if alkosh_user == accName then
                 groupunit.backdrop:SetColor(255, 255, 0, ARS.savedgroup.bgopacity);
             else
                 groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
@@ -193,7 +195,7 @@ function GetSynergy(eventCode, result, _, abilityName, _, _, _, _, _, _, _, _, _
             end
 
             if abilityId == 75753 and ARS.savedgroup.halkosh then
-                synergypool[k].alkosh = true
+                alkosh_user = getSource;
             end
         end
     end
@@ -215,9 +217,6 @@ function UpdateTimer()
             synergypool[i].secondarysynergy = "0"
             synergypool[i].tertiarysynergy  = "0"
             synergypool[i].quaternarysynergy = "0"
-            if ARS.savedgroup.halkosh then
-                synergypool[i].alkosh = false
-            end
         end
     end
 end
@@ -232,7 +231,7 @@ function UpdateCooldown()
 
             groupunit = pool:AcquireObject(k)
 
-            if v.alkosh and ARS.savedgroup.halkosh then
+            if alkosh_user == v.name and ARS.savedgroup.halkosh then
                 groupunit.backdrop:SetColor(255, 255, 0, ARS.savedgroup.bgopacity);
             else
 
