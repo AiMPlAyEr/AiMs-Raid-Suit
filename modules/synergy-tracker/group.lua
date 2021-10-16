@@ -234,7 +234,7 @@ function UpdateCooldown()
             if alkosh_user == v.name and ARS.savedgroup.halkosh then
                 groupunit.backdrop:SetColor(255, 255, 0, ARS.savedgroup.bgopacity);
             else
-
+                groupunit.backdrop:SetColor(0, 0, 0, ARS.savedgroup.bgopacity);
             end
 
             --primary
@@ -338,10 +338,11 @@ function ARS:InitializeSynergyTracker(enabled)
     ARS.UpdateGroup()
     RestorePosition()
 
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED , ARS.UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT , ARS.UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED , ARS.UpdateGroup)
-    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS , ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_UPDATE, ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_JOINED, ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_LEFT, ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_ROLE_CHANGED, ARS.UpdateGroup)
+    EVENT_MANAGER:RegisterForEvent(ARS.name.."GroupUpdate",EVENT_GROUP_MEMBER_CONNECTED_STATUS, ARS.UpdateGroup)
 
     EVENT_MANAGER:RegisterForEvent(ARS.name.."Synergy", EVENT_COMBAT_EVENT, GetSynergy)
     --[[for k, v in pairs(ARS.Synergies) do
